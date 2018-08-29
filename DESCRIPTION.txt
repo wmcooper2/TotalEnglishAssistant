@@ -1,0 +1,160 @@
+This Description is intended to be a brief explanation of what the program is doing and of my logic in making things the way that I did.
+
+
+Total_English_Assistant.py
+----------
+*The main file that loads all the other files into one GUI. 
+*From here you can view program information, contact information and so on in the "About" menu.
+*Creates the menu bar at the top of the users screen (on their personal machine when the program is open).
+*Creates an instance of the Info() class which is used to hold program specific information.
+
+Vocabulary_Tab.py
+-----------------
+*Creates the "Vocabulary" tab in the GUI.
+*Draws the widgets to the GUI that are used to gather input from the user.
+*Validates the information from the user.
+*Creates an instance of VocabularyTest() from "Make_Tests.py".
+*Writes a user-specified amount of randomized vocabulary tests to a user-specified directory.
+
+
+Make_Tests.py
+-------------
+*Creates an instance of Lists() from "Lists.py".
+*Filters the words according to the class attributes.
+*Class attributes are changed externally by "Vocabulary_Tab.py" which passes the validated user input to this class.
+"Vocabulary_Tab.py" then creates the test.
+
+
+Lists.py
+--------
+*Creates an instance of Dictionary() from "Dictionaries.py".
+*Intended to be a collection of lists for easier access from other files and classes with a simple naming scheme.
+*Categories of words are made to make it easier to get a semantically relevant random choice when making the user wants a new random word selection for a given sentence or situation.
+*This also makes it a little more human-readable because the lower-levels of data within the program are pretty large and reach into the tens of thousands of lines for the dictionaries and other collections.
+*From this file it is easier to switch from one book to the next by changing a few lines redirecting the source to a different dictionary or category.
+
+
+Dictionaries.py
+---------------
+*Creates the "Dictionary" tab in the GUI.
+*Loads an instance of the user-specified dictionary (as per the "Settings > Dictionaries" menu option)
+*Loads the lower-level data file of "Total_English_123.json" as a usable object in Python.
+*Saves the dictionary after changes are made (or not made) to the dictionary.
+*Loads the dictionary from a ".json" object.
+*Sorts the words alphabetically and places them in a List.
+
+
+Total_English_123.json
+----------------------
+*This is the entire collection of words (manually inputted) from the 3 books that make up the "Total English" series used by Junior High Schools all across Japan.
+*It is saved as a ".json" file so that it can be used by other javascript programs that I am working on.
+
+Sentences_Tab.py
+----------------
+*Creates the "Sentences" tab in the GUI.
+*Creates an instance of Words() from "Words.py".
+*Draws the widgets to the GUI that are used to determine if a sentence can be constructed using only the words available in the dictionaries.
+*Validates the sentence the user inputs before checking the dictionaries.
+*Displays the results of the dictionary search.
+*(FUTURE) Allows the user to see the lowest grade level in which the word appears so that they know higher grades should already know that word, and allows the user to change individual words that do not appear in the dictionary from the sentence they inputted. This ensures that the user will always know if their choices align with the books' contents.
+
+
+Words.py
+--------
+*This module's purpose is to perform the operations on individual words that are needed for other classes in this program. 
+*Removes punctuation marks, numbers, finds base form of words (FUTURE...for nouns and verbs), changes the word when requested from another class
+*Makes verbs and nouns plural.
+*Validates word attributes for use within the class. 
+
+
+Sentences.py
+------------
+*The file containing the 'Sentence' class.
+*Creates an instance of a sentence object.
+*Separates the words of the sentence but maintains their order so that they may be manipulated individually.
+
+
+Dictionary_Tab.py
+-----------------
+*Creates the 'Dictionary' tab in the GUI.
+*Creates a Dictionary() instance from 'Dictionaries.py'.
+*Shows unique word counts for the different grade levels.
+*Displays single word entries based on user request.
+*Allows the user to edit a dictionary entry.
+*Saves the edited entry to the '.json' dictionary file.
+
+
+
+Images.py
+---------
+*This the image object for any image imported into the program.
+*Serves as a container for basic information about the image with easier attribute access due to simplified attribute names.
+
+
+Images_Tab.py
+-------------
+*Must use PIL to convert the images into a usable form by Tkinter.
+*Creates the Image tab in the GUI.
+*Validates the name entered by the user.
+*Loads images based on user-specification.
+*Saves the image paths to a '.json' file for use by the English Program Website (a different project of mine).
+*Loads all images in the specified file and exits cleanly.
+
+About.py
+--------
+*Contains all of the program information found in the 'About' option in the menu bar.
+*Creates new windows.
+
+
+
+
+Program_Information.py
+----------------------
+*Holds the program specific information about the author, contact info, version number for dependencies, etc.
+
+
+
+Junior_High_English_Words.py
+---------------------------
+*Holds all of the entries from the indices of the Total English book series (books 1,2,3).
+
+Lessons.py
+----------
+*This one is far from finished, I don't recommend using it without looking at the code first.
+*Intended to be a mad lib generator class.
+*Hold the methods that returns randomized word selections based on a target sentence's structure.
+*The words that are matched up are compared with their 'part of speech' and randomly chosen from the corresponding category.
+
+New_Tab_Template.py
+-------------------
+*A template that I will use to test out using inheritence to clean up the code even further.
+
+
+Target_Sentences.py
+-------------------
+*The file that contains low-level data about the target sentences for all three Total English books.
+
+
+Verb_Forms.py
+-------------
+*The file that contains all of the verbs and their different forms from the indices of the Total English books.
+*The low-level data is kept in a single dictionary with nested dictionaries.
+*The key is the English verb, the value is another dictionary.
+*The nested dictionry's keys are the names of the form type, their values are the actual verbs' different forms.
+
+
+Verb_Noun_Meaning_Pairs.py
+--------------------------
+*Intended to be a way of providing some semantic-pairing ability between nouns and verbs when random choices are made for word substitutions when trying to make complete sentences.
+*Holds lists of categories that are held in variables bearing the relevant name of a verb of which can be more reasonably paired with those categories. For example, the verb 'eat' does not reasonably pair well with the category of 'musical instruments', therfore it is not included in the 'eat' variable's list of categories to choose a random word from.
+
+
+
+Irregular_Nouns.py
+------------------
+*Holds many irregular noun forms in a dictionary.
+*Keys are in the singular form, values are in the plural form.
+
+Extra_Nouns.py
+--------------
+*Just a data structure (simple file) of variables that contain categories of words not originally part of the Total English book series.
