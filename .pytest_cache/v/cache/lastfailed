@@ -1,8 +1,0 @@
-{
-  "src/dictionaries_test.py": true,
-  "src/lists_test.py": true,
-  "src/sentences_test.py": true,
-  "src/vocabularytab_test.py": true,
-  "src/vocabularytest_test.py": true,
-  "src/words_test.py": true
-}
