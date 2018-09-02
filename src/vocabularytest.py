@@ -101,7 +101,7 @@ class VocabularyTest():
     def save_test(self):
         """Saves test to '~/TotalEnglishAssistant/VocabularyTests',
            returns None."""
-        save_path = (self.dirs.main_path/self.dirs.tests)
+        save_path = (self.dirs.main_path/self.dirs.test_dir)
         tests = self.test_amount
 #        print("len(test_words) = ", len(self.test_words))
 #        print("len(questions_per_test) = ", len(self.questions_per_test))

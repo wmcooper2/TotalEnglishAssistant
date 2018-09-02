@@ -19,12 +19,11 @@ class DictionaryTab():
     value_edits = []
     key_edits = []
     dirs = DirectorySetup()
-    user_dict_dir = os.path.join(dirs.main_path, dirs.dictionaries)
+    user_dict_dir = os.path.join(dirs.main_path, dirs.dict_dir)
     user_dict = os.path.join(user_dict_dir, dictionary.default_dict_name)
         
     def __init__(self, tab_control):
         """Draws the widgets to the Dictionary tab, returns None."""
-#        self.tab_control = tab_control
         self.dictionary_tab = ttk.Frame(tab_control)
         tab_control.add(self.dictionary_tab, text = 'Dictionaries')
         tab_control.grid()

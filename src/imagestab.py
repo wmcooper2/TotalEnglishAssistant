@@ -25,8 +25,8 @@ class ImagesTab():
     check = ImageTabValidation()
     dirs = DirectorySetup()
     file_name = "categories.js"
-    save_dir = Path(dirs.home/dirs.main_dir/dirs.images) 
-    save_file = Path(save_dir/file_name)
+    save_dir = Path(dirs.main_dir,dirs.image_dir) 
+    save_file = Path(save_dir,file_name)
     load_path = ""
     paths = []
 
@@ -138,7 +138,7 @@ class ImagesTab():
     def new_category_path(self):
         """Makes the category path, returns String."""
         if len(self.category_name.get()) > 0:
-            self.category_path = os.path.join(self.dirs.main_path, self.dirs.images, self.category_name.get())
+            self.category_path = os.path.join(self.dirs.main_path, self.dirs.image_dir, self.category_name.get())
         else:
             self.check.request_category_name()    
 
@@ -150,7 +150,7 @@ class ImagesTab():
         """Adds the relative path name of the image to the '.json' object,
             returns None."""
         if self.check.valid_img_name(self.image_name_entry.get(), self.MAX_LENGTH, self.image_dictionary): 
-            save_dir = os.path.join(self.dirs.home, self.dirs.main_dir, self.dirs.images)
+            save_dir = os.path.join(self.dirs.main_dir, self.dirs.image_dir)
             path = os.path.join(save_dir, self.category_name.get(), self.image_name_entry.get() + self.image.suffix)
             self.image_dictionary[self.image_name_entry.get()] = path
         self.image_name_entry.delete(0, "end")
@@ -166,17 +166,18 @@ class ImagesTab():
     def save_json_object_to_file(self):
         """Saves the '.json' object to disk, returns None."""
         self.set_json_var_name()
-        category_file = "/" + "/".join(self.save_file.parts[1:])
+        category_file = "../" + "/".join(self.save_file.parts[1:])
         save_here = open(category_file, "a+")
         save_here.write(self.category_header)
-        json.dump(self.image_dictionary, save_here, sort_keys = True, indent = 4)
+        json.dump(self.image_dictionary, save_here, sort_keys=True, indent=4)
         save_here.close()
         self.check.saved_message()
 
     def copy_images(self):
-        """Copies images into '~/TotalEnglishAssistant/Images', returns None."""
-        category = self.dirs.category_dir(self.category_name.get())
-        copy_here = os.path.join(category) 
+        """Copies images into 'TotalEnglishAssistant/Images'. Returns None."""
+#        category = self.dirs.category_dir(self.category_name.get())
+#        copy_here = os.path.join(category) 
+        copy_here = os.path.join(self.dirs.main_dir, self.dirs.image_dir, self.category_name.get()) 
         answer = self.check.ask_to_delete()
         if answer == True:
             for path in self.paths:
