@@ -1,14 +1,16 @@
-Total English Assistant
-========
+## Total English Assistant
 
-Intended to be a project I can focus on to develop my own skills as a programmer/software engineer.
-Although I've come a long way, I still have a much longer way to go. I will continue to evolve this project as my skills evolve.
+This is a GUI tool intended to be a supplement to the "Total English" book series currently (in 2018) taught in Japan's middle schools.
+This tool will :
+* create these directories in the programs's root directory "./TotalEnglishAssistant/"
+  * "./TotalEnglishAssistant/Dictionaries/"
+  * "./TotalEnglishAssistant/Images/"
+  * "./TotalEnglishAssistant/VocabularyTests/"
+* write files to the newly created directories.
 
+### Features 
 
-Features (Tabs in the GUI)
---------
-
-Vocabulary
+#### Vocabulary Tab
 * make randonmized vocabulary tests
 * select questions per test
 * select amount of tests to make
@@ -17,7 +19,7 @@ Vocabulary
 * select a page range to get the words from
 * select a save location and base file name (counter is suffixed to the name)
 
-Sentences
+#### Sentences Tab
 * input is only accepted in English.
 * type any sentence that you want to use in your worksheets, and it will search for each word in the books. If it is not in the books at all, then it will display "###".
 * When it searches, it does not remove apostrophes and hyphens. 
@@ -26,13 +28,13 @@ Sentences
 
 
 
-Dictionary
+#### Dictionary Tab
 * shows some quick stats about word counts. 
 * input a word to get that word's dictionary entry
 * if you want to edit the word's entry, then click edit and you can change the word's entry-attributes
 
 
-Images
+#### Images Tab
 * this tab is meant to be a simple interface to add custom images and image-names to the file that the English Program Website will use. These images will be loaded into the browser in simple games that can be used in the classroom. 
 * select a directory where you want to load images from, and the images will automatically start loading one-by-one.
 * input a name in the entry field and click "Save and Load Another" to continue naming the images.
@@ -40,19 +42,16 @@ Images
 
 
 
-TESTING
---------
+### TESTING
 * module; saves a ".py" to the users desktop
 
 
-Bugs
-----
+### Bugs
 * vocabulary tab makes a test with no suffix or suffix "0" that has no contents
 * fix the intermittent bug in change_word in Word class in Words.py (run Test_Words.py several times to find the issue) 
 
 
-Naming Conventions
-------------------
+### Naming Conventions (in the source code)
 for methods ("..." means the name continues):
 * set...	setting attributes within classes.
 * get...	getting information from var-containers, entry widgets.
@@ -69,8 +68,7 @@ for methods ("..." means the name continues):
 
 
 
-for variables
--------------
+#### Variable Naming
 * student_grade_level == the grade level according to the Japanese system ("1" is 7th grade, "2" is 8th grade and "3" is 9th grade)
 
 
