@@ -1,0 +1,9 @@
+[
+  "TotalEnglishAssistant/dictionaries_test.py::DictionaryTests::test_filter_words_by_grade__1",
+  "TotalEnglishAssistant/dictionaries_test.py::DictionaryTests::test_filter_words_by_grade__2",
+  "TotalEnglishAssistant/dictionaries_test.py::DictionaryTests::test_filter_words_by_grade__3",
+  "TotalEnglishAssistant/dictionaries_test.py::DictionaryTests::test_is_dictionary_instance",
+  "TotalEnglishAssistant/dictionaries_test.py::DictionaryTests::test_more_than_zero_entries",
+  "TotalEnglishAssistant/dictionaries_test.py::DictionaryTests::test_size_unchanged",
+  "TotalEnglishAssistant/dictionaries_test.py::DictionaryTests::test_word_in_dictionary__cat"
+]
