@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#pytest *_test.py
+pytest *_test.py
 #pytest ./src/*_test.py
 #pytest src/*_test.py
 #python3 -m pytest src/*_test.py

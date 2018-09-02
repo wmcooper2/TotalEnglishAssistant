@@ -48,9 +48,6 @@ studenttests.py
 * This one is really old code. Will take some work to refactor/repurpose.
 * Move the methods into their own files named for their main tasks.
 
-programinfo.py
-----------------------
-* There doesn't need to be an "About" class. Remove the class and make the file a simple container of information.
 
 verbforms.py
 -----------
@@ -59,7 +56,6 @@ verbforms.py
 
 Other
 -----
-* learn to use regular expressions and update the word search ability, and the splitting of word and other stuff, in Words with a regex.
 * destroy the debug window after the program starts (for the final product)
 * refactor _set_words_of_language_choice()
 * Fix center-alignment on the widgets within the tabs. When inputting a large sentence in the sentence tab, the widgets maintain center alignment, but the other tabs are still left-aligned when you click over to them. Fix this.

@@ -16,7 +16,7 @@ The primary function of this tool is to make vocabulary tests.
 Secondary functions include;
 * looking up words in the books' indices (dictionary tab)
 * inputting sentences to check that all words exist in the book (sentence tab), and
-[comment]: <> * saving a collection of images for use in a slideshow-like review (images tab) (unfinished)
+* saving a collection of images for use in a slideshow-like review (images tab) (unfinished)
 
 
 
