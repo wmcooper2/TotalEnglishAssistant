@@ -10,5 +10,6 @@
   "TotalEnglishAssistant/sentences_test.py": true,
   "TotalEnglishAssistant/vocabularytab_test.py": true,
   "TotalEnglishAssistant/vocabularytest_test.py": true,
-  "TotalEnglishAssistant/words_test.py": true
+  "TotalEnglishAssistant/words_test.py": true,
+  "words_test.py::WordTest::test_base_noun__giraffes": true
 }

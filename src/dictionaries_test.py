@@ -2,7 +2,7 @@
 
 
 import unittest
-from src.TotalEnglishAssistant.dictionaries import Dictionary
+from dictionaries import Dictionary
 class DictionaryTests(unittest.TestCase):
 
     dictionary = Dictionary()
