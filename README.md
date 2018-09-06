@@ -19,7 +19,7 @@ Secondary functions include;
 Install with:
 ```
 git clone https://github.com/wmcooper2/TotalEnglishAssistant.git
-
+cd TotalEnglishAssistant/
 pipenv install
 ```
 
