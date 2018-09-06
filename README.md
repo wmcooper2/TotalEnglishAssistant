@@ -78,10 +78,11 @@ This tool will :
 
 ### Known Bugs
 
+* sentence tab range and grade selector not functional yet
 * vocabulary tab makes a test with no suffix or suffix "0" that has no contents
-* "Tests" script in the root dir cannot find the test files.
+* "Tests" script in the root dir cannot find the test files
 * Load and Edit dicitionary buttons in the dictionary tab are just placeholders for now
-* Vocabulary tests are not written anywhere (supposed to go to root/VocabularyTests) since I moved things around.
+* image tab's contents are not center-aligning properly on program startup
 
 #### Variable Naming
 
@@ -93,9 +94,6 @@ This tool will :
 #### Contribute
 
 Issue Tracker: github.com/wmcooper2/TotalEnglishAssitant/issues
-
-If you are having issues, please let me know. Thank you.
-Find me on GitHub: https://github.com/wmcooper2
 
 ### License
 
