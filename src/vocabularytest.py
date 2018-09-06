@@ -102,6 +102,7 @@ class VocabularyTest():
         """Saves test to '~/TotalEnglishAssistant/VocabularyTests',
            returns None."""
         save_path = (self.dirs.main_path/self.dirs.test_dir)
+#        save_path = ("." + self.dirs.test_dir)
         tests = self.test_amount
 #        print("len(test_words) = ", len(self.test_words))
 #        print("len(questions_per_test) = ", len(self.questions_per_test))
@@ -113,13 +114,14 @@ class VocabularyTest():
                 test_number = "_" + str(counter + 1)
                 test = Path(self.make_name(save_path, test_number))
                 test_path = (save_path/test)
+                print("test path = ", test_path)
                 if tests is 1:
                     self.single_test(test_path)
                 elif tests > 1:
                     self.multiple_tests(test_path)
                 else:         
-                    print("Cant write test")
-                    #log and show error message
+                    print("You need to make 1 or more tests.")
+                    #show error message
         else:
             check.didnt_write_test()
 

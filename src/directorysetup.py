@@ -3,7 +3,8 @@ from pathlib import Path
 import sys
 
 class DirectorySetup():
-    main_dir = "../"
+#    main_dir = "../"
+    main_dir = "./"
     test_dir = "VocabularyTests"
     image_dir = "Images"
     dict_dir = "Dictionaries"
