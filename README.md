@@ -14,12 +14,18 @@ Secondary functions include;
 * inputting sentences to check that all words exist in the book (sentence tab), and
 * saving a collection of images for use in a slideshow-like review (images tab) (unfinished)
 
-#### Installation
+#### Installation and Running
 
 Install with:
 ```
 git clone https://github.com/wmcooper2/TotalEnglishAssistant.git
 ```
+
+Run from the program's root directory with:
+```
+./run
+```
+
 
 ### Instructions 
 #### Vocabulary Tab
@@ -73,6 +79,7 @@ This tool will :
 * vocabulary tab makes a test with no suffix or suffix "0" that has no contents
 * "Tests" script in the root dir cannot find the test files.
 * Load and Edit dicitionary buttons in the dictionary tab are just placeholders for now
+* Vocabulary tests are not written anywhere (supposed to go to root/VocabularyTests) since I moved things around.
 
 #### Variable Naming
 

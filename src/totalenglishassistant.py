@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 import sys
-sys.path += ["./data"]
+sys.path += ["./src/"]
+sys.path += ["./src/data"]
+
 
 import tkinter as tk
 from tkinter import ttk

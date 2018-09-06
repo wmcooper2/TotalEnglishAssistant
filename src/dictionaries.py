@@ -11,7 +11,7 @@ from pathlib import Path
 
 class Dictionary():
     """Creates an instance of the chosen dictionary, returns none."""
-    default_dict_path = "./data/totalenglish123.json" 
+    default_dict_path = "./src/data/totalenglish123.json" 
     default_dict_name = "totalenglish123"
     default_dict = "totalenglish123.json"
     default_entry = {"not found":"not found"}
