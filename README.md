@@ -64,10 +64,10 @@ The user can choose;
 ### Changes to Directories
 
 This tool will :
-* create these directories in the programs's root directory "./TotalEnglishAssistant/";
-  * "./TotalEnglishAssistant/Dictionaries/"
-  * "./TotalEnglishAssistant/Images/"
-  * "./TotalEnglishAssistant/VocabularyTests/"
+* create these directories in the programs's root directory "TotalEnglishAssistant/";
+  * "TotalEnglishAssistant/Dictionaries/"
+  * "TotalEnglishAssistant/Images/"
+  * "TotalEnglishAssistant/VocabularyTests/"
 * write files to the newly created directories.
 
 ### TESTING
@@ -83,7 +83,7 @@ This tool will :
 
 #### Variable Naming
 
-* studentgradelevel == the grade level according to the Japanese system 
+* studentgradelevel == the (American) grade level according to the Japanese system 
   * "1" is 7th grade
   * "2" is 8th grade 
   * "3" is 9th grade
