@@ -19,6 +19,8 @@ Secondary functions include;
 Install with:
 ```
 git clone https://github.com/wmcooper2/TotalEnglishAssistant.git
+
+pipenv install
 ```
 
 Run from the program's root directory with:
