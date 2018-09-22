@@ -3,7 +3,7 @@ from pathlib import Path
 import sys
 
 class DirectorySetup():
-#    main_dir = "../"
+
     main_dir = "./"
     test_dir = "VocabularyTests"
     image_dir = "Images"
@@ -31,7 +31,6 @@ class DirectorySetup():
     def make_dirs(self):
         """Creates the needed directories for the program, returns None."""
         self.make_directories()
-        #self._check()
 
 if __name__ == "__main__":
     new = DirectorySetup()

@@ -3,7 +3,6 @@ import sys
 sys.path += ["./src/"]
 sys.path += ["./src/data"]
 
-
 import tkinter as tk
 from tkinter import ttk
 from tkinter import Menu
@@ -47,7 +46,6 @@ menu_bar.add_cascade(label = "Program", menu = file_menu)
 menu_bar.add_cascade(label = "Dictionary", menu = dictionary_menu)
 
 about_menu.add_command(label = "Program Information", command = program_info)
-##about_menu.add_command(label = "Program Requirements", command = program_reqs)
 about_menu.add_command(label = "Dictionaries", command = dictionary_info)
 about_menu.add_command(label = "Contact", command = contact_info)
 about_menu.add_command(label = "License", command = show_license)
