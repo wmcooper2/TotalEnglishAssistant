@@ -3,6 +3,7 @@ import sys
 if "./data" not in sys.path:
     sys.path.append("./data")
 
+import data
 import json
 import random
 import tkinter as tk
@@ -11,7 +12,16 @@ from pathlib import Path
 
 class Dictionary():
     """Creates an instance of the chosen dictionary, returns none."""
-    default_dict_path = "./src/data/totalenglish123.json" 
+    # work for running tests, but not for the main program. I think it has to do with setting the cwd and how it changes based on what program (tests/run) is run
+#    default_dict_path = str(Path.cwd()) + "/data/totalenglish123.json"
+
+
+    # for running the main program
+    default_dict_path = str(Path.cwd()) + "/src/data/totalenglish123.json"
+
+
+
+
     default_dict_name = "totalenglish123"
     default_dict = "totalenglish123.json"
     default_entry = {"not found":"not found"}

@@ -1,17 +1,15 @@
 #!/usr/bin/python3
 import random
 import datetime
+import directories
 from lists import Lists
 from pathlib import Path
 from tkinter import filedialog
-from directorysetup import DirectorySetup
 import vocabularytabvalidation as check
 
 class VocabularyTest():
     """Filters the words down to a random selection within
         user-specified parameters, returns None."""
-    dirs = DirectorySetup()
-    
     lists = Lists()
     dictionary = lists.dictionary
     vocabulary_words = dictionary.words
@@ -101,14 +99,9 @@ class VocabularyTest():
     def save_test(self):
         """Saves test to '~/TotalEnglishAssistant/VocabularyTests',
            returns None."""
-        save_path = (self.dirs.main_path/self.dirs.test_dir)
-#        save_path = ("." + self.dirs.test_dir)
+        save_path = directories.ROOTDIR + directories.VOCABDIR
         tests = self.test_amount
-#        print("len(test_words) = ", len(self.test_words))
-#        print("len(questions_per_test) = ", len(self.questions_per_test))
         answer = True
-#        if len(self.test_words) < self.questions_per_test:
-#            answer = check.not_enough_words()
         if answer:
             for counter in range(tests):
                 test_number = "_" + str(counter + 1)
@@ -121,7 +114,6 @@ class VocabularyTest():
                     self.multiple_tests(test_path)
                 else:         
                     print("You need to make 1 or more tests.")
-                    #show error message
         else:
             check.didnt_write_test()
 
@@ -150,31 +142,3 @@ class VocabularyTest():
             except:
                 print("ran out of more words")
 
-    
-
-
-class VocabularyList(VocabularyTest):
-
-    def __init__():
-        VocabularyTest.__init__()
-        
-if __name__ == "__main__":
-    v = VocabularyTest()
-    v.until_page = 40
-    v._set_words_in_range()
-#    for word in v.words_in_range:
-#        print(word)
-    v._set_words_in_grade()
-#    for word in v.words_in_grade:
-#        print(word)
-    v._set_words_of_language_choice()
-    v.set_vocabulary_test_words()
-    v.unique_words()
-    print("=========")
-#    for word in v.test_words:
-#        print(word)
-#    print("words in range = ", len(v.words_in_range))
-#    print("words in grade = ", len(v.words_in_grade))
-#    print("words in language = ", len(v.words_of_language_choice))
-    print("v.questions_per_test = ", v.questions_per_test)
-    print("test_words = ", len(v.test_words))

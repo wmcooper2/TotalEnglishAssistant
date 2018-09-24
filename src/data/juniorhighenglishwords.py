@@ -8733,9 +8733,3 @@ Junior_High_English_Words = {
         'page' : '54', 
         'examples' : '',},
 }
-
-if __name__ == "__main__":
-    pass
-
-            
-        

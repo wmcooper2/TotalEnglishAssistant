@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 import sys
-if "./data" not in sys.path:
-    sys.path.append("./data")
+#if "./data" not in sys.path:
+#    sys.path.append("./data")
+
+#import data
 import string
 import random
 from lists import Lists

@@ -1,0 +1,10 @@
+noun
+adjective
+adverb
+verb
+auxverb
+conjunction
+interjection
+preposition
+pronoun
+article

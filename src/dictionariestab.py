@@ -8,9 +8,9 @@ from tkinter import ttk
 from tkinter import Menu
 from tkinter import filedialog
 from dictionaries import Dictionary
-from directorysetup import DirectorySetup
 from dictionariesformat import DictFormat
 import pprint
+import directories
 
 class DictionaryTab():
     """Creates the Dictionary Tab in the GUI, returns None."""
@@ -18,9 +18,7 @@ class DictionaryTab():
     entry = ""
     value_edits = []
     key_edits = []
-    dirs = DirectorySetup()
-    user_dict_dir = os.path.join(dirs.main_path, dirs.dict_dir)
-    user_dict = os.path.join(user_dict_dir, dictionary.default_dict_name)
+    user_dict = Path(directories.ROOTDIR, directories.DICTDIR)
         
     def __init__(self, tab_control):
         """Draws the widgets to the Dictionary tab, returns None."""

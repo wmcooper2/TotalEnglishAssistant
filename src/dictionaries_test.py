@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 
-
 import unittest
 from dictionaries import Dictionary
+
+
 class DictionaryTests(unittest.TestCase):
 
     dictionary = Dictionary()

@@ -1,0 +1,4 @@
+person
+instrument
+animal
+thing

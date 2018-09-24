@@ -10,7 +10,7 @@ from tkinter import Menu
 from pathlib import Path
 from tkinter import filedialog
 from tkinter import messagebox
-from directorysetup import DirectorySetup
+import directories
 
 #PIL for displaying images in tkinter
 pil = "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages"
@@ -23,27 +23,22 @@ from PIL import ImageTk
 class ImagesTab():
     """Creates the 'Image' tab in the GUI, returns None."""
     check = ImageTabValidation()
-    dirs = DirectorySetup()
-    file_name = "categories.js"
-    save_dir = Path(dirs.main_dir,dirs.image_dir) 
-    save_file = Path(save_dir,file_name)
+    JSONFILE = "categories.js"
+    SAVEDIR = Path(directories.ROOTDIR, directories.IMAGEDIR)
+    save_file = Path(SAVEDIR, JSONFILE)
     load_path = ""
     paths = []
-
     img_ref = "" #to prevent garbage collection
-    
     IMAGE_SIZE = 500, 500
     MAX_LENGTH = 30
     counter = 0
     image_dictionary = {}
-    
     category_path = ""
     category_header = ""
     image = ""
 
     def __init__(self, tab_control):
         """Draws the widgets of the Image tab to the GUI, returns None."""
-#        self.tab_control = tab_control
         self.image_library_tab = ttk.Frame(tab_control)
         tab_control.add(self.image_library_tab, text = "Images")
         tab_control.grid(column = 0, row = 0, pady = 6, padx = 6)
@@ -138,7 +133,8 @@ class ImagesTab():
     def new_category_path(self):
         """Makes the category path, returns String."""
         if len(self.category_name.get()) > 0:
-            self.category_path = os.path.join(self.dirs.main_path, self.dirs.image_dir, self.category_name.get())
+#            self.category_path = os.path.join(self.dirs.main_path, self.dirs.image_dir, self.category_name.get())
+            self.category_path = os.path.join(self.SAVEDIR, self.category_name.get())
         else:
             self.check.request_category_name()    
 
@@ -150,8 +146,9 @@ class ImagesTab():
         """Adds the relative path name of the image to the '.json' object,
             returns None."""
         if self.check.valid_img_name(self.image_name_entry.get(), self.MAX_LENGTH, self.image_dictionary): 
-            save_dir = os.path.join(self.dirs.main_dir, self.dirs.image_dir)
-            path = os.path.join(save_dir, self.category_name.get(), self.image_name_entry.get() + self.image.suffix)
+#            save_dir = os.path.join(self.dirs.main_dir, self.dirs.image_dir)
+#            path = os.path.join(save_dir, self.category_name.get(), self.image_name_entry.get() + self.image.suffix)
+            path = os.path.join(self.SAVEDIR, self.category_name.get(), self.image_name_entry.get() + self.image.suffix)
             self.image_dictionary[self.image_name_entry.get()] = path
         self.image_name_entry.delete(0, "end")
             
@@ -175,9 +172,8 @@ class ImagesTab():
 
     def copy_images(self):
         """Copies images into 'TotalEnglishAssistant/Images'. Returns None."""
-#        category = self.dirs.category_dir(self.category_name.get())
-#        copy_here = os.path.join(category) 
-        copy_here = os.path.join(self.dirs.main_dir, self.dirs.image_dir, self.category_name.get()) 
+#        copy_here = os.path.join(self.dirs.main_dir, self.dirs.image_dir, self.category_name.get()) 
+        copy_here = os.path.join(self.IMAGEDIR, self.category_name.get()) 
         answer = self.check.ask_to_delete()
         if answer == True:
             for path in self.paths:

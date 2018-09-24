@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 import string
 import unittest
 from words import Word

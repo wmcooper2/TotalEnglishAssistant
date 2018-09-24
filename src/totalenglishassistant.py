@@ -3,15 +3,14 @@ import sys
 sys.path += ["./src/"]
 sys.path += ["./src/data"]
 
+import directories
+directories.make_dirs()
+
 import tkinter as tk
 from tkinter import ttk
 from tkinter import Menu
 from tkinter import filedialog
 from tkinter import messagebox
-
-from directorysetup import DirectorySetup
-new_dirs = DirectorySetup()
-new_dirs.make_dirs()
 
 from vocabularytab import VocabularyTab
 from sentencestab import SentenceTab

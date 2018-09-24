@@ -1,0 +1,12 @@
+table
+book
+chair
+couch
+sofa
+computer
+animal
+CD
+cat
+bird
+dog
+cheese

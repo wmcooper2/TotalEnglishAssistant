@@ -1,0 +1,11 @@
+glad
+sad
+excited
+angry
+bored
+nervous
+tired
+hungry
+happy
+so-so
+thirsty
