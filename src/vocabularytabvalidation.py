@@ -25,8 +25,8 @@ invalid_input_messages = [valid_input_instructions,
 input_instructions = "\n\n".join(invalid_input_messages)
 
 def questions(questions, upper, lower):
-    """Validates the amount of questions per test is within 10 and 100,
-        returns Boolean."""
+    """Validates the amount of questions per test is within 10 and 100.
+        Returns Boolean."""
     if questions >= lower \
        and questions <= upper \
        and type(questions) is int:
@@ -35,7 +35,8 @@ def questions(questions, upper, lower):
         return False
     
 def tests(tests, upper, lower):
-    """Validates the amount of tests is between 1 and 50, returns Boolean."""
+    """Validates the amount of tests is between 1 and 50. 
+    Returns Boolean."""
     if tests >= lower \
        and tests <= upper \
        and type(tests) is int:
@@ -44,7 +45,7 @@ def tests(tests, upper, lower):
         return False
 
 def grade(grade, upper, lower):
-    """Validates student grade level is between 1 and 3, returns Boolean."""
+    """Validates student grade level is between 1 and 3. Returns Boolean."""
     if grade >= lower \
        and grade <= upper \
        and type(grade) is int:
@@ -53,7 +54,7 @@ def grade(grade, upper, lower):
         return False
 
 def language(language):
-    """Validates a language choice, returns Boolean."""
+    """Validates a language choice. Returns Boolean."""
     if language == "english" \
         or language == "japanese" \
         or language == "english_and_japanese":
@@ -62,7 +63,7 @@ def language(language):
         return False
 
 def from_(from_, upper, lower):
-    """Validates a starting page, returns Boolean."""
+    """Validates a starting page. Returns Boolean."""
     if from_ >= lower \
        and from_ <= upper \
        and type(from_) is int:
@@ -71,7 +72,7 @@ def from_(from_, upper, lower):
         return False
 
 def until(until, upper, lower):
-    """Validates an ending page, returns Boolean."""
+    """Validates an ending page. Returns Boolean."""
     if until <= upper \
        and until >= lower \
        and type(until) is int:
@@ -80,10 +81,11 @@ def until(until, upper, lower):
         return False
 
 def not_enough_words():
-    """Shows message box of inusfficient word count, returns None."""
+    """Shows message box of inusfficient word count. Returns None."""
     answer = messagebox.askyesno(title = vocab_test_title, message = not_enough_vocab_words)
     return answer
     
 def didnt_write_test():
-    """Shows a message that the vocabulary test was not written, returns None."""
+    """Shows a message that the vocabulary test was not written. 
+    Returns None."""
     messagebox.showinfo(title = vocab_test_title, message = no_vocab_test)

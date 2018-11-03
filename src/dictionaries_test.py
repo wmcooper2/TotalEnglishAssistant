@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 
+#stand lib
 import unittest
+
+#custom
 from dictionaries import Dictionary
 
-
 class DictionaryTests(unittest.TestCase):
-
     dictionary = Dictionary()
 
     def test_is_dictionary_instance(self):

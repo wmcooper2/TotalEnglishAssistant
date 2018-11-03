@@ -1,52 +1,56 @@
 #!/usr/bin/python3
-import random
+
+#stand lib
 import datetime
+from pathlib import Path
+import random
+from tkinter import filedialog
+
+#custom
 import directories
 from lists import Lists
-from pathlib import Path
-from tkinter import filedialog
 import vocabularytabvalidation as check
 
 class VocabularyTest():
     """Filters the words down to a random selection within
         user-specified parameters, returns None."""
-    lists = Lists()
-    dictionary = lists.dictionary
-    vocabulary_words = dictionary.words
+    lists                       = Lists()
+    dictionary                  = lists.dictionary
+    vocabulary_words            = dictionary.words
 
-    questions_per_test = 20
-    student_grade_level = 3
-    language_choice = "english"
-    from_page = 0 
-    until_page = 500
-    test_amount = 0
+    questions_per_test          = 20
+    student_grade_level         = 3
+    language_choice             = "english"
+    from_page                   = 0 
+    until_page                  = 500
+    test_amount                 = 0
 
-    words_in_range = [] 
-    words_in_grade = []    
-    words_of_language_choice = []
-    test_words = []
+    words_in_range              = [] 
+    words_in_grade              = []    
+    words_of_language_choice    = []
+    test_words                  = []
 
-    word_choice = ""
-    word_page_number = 0
+    word_choice                 = ""
+    word_page_number            = 0
 
     def __init__(self):
         pass
 
     def set_vocabulary_test_words(self):
-        """Makes a single list of randomized words, returns None."""
+        """Makes a single list of randomized words. Returns None."""
         self.filter_by_selections()
         while len(self.test_words) < self.questions_per_test:
             self.test_words.append(random.choice(self.words_of_language_choice))
 
     def filter_by_selections(self):
         """Filters the words down from page range, grade and language into
-            one list, returns None."""
+            one list. Returns None."""
         self._set_words_in_range()
         self._set_words_in_grade()
         self._set_words_of_language_choice()
 
     def _set_words_in_range(self):
-        """Filters the words by page range, returns None."""
+        """Filters the words by page range. Returns None."""
         self.words_in_range = []
         for word in self.vocabulary_words:
             page_of_word = int(self.dictionary.dictionary[word]["page"])
@@ -54,7 +58,7 @@ class VocabularyTest():
                 self.words_in_range.append(word)
 
     def _set_words_in_grade(self):
-        """Filters the words by student grade level, returns None."""
+        """Filters the words by student grade level. Returns None."""
         self.words_in_grade = []
         grade_level = self.student_grade_level
         for word in self.words_in_range:
@@ -62,7 +66,7 @@ class VocabularyTest():
                 self.words_in_grade.append(word)
 
     def _set_words_of_language_choice(self):
-        """Filters the words by language, returns None."""
+        """Filters the words by language. Returns None."""
         self.words_of_language_choice = []
         if self.language_choice == "english":
             for word in self.words_in_grade:
@@ -79,15 +83,16 @@ class VocabularyTest():
                     self.words_of_language_choice.append(word)
 
     def make_name(self, save_location, test_number):
-        """Formats the name of the save file, returns String."""
-        name = "{0}_{1}_{2}_{3}".format(datetime.datetime.now().strftime('%Y_%m_%d'),
-                                        self.language_choice.title(),
-                                        "Grade" + str(self.student_grade_level),
-                                        "Test" + str(test_number))
+        """Formats the name of the save file. Returns String."""
+        name = "{0}_{1}_{2}_{3}".format(
+            datetime.datetime.now().strftime('%Y_%m_%d'), 
+            self.language_choice.title(),
+            "Grade" + str(self.student_grade_level),
+            "Test" + str(test_number))
         return name
 
     def unique_words(self):
-        """Filters out any duplicates in self.test_words, returns None."""
+        """Filters out any duplicates in self.test_words. Returns None."""
         words_copy = self.test_words[:]
         temp = []
         for word in self.test_words:
@@ -97,8 +102,8 @@ class VocabularyTest():
         self.test_words = temp[:] 
 
     def save_test(self):
-        """Saves test to '~/TotalEnglishAssistant/VocabularyTests',
-           returns None."""
+        """Saves test to '~/TotalEnglishAssistant/VocabularyTests'.
+           Returns None."""
         save_path = directories.ROOTDIR + directories.VOCABDIR
         tests = self.test_amount
         answer = True
@@ -118,7 +123,7 @@ class VocabularyTest():
             check.didnt_write_test()
 
     def single_test(self, test):
-        """Makes a single test, returns None."""
+        """Makes a single test. Returns None."""
         self.unique_words()
         with open(test, "w+", encoding = "utf-8") as file:
             try:
@@ -129,7 +134,7 @@ class VocabularyTest():
                 print("ran out of words")
 
     def multiple_tests(self, test):
-        """Makes multiple tests with random word order, returns None."""
+        """Makes multiple tests with random word order. Returns None."""
         self.unique_words()
         vocabulary_copy = self.test_words[:]
         with open(test, "w+", encoding = "utf-8") as file:

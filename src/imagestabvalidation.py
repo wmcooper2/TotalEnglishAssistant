@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+
+#stand lib
 import os
 import tkinter as tk
 from tkinter import ttk
@@ -23,12 +25,12 @@ class ImageTabValidation():
     input_instructions = "\n\n".join(invalid_input_msg)
 
     copy_images_title = "Copy Images"
-    copy_images_msg = str("".join(["Do you want to delete the images from the",
-                        "\n",
-                        "place you loaded them from?"]))
+    copy_images_msg = str("".join(["Delete the images from the",
+                                   "\n",
+                                   "place you loaded them from?"]))
 
     def valid_img_name(self, name, length, img_dict):
-        """Validates the image name, returns Boolean."""
+        """Validates the image name. Returns Boolean."""
         if self.valid_img_name_type(name) \
             and self.valid_img_name_length(name, length) \
             and not self.duplicate_img_name(name, img_dict):
@@ -38,28 +40,28 @@ class ImageTabValidation():
             return False
 
     def valid_img_name_type(self, name):
-        """Validates image name type, returns None."""
+        """Validates image name type. Returns None."""
         if type(name) == str:
             return True
         else:
             return False
 
     def valid_img_name_length(self, name, length):
-        """Validates image name length, returns None."""
+        """Validates image name length. Returns None."""
         if len(name) < length and len(name) > 0:
             return True
         else:
             return False
 
     def duplicate_img_name(self, name, dictionary):
-        """Checks for duplicate image name, returns None."""
+        """Checks for duplicate image name. Returns None."""
         if name in dictionary.keys():
             return True 
         else:
             return False
 
     def valid_category_name(self, name, category_dir):
-        """Validates the category name, returns Boolean."""
+        """Validates the category name. Returns Boolean."""
         if os.path.exists(category_dir):
             self.duplicate_category()
             return False
@@ -67,30 +69,37 @@ class ImageTabValidation():
             return True
 
     def duplicate_name(self):
-        """Shows duplicate name message, returns None."""
-        messagebox.showinfo(title = self.info_box_title, message = self.duplicate_name_msg)
+        """Shows duplicate name message. Returns None."""
+        messagebox.showinfo(title=self.info_box_title, 
+            message=self.duplicate_name_msg)
 
     def duplicate_category(self):
-        """Checks for duplicate category, returns Boolean."""
-        messagebox.showinfo(title = self.info_box_title, message = self.duplicate_category_msg)
+        """Checks for duplicate category. Returns Boolean."""
+        messagebox.showinfo(title=self.info_box_title, 
+            message=self.duplicate_category_msg)
 
     def ask_to_delete(self):
-        """Shows a message box asking user to delete images, returns Boolean."""
-        messagebox.askyesno(title = self.copy_images_title, message = self.copy_images_msg)
+        """Shows a message box asking to delete images. Returns Boolean."""
+        messagebox.askyesno(title=self.copy_images_title, 
+            message=self.copy_images_msg)
 
     def saved_message(self):
-        """Shows a message box that the images are saved, returns None."""
-        messagebox.showinfo(title = self.info_box_title, message = self.saved_msg)
+        """Shows a message box that the images are saved. Returns None."""
+        messagebox.showinfo(title=self.info_box_title, 
+            message=self.saved_msg)
 
     def show_input_instructions(self):
-        """Shows input instructions in an info box, returns None."""
-        messagebox.showinfo(title = self.info_box_title, message = self.name_length)
+        """Shows input instructions in an info box. Returns None."""
+        messagebox.showinfo(title=self.info_box_title, 
+            message=self.name_length)
 
     def show_finish_message(self):
-        """Shows a message that the images are done loading, returns None."""
-        messagebox.showinfo(title = self.info_box_title, message = self.generator_exit_msg)
+        """Shows a message when images are done loading. Returns None."""
+        messagebox.showinfo(title=self.info_box_title, 
+            message=self.generator_exit_msg)
 
     def request_category_name(self):
-        """Asks the user to input a category name, returns None."""
-        messagebox.showinfo(title = self.info_box_title, message = self.input_category_name_msg)
+        """Asks the user to input a category name. Returns None."""
+        messagebox.showinfo(title=self.info_box_title, 
+            message=self.input_category_name_msg)
        

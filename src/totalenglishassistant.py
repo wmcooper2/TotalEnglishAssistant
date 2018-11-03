@@ -1,22 +1,26 @@
 #!/usr/bin/python3
+"""The Total English Assistant GUI tool."""
+
+#stand lib
 import sys
 sys.path += ["./src/"]
 sys.path += ["./src/data"]
 
+import tkinter as tk
+from tkinter import filedialog
+from tkinter import Menu
+from tkinter import messagebox
+from tkinter import ttk
+
+#custom
 import directories
 directories.make_dirs()
 
-import tkinter as tk
-from tkinter import ttk
-from tkinter import Menu
-from tkinter import filedialog
-from tkinter import messagebox
-
-from vocabularytab import VocabularyTab
-from sentencestab import SentenceTab
 from dictionariestab import DictionaryTab
 from imagestab import ImagesTab
 from programinfo import About
+from sentencestab import SentenceTab
+from vocabularytab import VocabularyTab
 
 info = About()
 program_info = info.show_program_info
@@ -41,9 +45,7 @@ about_menu = Menu(menu_bar, tearoff = 0)
 
 file_menu.add_command(label = "Exit", command = quit_)
 menu_bar.add_cascade(label = "Program", menu = file_menu)
-
 menu_bar.add_cascade(label = "Dictionary", menu = dictionary_menu)
-
 about_menu.add_command(label = "Program Information", command = program_info)
 about_menu.add_command(label = "Dictionaries", command = dictionary_info)
 about_menu.add_command(label = "Contact", command = contact_info)

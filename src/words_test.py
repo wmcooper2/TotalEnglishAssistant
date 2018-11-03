@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 
+#stand lib
 import string
 import unittest
+
+#custom
 from words import Word
 
 class WordTest(unittest.TestCase):
-    
     def test_is_Word_instance(self):
         word = Word("cat")
         self.assertIsInstance(word, Word)
@@ -195,7 +197,7 @@ class WordTest(unittest.TestCase):
         word.make_plural()
         self.assertEqual(word.english, "buzzes")
 
-    def test_make_plural__word_not_in_dictionary_doesnt_become_hashtags(self):
+    def test_make_plural__not_in_dictionary_doesnt_become_hashtags(self):
         word = Word("Taz")
         word.make_plural()
         self.assertNotEqual(word.english, "###")
@@ -258,8 +260,6 @@ class WordTest(unittest.TestCase):
     def test_base_noun__boxes(self):
         word = Word("boxes")
         self.assertEqual(word.base_noun(), "box")
-
-
 
 if __name__ == "__main__":
     unittest.main()

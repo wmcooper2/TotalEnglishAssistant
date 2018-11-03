@@ -1,9 +1,12 @@
 #!/usr/bin/python3
+
+#stand lib
 import unittest
+
+#custom
 from lists import Lists
 
 class ListsTest(unittest.TestCase):
-    
     lists = Lists()
 
     def test_has_dictionary(self):

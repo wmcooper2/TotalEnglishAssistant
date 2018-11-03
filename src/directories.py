@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """This module checks and sets up the directories."""
 
+#stand lib
 import sys
 from pathlib import Path
 
