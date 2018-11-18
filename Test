@@ -5,5 +5,9 @@
 #export PYPATH="$basedir/src"
 #pytest ./src/*_test.py
 
+
+clear
 cd ./src/
 pytest *_test.py
+#ls *_test.py
+

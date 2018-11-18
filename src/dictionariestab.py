@@ -81,7 +81,7 @@ class DictionaryTab():
     def load_entry(self):
         """Loads the entry within the class for displaying. Returns None."""
         word = self.request.get()
-        self.entry = self.dictionary.get_entry(word)
+        self.entry = self.dictionary.get_entry(word.strip())
 
     def draw_results(self):
         """Draws the 'Results' frame to the GUI. Returns None."""
