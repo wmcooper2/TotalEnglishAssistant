@@ -7,9 +7,10 @@ from pathlib import Path
 
 ROOTDIR = "./"
 VOCABDIR = "VocabularyTests"
-IMAGEDIR = "Images"
+#IMAGEDIR = "Images"
 DICTDIR = "Dictionaries"
-directories = [VOCABDIR, IMAGEDIR, DICTDIR]
+#directories = [VOCABDIR, IMAGEDIR, DICTDIR]
+directories = [VOCABDIR, DICTDIR]
 main_path = Path(ROOTDIR)
 
 def make_dirs():

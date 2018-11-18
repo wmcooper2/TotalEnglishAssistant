@@ -17,7 +17,7 @@ import directories
 directories.make_dirs()
 
 from dictionariestab import DictionaryTab
-from imagestab import ImagesTab
+#from imagestab import ImagesTab
 from programinfo import About
 from sentencestab import SentenceTab
 from vocabularytab import VocabularyTab
@@ -56,7 +56,7 @@ tab_control = ttk.Notebook(win)
 vocabulary_tab = VocabularyTab(tab_control)
 sentence_tab = SentenceTab(tab_control)
 dictionary_tab = DictionaryTab(tab_control)
-images_tab = ImagesTab(tab_control)
+#images_tab = ImagesTab(tab_control)
 
 win.mainloop()
 
