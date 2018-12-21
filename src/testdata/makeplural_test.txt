@@ -1,0 +1,12 @@
+cat
+banana
+dog
+lunch
+box
+chef
+knife
+sash
+piano
+play
+plate
+stuff

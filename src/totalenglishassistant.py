@@ -52,6 +52,7 @@ about_menu.add_command(label = "Contact", command = contact_info)
 about_menu.add_command(label = "License", command = show_license)
 menu_bar.add_cascade(label = "About", menu = about_menu)
 
+#GUI tabs
 tab_control = ttk.Notebook(win)
 vocabulary_tab = VocabularyTab(tab_control)
 sentence_tab = SentenceTab(tab_control)

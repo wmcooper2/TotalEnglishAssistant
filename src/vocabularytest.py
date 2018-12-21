@@ -14,9 +14,17 @@ import vocabularytabvalidation as check
 class VocabularyTest():
     """Filters the words down to a random selection within
         user-specified parameters, returns None."""
+
+    # remove lists from this class
+    # relocate dictionary
+    # relocate vocabulary_words
     lists                       = Lists()
     dictionary                  = lists.dictionary
+
+    #point vocabulary words to the data/ dir
     vocabulary_words            = dictionary.words
+#    vocabulary_words            = loadjhswords()
+
 
     questions_per_test          = 20
     student_grade_level         = 3
@@ -34,6 +42,10 @@ class VocabularyTest():
     word_page_number            = 0
 
     def __init__(self):
+        pass
+
+    def jhsvocab():
+        """not finished."""
         pass
 
     def set_vocabulary_test_words(self):

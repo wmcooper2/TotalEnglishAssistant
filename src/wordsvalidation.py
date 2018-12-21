@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+"""Validation module for words.py."""
+
 def is_valid(word):
     """Validates a word. Returns Boolean."""
     if len(word.english) > 0 \

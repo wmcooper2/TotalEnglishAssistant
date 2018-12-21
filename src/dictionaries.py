@@ -11,7 +11,7 @@ import tkinter as tk
 from tkinter import ttk
 
 #custom
-import data
+#import data    #dont need this
 
 class Dictionary():
     """Creates an instance of the chosen dictionary. Returns None."""

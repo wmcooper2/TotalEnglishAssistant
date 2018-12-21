@@ -6,47 +6,190 @@ import sys
 import string
 
 #custom
-from lists import Lists
+#from lists import Lists
 from data import verbforms
+from data.irregularnouns import irregular_nouns
+from pathlib import Path
 import wordsvalidation as check
+
+
+alphabet = string.ascii_uppercase + string.ascii_lowercase
+good_punctuation = ["'", "-"]
+DATA = str(Path.cwd())+"/data2/"
+
+def is_vowel(char):
+    """Checks if char is a vowel. Returns Boolean."""
+    return (char in "aeiou")
+
+def final_es(word):
+    """Checks if final two letters are 'es'. Returns Boolean."""
+    return word[-2:] == "es"
+    
+def final_x(word):
+    """Checks if the last letter is x. Returns Boolean."""
+    return word[-1] == "x"
+
+def final_o(word):
+    """Checks if the last letter is o. Returns Boolean."""
+    return word[-1] == "o"
+
+def sock_stew(word):
+    """Checks if the last two letters are 'ss', 'ch', 'zz', 'sh'. 
+        Returns Boolean."""
+    return word[-2:] in ["ss", "ch", "zz", "sh"]
+
+def final_y(word):
+    """Checks if the last letter is y. Returns Boolean."""
+    return word[-1] == "y"
+
+def y_to_ies(word):
+    """Changes the final y to 'ies'. Returns String."""
+    return word[:-1]+"ies"
+
+def final_f1(word):
+    """Checks if the last letter is f. Returns Boolean."""
+    return word[-1] == "f"
+
+def final_f2(word):
+    """Checks if the last letter is f. Returns Boolean."""
+    return word[-2] == "f"
+
+def special_f_end(word):
+    """Checks if word is a special f-ending word. Returns Boolean."""
+    return word in ["chef", "beef"]
+ 
+def double_f_end(word):
+    """Checks if word contains double f ending. Returns Boolean."""
+    return (word[-3:-1] == "ff" or word [-2:] == "ff")
+
+def add_ves(word):
+    """Appends 'ves'. Returns String."""
+    return word+"ves"
+
+def add_s(word):
+    """Appends 's'. Returns String."""
+    return word+"s"
+
+def add_es(word):
+    """Appends 'es'. Returns String."""
+    return word+"es"
+#
+#def foreign_origin(word):
+#    """Checks if word is of foreign origin. Returns Boolean."""
+#    words = None
+#    with open(DATA+"foreignorigin.txt", "r") as f:
+#        [words.append(w.strip()) for w in f.readlines()]
+#    return word in words
+
+def foreign_origin(word):
+    words = []
+    with open(DATA+"foreignorigin.txt", "r") as f:
+            [words.append(w.strip()) for w in f.readlines()]
+    return word in words
+    
+def irregular_noun(word):
+    """Checks if word is an irregular noun. Returns Boolean."""
+    return word in irregular_nouns.keys()
+        
+def make_plural(word):
+    """Makes word plural if it's a noun or verb. Returns None."""
+    #special
+    if foreign_origin(word):
+        return add_s(word)
+    elif irregular_noun(word): 
+        return irregular_nouns.get(word) 
+
+    # common
+    elif final_es(word):
+        return word
+    elif (final_x(word) or final_o(word)) and not is_vowel(word[-2]):
+        return add_es(word)
+    elif final_x(word):
+        return add_es(word)
+    elif sock_stew(word):
+        return add_es(word)
+    elif final_y(word) and not is_vowel(word[-2]):
+        return y_to_ies(word)        
+
+    # f endings
+    elif double_f_end(word):
+        return add_s(word)
+    elif special_f_end(word):
+        return add_s(word)
+    elif final_f1(word) and not special_f_end(word):
+        return add_ves(word[:-1])
+    elif final_f2(word):
+        return add_ves(word[:-2])
+
+    else:
+        return add_s(word)
+
+def good_char(char):
+    """Checks if char is a letter or acceptable punctuation. 
+        Returns Boolean."""
+    return ((char in alphabet) or (char in good_punctuation))
+
+def remove_punctuation(word):
+    """Removes punctuation from the word. Returns String."""
+    no_punct = []
+    [no_punct.append(char) for char in word if good_char(char)]
+
+
+#    for char in word:
+#        if character in alphabet or character in good_punctuation:
+#        if good_char(char)
+#            no_punct.append(char)
+    joined_word = ''.join(no_punct)
+    return joined_word
 
 class Word():
     """The Word class. Return None."""
-    lists               = Lists() 
-    vowels              = lists.vowels
-    alphabet            = lists.alphabet
-    consonants          = lists.consonants
-    dictionary          = lists.dictionary
-    numbers             = string.digits
-    punctuation         = string.punctuation
-    good_punctuation    = lists.good_punctuation
-    uppercase           = string.ascii_uppercase
-    names               = lists.names
-    nouns               = lists.nouns
-    verbs               = lists.verbs
-    common_nouns        = lists.common_nouns
-    proper_nouns        = lists.proper_nouns
-    adverbs             = lists.adverbs
-    auxverbs            = lists.auxverbs
-    articles            = lists.articles
-    pronouns            = lists.pronouns
-    adjectives          = lists.adjectives
-    conjunctions        = lists.conjunctions
-    interjections       = lists.interjections
-    prepositions        = lists.prepositions
-    verb_forms          = lists.verb_forms
+#    lists               = Lists() 
+
+    #working on vowels.
+#    vowels              = lists.vowels
+
+#    alphabet            = lists.alphabet
+#    consonants          = lists.consonants
+#    dictionary          = lists.dictionary
+#    numbers             = string.digits
+#    punctuation         = string.punctuation
+#    good_punctuation    = lists.good_punctuation
+#    uppercase           = string.ascii_uppercase
+#    names               = lists.names
+#    nouns               = lists.nouns
+#    verbs               = lists.verbs
+#    common_nouns        = lists.common_nouns
+#    proper_nouns        = lists.proper_nouns
+#    adverbs             = lists.adverbs
+#    auxverbs            = lists.auxverbs
+#    articles            = lists.articles
+#    pronouns            = lists.pronouns
+#    adjectives          = lists.adjectives
+#    conjunctions        = lists.conjunctions
+#    interjections       = lists.interjections
+#    prepositions        = lists.prepositions
+#    verb_forms          = lists.verb_forms
 
     def __init__(self, word):
         """Initializes Word() instance with default attributes. 
         Returns None."""
         self.english = word
-        self.remove_punctuation()
-        self.remove_numbers()
-        self.student_grade_level = self.grade()
+#        self.remove_punctuation()
+#        self.remove_numbers()
+#        self.student_grade_level = self.grade()
 
     def is_valid(self):
         """Checks if a word is valid. Returns Boolean."""
         return check.is_valid(self)
+
+    def is_verb(self):
+        """Checks if word is a verb. Returns Boolean."""
+        return check.is_verb(self)
+
+    def is_noun(self):
+        """Checks if word is a noun. Returns Boolean."""
+        return check.is_noun(self)
 
     def proper_noun(self):
         """Checks for proper noun. Returns Boolean"""
@@ -60,23 +203,6 @@ class Word():
         """Checks if a word is a normal key in the dictionary. 
         Returns Boolean."""
         pass
-
-    def is_verb(self):
-        """Checks if word is a verb. Returns Boolean."""
-        return check.is_verb(self)
-
-    def is_noun(self):
-        """Checks if word is a noun. Returns Boolean."""
-        return check.is_noun(self)
-
-    def remove_punctuation(self):
-        """Removes punctuation from the word. Returns None."""
-        no_punct = []
-        for character in self.english:
-            if character in self.alphabet or character in self.good_punctuation:
-                no_punct.append(character)
-        joined_word = ''.join(no_punct)
-        self.english = joined_word
 
     def remove_numbers(self):
         """Removes all numbers from the word. Returns None."""
@@ -175,38 +301,6 @@ class Word():
         while self.english in copy:
             copy.remove(self.english)
         self.english = random.choice(copy)
-        
-    def make_plural(self):
-        """Makes the word plural if it's a noun or verb. Returns None."""
-        if self.english in Lists.foreign_words:
-            self.english += "s"
-        elif self.english in Lists.irregular_nouns:
-            self.english  = Lists.irregular_nouns[self.english] 
-        elif self.english[-2:] == "es":
-            self.english = self.english
-        elif self.english[-1] == "x" \
-            or (self.english[-1] == "o" and (self.english[-2] not in self.vowels)):
-            self.english += "es"
-        elif self.english[-2:] == "ss" \
-            or self.english[-2:] == "ch" \
-            or self.english[-2:] == "sh" \
-            or self.english[-2:] == "zz":
-            self.english = self.english + "es"
-        elif self.english[-1] == "y" \
-            and self.english[-2] not in self.vowels:
-            self.english = self.english[:-1]
-            self.english += "ies"
-        elif self.english[-1] == "f" \
-            and self.english != "chef" \
-            and self.english != "beef":
-            self.english = self.english[:-1] + 'ves'
-        elif self.english[-3:-1] == "ff" \
-             or self.english [-2:] == "ff":
-            self.english =self.english + "s"
-        elif self.english[-1:] == "f":
-            self.english = self.english[:-2] + "ves"
-        else:
-            self.english = self.english + "s"
 
     def base_verb(self):
         """Searches for the base form of a verb. Returns None."""
