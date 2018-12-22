@@ -1,62 +1,69 @@
 #!/usr/bin/env python3
 """Validation module for words.py."""
 
-def is_valid(word):
-    """Validates a word. Returns Boolean."""
-    if len(word.english) > 0 \
-       and type(word.english) is str \
-       and exists(word):
-        return True
-    else:
-        return False
+#stand lib
+from pathlib import Path
+import string
 
-def exists(word):
-    """Checks if the word exists in the dictionary. Returns Boolean."""
-    test = word.english
-    if len(test) > 0 and test not in word.proper_nouns:
-        return test.lower() in word.dictionary.words
-    elif len(test) > 0 and test in word.proper_nouns:
-        return test in word.dictionary.words
-    else:
-        return False
+uppercase = string.ascii_uppercase
+DATA = str(Path.cwd())+"/data2/"
+#Notes
+# lowercase all words before checking is_noun() or is_verb()???
+# replaced is_important() with is_bolded()
 
-def is_verb(word):
-    """Checks if the word is a verb. Returns Boolean."""
-    try:
-        if is_valid(word) and word.english not in word.proper_nouns:
-            return word.dictionary.dictionary[word.english.lower()]["part of speech"] == "verb"
-        elif len(word.english) > 0 and word.english in word.proper_nouns:
-            return word.dictionary.dictionary[word.english]["part of speech"] == "verb"
-        else:
-            return False
-    except KeyError:
-        return False
+def is_vowel(char):
+    """Checks if char is a vowel. Returns Boolean."""
+    return char in "aeiou"
 
-def is_noun(word):
-    """Checks if the word is a noun. Returns Boolean."""
-    try:
-        if is_valid(word) and word.english not in word.proper_nouns:
-            return word.dictionary.dictionary[word.english.lower()]["part of speech"] == "noun"
-        elif len(word.english) > 0 and word.english in word.proper_nouns:
-            return word.dictionary.dictionary[word.english]["part of speech"] == "noun"
-        else:
-            return False
-    except KeyError:
-        return False
+def gt_zero(word):
+    """Checks that word is greater than zero characters. Returns Boolean."""
+    return len(word) > 0
+
+def is_str(word):
+    """Checks that word is a string. Returns Boolean."""
+    return type(word) is str
 
 def is_proper_noun(word):
-    """Checks if the word is a proper noun. Returns Boolean."""
-    if is_valid(word) and len(word.english) > 0:
-        return word.english in word.proper_nouns
+    """Checks if word is proper noun. Returns Boolean."""
+    return word[0] in uppercase
 
-def is_important(word):
-    """Checks if the word is 'important'. Returns Boolean."""
-    try:
-        if is_valid(word) and word.english not in word.proper_nouns:
-            return word.dictionary.dictionary[word.english.lower()]["important"]
-        elif len(word.english) > 0 and word.english in word.proper_nouns:
-            return word.dictionary.dictionary[word.english]["important"]
-        else:
-            return False
-    except KeyError:
-        return False
+def in_dictionary(word):
+    """Checks if word in books' dictionaries. Returns Boolean."""
+    dictionary = []
+    with open(DATA+"juniorhighenglishwords.txt", "r") as f:
+        [dictionary.append(word.strip()) for word in f.readlines()]
+    return word in dictionary
+
+def exists(word):
+    """Checks if word exists in book's dictionary. Returns Boolean."""
+    if gt_zero(word):
+        if not is_proper_noun(word):
+            return in_dictionary(word.lower())
+        elif is_proper_noun(word):
+            return in_dictionary(word)
+
+def is_valid(word):
+    """Validates a word. Returns Boolean."""
+    return gt_zero(word) and is_str(word) and in_dictionary(word)
+
+def is_noun(word):
+    """Checks if word is a noun. Returns Boolean."""
+    nouns = []
+    with open(DATA+"nouns.txt", "r") as f:
+        [nouns.append(word.strip()) for word in f.readlines()]
+    return word in nouns
+
+def is_verb(word):
+    """Checks if word is a verb. Returns Boolean."""
+    verbs = []
+    with open(DATA+"verbs.txt", "r") as f:
+        [verbs.append(word.strip()) for word in f.readlines()]
+    return word in verbs
+
+def is_bolded(word):
+    """Checks if word is bolded in the books' dictionaries. 
+        Returns Boolean."""
+    bolded = []
+    with open(DATA+"bolded.txt", "r") as f:
+        [bolded.append(word.strip()) for word in f.readlines()]
+    return word in bolded

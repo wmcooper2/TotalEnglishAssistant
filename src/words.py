@@ -10,16 +10,11 @@ import string
 from data import verbforms
 from data.irregularnouns import irregular_nouns
 from pathlib import Path
-import wordsvalidation as check
-
+from wordsvalidation import *
 
 alphabet = string.ascii_uppercase + string.ascii_lowercase
 good_punctuation = ["'", "-"]
 DATA = str(Path.cwd())+"/data2/"
-
-def is_vowel(char):
-    """Checks if char is a vowel. Returns Boolean."""
-    return (char in "aeiou")
 
 def final_es(word):
     """Checks if final two letters are 'es'. Returns Boolean."""
@@ -73,18 +68,12 @@ def add_s(word):
 def add_es(word):
     """Appends 'es'. Returns String."""
     return word+"es"
-#
-#def foreign_origin(word):
-#    """Checks if word is of foreign origin. Returns Boolean."""
-#    words = None
-#    with open(DATA+"foreignorigin.txt", "r") as f:
-#        [words.append(w.strip()) for w in f.readlines()]
-#    return word in words
 
 def foreign_origin(word):
+    """Checks if word is of foreign origin. Returns Boolean."""
     words = []
     with open(DATA+"foreignorigin.txt", "r") as f:
-            [words.append(w.strip()) for w in f.readlines()]
+        [words.append(w.strip()) for w in f.readlines()]
     return word in words
     
 def irregular_noun(word):
@@ -133,14 +122,8 @@ def remove_punctuation(word):
     """Removes punctuation from the word. Returns String."""
     no_punct = []
     [no_punct.append(char) for char in word if good_char(char)]
-
-
-#    for char in word:
-#        if character in alphabet or character in good_punctuation:
-#        if good_char(char)
-#            no_punct.append(char)
-    joined_word = ''.join(no_punct)
-    return joined_word
+    return ''.join(no_punct)
+    
 
 class Word():
     """The Word class. Return None."""
@@ -178,31 +161,6 @@ class Word():
 #        self.remove_punctuation()
 #        self.remove_numbers()
 #        self.student_grade_level = self.grade()
-
-    def is_valid(self):
-        """Checks if a word is valid. Returns Boolean."""
-        return check.is_valid(self)
-
-    def is_verb(self):
-        """Checks if word is a verb. Returns Boolean."""
-        return check.is_verb(self)
-
-    def is_noun(self):
-        """Checks if word is a noun. Returns Boolean."""
-        return check.is_noun(self)
-
-    def proper_noun(self):
-        """Checks for proper noun. Returns Boolean"""
-        return check.is_proper_noun(self)
-
-    def __str__(self):
-        """Returns the English form of the word. Returns String."""
-        return self.english
-            
-    def base_word(self):
-        """Checks if a word is a normal key in the dictionary. 
-        Returns Boolean."""
-        pass
 
     def remove_numbers(self):
         """Removes all numbers from the word. Returns None."""
