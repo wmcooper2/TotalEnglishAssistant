@@ -47,9 +47,9 @@ def test_final_f2():
     assert final_f2("chef") == False
 
 def test_special_f_end():
-    assert spcecial_f_end("chef") == True
-    assert spcecial_f_end("beef") == True
-    assert spcecial_f_end("chief") == False
+    assert special_f_end("chef") == True
+    assert special_f_end("beef") == True
+    assert special_f_end("chief") == False
 
 def test_double_f_end():
     assert double_f_end("stuff") == True
@@ -71,10 +71,10 @@ def test_add_es():
     assert add_es("beef") == "beefes"
     assert add_es("banana") == "bananaes"
 
-def test_foreign_word():
-    assert foreign_word("piano") == True
-    assert foreign_word("kilo") == True
-    assert foreign_word("banana") == False
+def test_foreign_origin():
+    assert foreign_origin("piano") == True
+    assert foreign_origin("kilo") == True
+    assert foreign_origin("banana") == False
 
 def test_irregular_noun():
     assert irregular_noun("person") == True
@@ -93,32 +93,49 @@ def test_good_char():
 
 def test_remove_punctuation():
     assert remove_punctuation("cats!") == "cats"
-    assert good_char("bananas?") == "bananas"
-    assert good_char("!x#$%&'") == "x'"
+    assert remove_punctuation("bananas?") == "bananas"
+    assert remove_punctuation("!x#$%&'") == "x'"
 
 def test_remove_numbers():
-    pass
+    assert remove_numbers("cats9") == "cats"
+    assert remove_numbers("0bananas") == "bananas"
+    assert remove_numbers("0123y8765") == "y"
 
-def dict_value():
-    pass
+def test_dict_value():
+    assert dict_value("apple", "important") == "yes"
+    assert dict_value("California", "grade") == "3"
+    assert dict_value("camera", "japanese") == "カメラ"
 
-def japanese():
-    pass
+def test_japanese():
+    assert japanese("apple") == "リンゴ"
+    assert japanese("camera") == "カメラ"
+    assert japanese("wrap") == "包む"
 
-def page_number():
-    pass
+def test_page_number():
+    assert page_number("after") == "76"
+    assert page_number("amazing") == "12"
+    assert page_number("beach") == "116"
 
-def part_of_speech():
-    pass
+def test_get_pos():
+    assert get_pos("wrap") == "verb"
+    assert get_pos("shrine") == "noun"
+    assert get_pos("since") == "conjunction"
 
-def grade():
-    pass
+def test_grade():
+    assert grade("beach") == "1"
+    assert grade("became") == "2"
+    assert grade("yellow") == "3"
 
-def change_word():
-    pass
+# These might take a little more time
+def test_change_word():
+    assert change_word("cat") != "cat"
+    assert change_word("California") != "California"
+    assert change_word("white") != "white"
 
-def choose_different_word():
-    pass
+def test_choose_different_word():
+    assert choose_different_word("cat", NOUNS) != "cat"
+    assert choose_different_word("run", VERBS) != "run"
+    assert choose_different_word("a", ARTICLES) != "a"
 
 def base_verb():
     pass

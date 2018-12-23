@@ -9,15 +9,27 @@ import string
 #from lists import Lists
 from data import verbforms
 from data.irregularnouns import irregular_nouns
-import juniorhighenglishwords
+import data.juniorhighenglishwords as jhswords
 from pathlib import Path
 from wordsvalidation import *
 
 alphabet = string.ascii_uppercase + string.ascii_lowercase
 good_punctuation = ["'", "-"]
-DATA = str(Path.cwd())+"/data2/"
-NUMBERS = string.digits
-DICTIONARY = juniorhighenglishwords.Junior_High_English_Words
+
+#change these constants to return a list of words when needed.
+DATA            = str(Path.cwd())+"/data2/"
+NUMBERS         = string.digits
+DICTIONARY      = jhswords.Junior_High_English_Words
+NOUNS           = DATA+"nouns.txt"
+PROUNOUNS       = DATA+"pronouns.txt"
+VERBS           = DATA+"verbs.txt"
+ADJECTIVES      = DATA+"adjectives.txt"
+ADVERBS         = DATA+"adverbs.txt"
+AUXVERBS        = DATA+"auxverbs.txt"
+CONJUNCTIONS    = DATA+"conjunctions.txt"
+INTERJECTIONS   = DATA+"interjections.txt"
+PREPOSITIONS    = DATA+"prepositions.txt"
+ARTICLES        = DATA+"articles.txt"
 
 def final_es(word):
     """Checks if final two letters are 'es'. Returns Boolean."""
@@ -147,113 +159,132 @@ def japanese(word):
     if is_valid(word) and not is_proper_noun(word):
         return dict_value(word, "japanese")
 
+def page_number(word):
+    """Gets page number of word. Returns String."""
+    if is_valid(word) and not is_proper_noun(word):
+        return dict_value(word, "page")
+
+def grade(word):
+    """Gets grade level of word. Returns String."""
+    if is_valid(word) and not is_proper_noun(word):
+        return dict_value(word, "grade")
+
+def get_pos(word):
+    """Gets part of speech for word. Returns String."""
+    if is_valid(word) and not is_proper_noun(word):
+        return dict_value(word, "part of speech")
+
+def get_nouns():
+    """Gets a list of nouns. Returns List."""
+    temp = []
+    with open(NOUNS, "r") as f:
+        [temp.append(line.strip()) for line in f.readlines()]
+    return temp
+
+def get_pronouns():
+    """Gets a list of pronouns. Returns List."""
+    temp = []
+    with open(PRONOUNS, "r") as f:
+        [temp.append(line.strip()) for line in f.readlines()]
+    return temp
+
+def get_verbs():
+    """Gets a list of verbs. Returns List."""
+    temp = []
+    with open(VERBS, "r") as f:
+        [temp.append(line.strip()) for line in f.readlines()]
+    return temp
+
+def get_adjectives():
+    """Gets a list of adjectives. Returns List."""
+    temp = []
+    with open(ADJECTIVES, "r") as f:
+        [temp.append(line.strip()) for line in f.readlines()]
+    return temp
+
+def get_adverbs():
+    """Gets a list of adverbs. Returns List."""
+    temp = []
+    with open(ADVERBS, "r") as f:
+        [temp.append(line.strip()) for line in f.readlines()]
+    return temp
+
+def get_auxverbs():
+    """Gets a list of auxverbs. Returns List."""
+    temp = []
+    with open(AUXVERBS, "r") as f:
+        [temp.append(line.strip()) for line in f.readlines()]
+    return temp
+
+def get_conjunctions():
+    """Gets a list of conjunctions. Returns List."""
+    temp = []
+    with open(CONJUNCTIONS, "r") as f:
+        [temp.append(line.strip()) for line in f.readlines()]
+    return temp
+
+def get_interjections():
+    """Gets a list of interjections. Returns List."""
+    temp = []
+    with open(INTERJECTIONS, "r") as f:
+        [temp.append(line.strip()) for line in f.readlines()]
+    return temp
+
+def get_prepositions():
+    """Gets a list of prepositions. Returns List."""
+    temp = []
+    with open(PREPOSITIONS, "r") as f:
+        [temp.append(line.strip()) for line in f.readlines()]
+    return temp
+
+def get_articles():
+    """Gets a list of articles. Returns List."""
+    temp = []
+    with open(ARTICLES, "r") as f:
+        [temp.append(line.strip()) for line in f.readlines()]
+    return temp
+
+def change_word(word):
+    """Changes the word based on its part of speech. Returns String."""
+    pos = get_pos(word)
+    if pos == "noun":
+        return choose_different_word(word, get_nouns()) 
+    elif pos == "pronoun":
+        return choose_different_word(word, get_pronouns()) 
+    elif pos == "verb":
+        return choose_different_word(word, get_verbs())
+    elif pos == "adjective":
+        return choose_different_word(word, get_adjectives())
+    elif pos == "adverb":
+        return choose_different_word(word, get_adverbs())
+    elif pos == "auxverb":
+        return choose_different_word(word, get_auxverbs())
+    elif pos == "conjunction":
+        return choose_different_word(word, get_conjunctions())
+    elif pos == "interjection":
+        return choose_different_word(word, get_interjections()) 
+    elif pos == "preposition":
+        return choose_different_word(word, get_prepositions())
+    elif pos == "article":
+        return choose_different_word(word, get_articles())
+
+def choose_different_word(word, some_list): 
+    """Chooses a different word from some_list. Returns String."""
+    copy = some_list[:]
+    while word in copy:
+        copy.remove(word)
+    return random.choice(copy)
+
+
+
+
 class Word():
     """The Word class. Return None."""
-#    lists               = Lists() 
-
-    #working on vowels.
-#    vowels              = lists.vowels
-
-#    alphabet            = lists.alphabet
-#    consonants          = lists.consonants
-#    dictionary          = lists.dictionary
-#    numbers             = string.digits
-#    punctuation         = string.punctuation
-#    good_punctuation    = lists.good_punctuation
-#    uppercase           = string.ascii_uppercase
-#    names               = lists.names
-#    nouns               = lists.nouns
-#    verbs               = lists.verbs
-#    common_nouns        = lists.common_nouns
-#    proper_nouns        = lists.proper_nouns
-#    adverbs             = lists.adverbs
-#    auxverbs            = lists.auxverbs
-#    articles            = lists.articles
-#    pronouns            = lists.pronouns
-#    adjectives          = lists.adjectives
-#    conjunctions        = lists.conjunctions
-#    interjections       = lists.interjections
-#    prepositions        = lists.prepositions
-#    verb_forms          = lists.verb_forms
 
     def __init__(self, word):
         """Initializes Word() instance with default attributes. 
         Returns None."""
         self.english = word
-#        self.remove_punctuation()
-#        self.remove_numbers()
-#        self.student_grade_level = self.grade()
-
-    def page_number(self):
-        """Gets the page number of a word. Returns String"""
-        try:
-            return self.dictionary.dictionary[self.english]["page"]
-        except:
-            try:
-                return self.dictionary.dictionary[self.english.lower()]["page"]
-            except:
-                try:
-                    return self.dictionary.dictionary[self.base_verb()]["page"]
-                except:
-                    try:
-                        return self.dictionary.dictionary[self.base_noun()]["page"]
-                    except:
-                        return "" 
-                                     
-    def part_of_speech(self):
-        """Gets the part of speech. Returns String."""
-        try:
-            if self.is_valid and self.english not in self.proper_nouns:
-                return self.dictionary.dictionary[self.english.lower()]["part of speech"]
-            elif len(self.english) > 0 and self.english in self.proper_nouns:
-                return self.dictionary.dictionary[self.english]["part of speech"]
-            else:
-                return ""
-        except KeyError:
-            return ""
-
-    def grade(self):
-        """Gets the grade that the word first appears in. Returns String."""
-        try:
-            if self.is_valid and self.english not in self.proper_nouns:
-                return self.dictionary.dictionary[self.english.lower()]["grade"]
-            elif len(self.english) > 0 and self.english in self.proper_nouns:
-                return self.dictionary.dictionary[self.english]["grade"]
-            else:
-                return 0
-        except KeyError:
-            return 0 
-
-    def change_word(self):
-        """Changes the word based on its part of speech. Returns None."""
-        pos = self.part_of_speech()
-        if pos == "noun":
-            self.choose_different_word(self.common_nouns) 
-        elif pos == "pronoun":
-            self.choose_different_word(self.pronouns) 
-        elif pos == "verb":
-            self.choose_different_word(self.verbs) 
-        elif pos == "adjective":
-            self.choose_different_word(self.adjectives) 
-        elif pos == "adverb":
-            self.choose_different_word(self.adverbs) 
-        elif pos == "auxverb":
-            self.choose_different_word(self.auxverbs) 
-        elif pos == "conjunction":
-            self.choose_different_word(self.conjunctions) 
-        elif pos == "interjection":
-            self.choose_different_word(self.interjections)             
-        elif pos == "preposition":
-            self.choose_different_word(self.prepositions)            
-        elif pos == "article":
-            self.choose_different_word(self.articles)
-
-    def choose_different_word(self, some_list): 
-        """Chooses a different word from a list. Returns None."""
-        copy = some_list[:]
-        while self.english in copy:
-            copy.remove(self.english)
-        self.english = random.choice(copy)
 
     def base_verb(self):
         """Searches for the base form of a verb. Returns None."""
