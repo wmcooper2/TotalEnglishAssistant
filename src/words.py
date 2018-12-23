@@ -9,12 +9,15 @@ import string
 #from lists import Lists
 from data import verbforms
 from data.irregularnouns import irregular_nouns
+import juniorhighenglishwords
 from pathlib import Path
 from wordsvalidation import *
 
 alphabet = string.ascii_uppercase + string.ascii_lowercase
 good_punctuation = ["'", "-"]
 DATA = str(Path.cwd())+"/data2/"
+NUMBERS = string.digits
+DICTIONARY = juniorhighenglishwords.Junior_High_English_Words
 
 def final_es(word):
     """Checks if final two letters are 'es'. Returns Boolean."""
@@ -46,7 +49,7 @@ def final_f1(word):
     return word[-1] == "f"
 
 def final_f2(word):
-    """Checks if the last letter is f. Returns Boolean."""
+    """Checks if the second to last letter is f. Returns Boolean."""
     return word[-2] == "f"
 
 def special_f_end(word):
@@ -123,7 +126,26 @@ def remove_punctuation(word):
     no_punct = []
     [no_punct.append(char) for char in word if good_char(char)]
     return ''.join(no_punct)
-    
+
+def is_number(char):
+    """Checks if char is a number. Returns Boolean."""
+    return char in NUMBERS
+
+def remove_numbers(word):
+    """Removes all numbers from the word. Returns String."""
+    no_nums = []
+    [no_nums.append(char) for char in word if not is_number(char)]
+    return ''.join(no_nums)
+
+def dict_value(word, value):
+    """Gets word's value from dictionary. Returns String."""
+    # replace with dict.get(word, value) ? 
+    return DICTIONARY[word][value]
+
+def japanese(word):
+    """Gets the Japanese definition. Returns String."""
+    if is_valid(word) and not is_proper_noun(word):
+        return dict_value(word, "japanese")
 
 class Word():
     """The Word class. Return None."""
@@ -161,33 +183,6 @@ class Word():
 #        self.remove_punctuation()
 #        self.remove_numbers()
 #        self.student_grade_level = self.grade()
-
-    def remove_numbers(self):
-        """Removes all numbers from the word. Returns None."""
-        no_nums = []
-        for character in self.english:
-            if character in self.numbers:
-                continue
-            else:
-                 no_nums.append(character)
-        joined_word = ''.join(no_nums)
-        self.english = joined_word
-
-    def japanese(self):
-        """Gets the Japanese definition. Returns String."""
-        if self.is_valid and self.english not in self.proper_nouns:
-            return self.dictionary.dictionary[self.english.lower()]["japanese"]
-        elif len(self.english) > 0 and self.english in self.proper_nouns:
-            return self.dictionary.dictionary[self.english]["japanese"]
-        else:
-            return "" 
-            
-    def set_verb_form_attribute_(self):
-        """Sets the verb attribute of the word. Returns String."""
-        if self.is_valid and self.english not in self.proper_nouns:
-            return self.english in self.verbs
-        else:
-            return "###"
 
     def page_number(self):
         """Gets the page number of a word. Returns String"""
