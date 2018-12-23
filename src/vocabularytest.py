@@ -10,6 +10,7 @@ from tkinter import filedialog
 import directories
 from lists import Lists
 import vocabularytabvalidation as check
+from words import *
 
 class VocabularyTest():
     """Filters the words down to a random selection within
@@ -23,8 +24,6 @@ class VocabularyTest():
 
     #point vocabulary words to the data/ dir
     vocabulary_words            = dictionary.words
-#    vocabulary_words            = loadjhswords()
-
 
     questions_per_test          = 20
     student_grade_level         = 3
@@ -57,25 +56,14 @@ class VocabularyTest():
     def filter_by_selections(self):
         """Filters the words down from page range, grade and language into
             one list. Returns None."""
+
+        #move to words.py
         self._set_words_in_range()
+
+
+
         self._set_words_in_grade()
         self._set_words_of_language_choice()
-
-    def _set_words_in_range(self):
-        """Filters the words by page range. Returns None."""
-        self.words_in_range = []
-        for word in self.vocabulary_words:
-            page_of_word = int(self.dictionary.dictionary[word]["page"])
-            if page_of_word >= self.from_page and page_of_word <= self.until_page:
-                self.words_in_range.append(word)
-
-    def _set_words_in_grade(self):
-        """Filters the words by student grade level. Returns None."""
-        self.words_in_grade = []
-        grade_level = self.student_grade_level
-        for word in self.words_in_range:
-            if grade_level == int(self.dictionary.dictionary[word]["grade"]):
-                self.words_in_grade.append(word)
 
     def _set_words_of_language_choice(self):
         """Filters the words by language. Returns None."""

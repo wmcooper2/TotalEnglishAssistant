@@ -165,9 +165,9 @@ def page_number(word):
         return dict_value(word, "page")
 
 def grade(word):
-    """Gets grade level of word. Returns String."""
+    """Gets grade level of word. Returns Integer."""
     if is_valid(word) and not is_proper_noun(word):
-        return dict_value(word, "grade")
+        return int(dict_value(word, "grade"))
 
 def get_pos(word):
     """Gets part of speech for word. Returns String."""
@@ -275,6 +275,50 @@ def choose_different_word(word, some_list):
         copy.remove(word)
     return random.choice(copy)
 
+def get_words_in_page_range(start, end):
+    """Gets word list within page range. Returns List."""
+    #start and end are integers
+    temp = []
+    for word in DICTIONARY:
+        if page_number(word)>=int(start) and page_number(word)<=int(end):
+            temp.append(word)
+    return temp
+        
+def page_number(word):
+    """Gets page number of word. Returns Integer."""
+    return int(dict_value(word, "page"))
+
+def get_words_in_grade_range(start, end):
+    """Gets word list within grade range. Returns List."""
+    #start and end are integers
+    temp = []
+    for word in DICTIONARY:
+        if grade(word)>=int(start) and grade(word)<=int(end):
+            temp.append(word)
+    return temp
+
+def get_japanese_words():
+    """Gets Japanese words. Returns List."""
+    temp = []
+    [temp.append(word["japanese"]) for word in DICTIONARY]
+
+def get_words_in_language(language):
+    """Gets words of language. Returns List."""
+    if language == "english":
+        return english_words()
+    elif language == "japanese":
+        return japanese_words()
+    else language == "english_and_japanese":
+        return english_words() + japanese_words()
+        
+
+
+
+
+
+
+
+
 
 
 
@@ -287,12 +331,18 @@ class Word():
         self.english = word
 
     def base_verb(self):
-        """Searches for the base form of a verb. Returns None."""
-        for verb in self.verbs:
+        """Searches for the base form of a verb. Returns String."""
+        #see data2/verbforms.txt, need to rework it into a dict
+
+        for verb in get_verbs(): 
+
             for key, value in self.verb_forms.items():
                 for k, v in value.items():
                     if v == self.english:
                         return key
+        #if not found
+        return None
+
 
     def base_noun(self):
         """Finds the base form of the noun. Returns String."""

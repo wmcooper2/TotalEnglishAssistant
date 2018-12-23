@@ -139,8 +139,9 @@ def test_choose_different_word():
 
 def base_verb():
     pass
+    #rework the data2/verbforms.txt into a dict
 
 def base_noun():
     pass
-
+    #rework the data2/nounforms.txt into a dict
 
