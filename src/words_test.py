@@ -126,20 +126,48 @@ def test_grade():
     assert grade("became") == "2"
     assert grade("yellow") == "3"
 
-# These might take a little more time
 def test_change_word():
     assert change_word("cat") != "cat"
     assert change_word("California") != "California"
     assert change_word("white") != "white"
 
 def test_choose_different_word():
-    assert choose_different_word("cat", NOUNS) != "cat"
-    assert choose_different_word("run", VERBS) != "run"
-    assert choose_different_word("a", ARTICLES) != "a"
+    assert choose_different_word("cat", get_nouns()) != "cat"
+    assert choose_different_word("run", get_verbs()) != "run"
+    assert choose_different_word("a", get_articles()) != "a"
+
+#5 seconds
+def test_get_words_in_page_range():
+    assert len(get_words_in_page_range(0, 100)) == 1113
+    assert len(get_words_in_page_range(0, 75)) == 827
+    assert len(get_words_in_page_range(0, 50)) == 511
+
+#11  seconds
+def test_get_words_in_grade_range():
+    assert len(get_words_in_grade_range(1, 1)) == 610
+    assert len(get_words_in_grade_range(1, 2)) == 1113
+    assert len(get_words_in_grade_range(1, 3)) == 1448 # 2 words missing
+    assert len(get_words_in_grade_range(2, 2)) == 503
+    assert len(get_words_in_grade_range(2, 3)) == 838
+    assert len(get_words_in_grade_range(3, 3)) == 335
+    assert len(get_words_in_grade_range(0, 0)) == 0
+
+def test_get_japanese_words():
+    assert len(get_japanese_words()) == 1450
+
+def test_get_english_words():
+    assert len(get_english_words()) == 1450
+
+def test_get_words_in_language():
+    assert len(get_words_in_language("english")) == 1450
+    assert len(get_words_in_language("japanese")) == 1450
+    assert len(get_words_in_language("")) == 2900
+
+#add filters of the above 5 tests to narrow down results
+
 
 def base_verb():
     pass
-    #rework the data2/verbforms.txt into a dict
 
 def base_noun():
     pass

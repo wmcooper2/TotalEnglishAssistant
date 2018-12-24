@@ -1,35 +1,35 @@
 #!/usr/bin/python3
 
 #stand lib
+from pathlib import Path
 import random
 import sys
 import string
 
 #custom
-#from lists import Lists
-from data import verbforms
-from data.irregularnouns import irregular_nouns
-import data.juniorhighenglishwords as jhswords
-from pathlib import Path
+from data2 import verbforms
+from data2.irregularnouns import irregular_nouns as IRRNOUNS
+import data.juniorhighenglishwords as JHSWORDS
+from data2.verbforms import verb_forms as VERBFORMS
 from wordsvalidation import *
 
-alphabet = string.ascii_uppercase + string.ascii_lowercase
-good_punctuation = ["'", "-"]
-
-#change these constants to return a list of words when needed.
+ALPHABET        = string.ascii_uppercase + string.ascii_lowercase
 DATA            = str(Path.cwd())+"/data2/"
+DICT            = JHSWORDS.Junior_High_English_Words
+GOODPUNCT       = ["'", "-"]
 NUMBERS         = string.digits
-DICTIONARY      = jhswords.Junior_High_English_Words
-NOUNS           = DATA+"nouns.txt"
-PROUNOUNS       = DATA+"pronouns.txt"
-VERBS           = DATA+"verbs.txt"
+
 ADJECTIVES      = DATA+"adjectives.txt"
 ADVERBS         = DATA+"adverbs.txt"
+ARTICLES        = DATA+"articles.txt"
 AUXVERBS        = DATA+"auxverbs.txt"
 CONJUNCTIONS    = DATA+"conjunctions.txt"
 INTERJECTIONS   = DATA+"interjections.txt"
+NOUNS           = DATA+"nouns.txt"
 PREPOSITIONS    = DATA+"prepositions.txt"
-ARTICLES        = DATA+"articles.txt"
+PROUNOUNS       = DATA+"pronouns.txt"
+VERBS           = DATA+"verbs.txt"
+#VERBFORMS       = DATA+"verbforms.txt"
 
 def final_es(word):
     """Checks if final two letters are 'es'. Returns Boolean."""
@@ -93,7 +93,7 @@ def foreign_origin(word):
     
 def irregular_noun(word):
     """Checks if word is an irregular noun. Returns Boolean."""
-    return word in irregular_nouns.keys()
+    return word in IRRNOUNS.keys()
         
 def make_plural(word):
     """Makes word plural if it's a noun or verb. Returns None."""
@@ -101,7 +101,7 @@ def make_plural(word):
     if foreign_origin(word):
         return add_s(word)
     elif irregular_noun(word): 
-        return irregular_nouns.get(word) 
+        return IRRNOUNS.get(word) 
 
     # common
     elif final_es(word):
@@ -131,7 +131,7 @@ def make_plural(word):
 def good_char(char):
     """Checks if char is a letter or acceptable punctuation. 
         Returns Boolean."""
-    return ((char in alphabet) or (char in good_punctuation))
+    return ((char in ALPHABET) or (char in GOODPUNCT))
 
 def remove_punctuation(word):
     """Removes punctuation from the word. Returns String."""
@@ -152,26 +152,27 @@ def remove_numbers(word):
 def dict_value(word, value):
     """Gets word's value from dictionary. Returns String."""
     # replace with dict.get(word, value) ? 
-    return DICTIONARY[word][value]
+    # what if word is not in dictionary?
+    return DICT[word][value]
 
 def japanese(word):
     """Gets the Japanese definition. Returns String."""
-    if is_valid(word) and not is_proper_noun(word):
+    if is_valid(word):
         return dict_value(word, "japanese")
 
 def page_number(word):
     """Gets page number of word. Returns String."""
-    if is_valid(word) and not is_proper_noun(word):
+    if is_valid(word):
         return dict_value(word, "page")
 
 def grade(word):
-    """Gets grade level of word. Returns Integer."""
-    if is_valid(word) and not is_proper_noun(word):
-        return int(dict_value(word, "grade"))
+    """Gets grade level of word. Returns String."""
+    if is_valid(word):
+        return dict_value(word, "grade")
 
 def get_pos(word):
     """Gets part of speech for word. Returns String."""
-    if is_valid(word) and not is_proper_noun(word):
+    if is_valid(word):
         return dict_value(word, "part of speech")
 
 def get_nouns():
@@ -194,6 +195,16 @@ def get_verbs():
     with open(VERBS, "r") as f:
         [temp.append(line.strip()) for line in f.readlines()]
     return temp
+
+def base_verb(verb):
+    """Gets base form of verb. Returns String."""
+#    for verb in get_verbs(): 
+    for baseverb, nested_dict in VERBFORMS.items():
+        for form, value in nested_dict.items():
+            if value == verb:
+                return baseverb
+    #if not found
+    return verb+" not in book."
 
 def get_adjectives():
     """Gets a list of adjectives. Returns List."""
@@ -275,41 +286,53 @@ def choose_different_word(word, some_list):
         copy.remove(word)
     return random.choice(copy)
 
+def within_page_range(word, start, end):
+    """Checks if a word exists within a page range. Returns Boolean."""
+    if int(page_number(word))>=int(start) and \
+       int(page_number(word))<=int(end):
+        return True
+    else: return False
+
 def get_words_in_page_range(start, end):
     """Gets word list within page range. Returns List."""
-    #start and end are integers
     temp = []
-    for word in DICTIONARY:
-        if page_number(word)>=int(start) and page_number(word)<=int(end):
+    for word in DICT:
+        if within_page_range(word, start, end):
             temp.append(word)
     return temp
         
-def page_number(word):
-    """Gets page number of word. Returns Integer."""
-    return int(dict_value(word, "page"))
+def within_grade_range(word, start, end):
+    """Gets word list within grade range. Returns Boolean."""
+    if int(grade(word))>=int(start) and int(grade(word))<=int(end):
+        return True
+    else: return False
 
 def get_words_in_grade_range(start, end):
     """Gets word list within grade range. Returns List."""
-    #start and end are integers
     temp = []
-    for word in DICTIONARY:
-        if grade(word)>=int(start) and grade(word)<=int(end):
-            temp.append(word)
+    [temp.append(w) for w in DICT if within_grade_range(w, start, end)]
     return temp
 
 def get_japanese_words():
     """Gets Japanese words. Returns List."""
     temp = []
-    [temp.append(word["japanese"]) for word in DICTIONARY]
+    [temp.append(v["japanese"]) for k, v in DICT.items()]
+    return temp
+
+def get_english_words():
+    """Gets English words. Returns List."""
+    temp = []
+    [temp.append(k) for k in DICT.keys()]
+    return temp
 
 def get_words_in_language(language):
     """Gets words of language. Returns List."""
     if language == "english":
-        return english_words()
+        return get_english_words()
     elif language == "japanese":
-        return japanese_words()
-    else language == "english_and_japanese":
-        return english_words() + japanese_words()
+        return get_japanese_words()
+    else:
+        return get_english_words() + get_japanese_words()
         
 
 
@@ -330,20 +353,6 @@ class Word():
         Returns None."""
         self.english = word
 
-    def base_verb(self):
-        """Searches for the base form of a verb. Returns String."""
-        #see data2/verbforms.txt, need to rework it into a dict
-
-        for verb in get_verbs(): 
-
-            for key, value in self.verb_forms.items():
-                for k, v in value.items():
-                    if v == self.english:
-                        return key
-        #if not found
-        return None
-
-
     def base_noun(self):
         """Finds the base form of the noun. Returns String."""
         noun = self.english
@@ -354,7 +363,7 @@ class Word():
             print("Not found, beginning base noun search.")
 
         if len(noun) >= 3:
-            if noun in self.lists.irregular_nouns:
+            if noun in self.lists.IRRNOUNS:
                 print("irregular")
             elif noun in self.lists.same_as_singular:
                 print("same as singular")

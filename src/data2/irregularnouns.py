@@ -1,4 +1,5 @@
 irregular_nouns = {
+
     'addendum' : 'addenda',
     'alga' : 'algae',
     'alumna' : 'alumnae',
@@ -114,4 +115,5 @@ irregular_nouns = {
     'wife' : 'wives',
     'wolf' : 'wolves',
     'woman' : 'women',
-    'zero' : 'zeroes'}
+    'zero' : 'zeroes'
+}
