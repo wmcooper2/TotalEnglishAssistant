@@ -2,31 +2,35 @@
 """Contains all of the Index entries from the Total English book series
     (Books 1, 2, 3), returns None."""
 
-Junior_High_English_Words = {
+#todo
+# record sequence that deletes 'examples' from the entries.
+
+jhswords = {
+
 'a' : { 'japanese' : '１つの, １人の, １枚の, １匹の ', 
         'important' : 'yes', 
         'grade' : '1', 
         'part of speech' : 'article',
         'page' : '30',
-        'examples' : ['a lot of', 'kilometers an hour'] },
+},
 'able' : { 'japanese' : '〜する能力がある', 
         'important' : 'no', 
         'grade' : '3', 
         'part of speech' : ('adjective'),
         'page' : '116',
-        'examples' : '', },
+},
 'aboard' : { 'japanese' : '〜に乗って', 
         'important' : 'no', 
         'grade' : '2', 
         'part of speech' : ('preposition'),
         'page' : '34',
-        'examples' : '', },
+},
 'about' : { 'japanese' : '〜について', 
         'important' : 'yes', 
         'grade' : '1', 
         'part of speech' : ('preposition', 'adverb'),
         'page' : '30',
-        'examples' : '', },
+},
 'above' : { 'japanese' : '〜の上に', 
         'important' : 'yes', 
         'grade' : '2', 

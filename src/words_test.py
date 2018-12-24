@@ -71,25 +71,16 @@ def test_add_es():
     assert add_es("beef") == "beefes"
     assert add_es("banana") == "bananaes"
 
-def test_foreign_origin():
-    assert foreign_origin("piano") == True
-    assert foreign_origin("kilo") == True
-    assert foreign_origin("banana") == False
-
-def test_irregular_noun():
-    assert irregular_noun("person") == True
-    assert irregular_noun("woman") == True
-    assert irregular_noun("cat") == False
-
 def test_make_plural():
-    assert irregular_noun("person") == True
-    assert irregular_noun("woman") == True
-    assert irregular_noun("cat") == False
-
-def test_good_char():
-    assert good_char("a") == True
-    assert good_char("-") == True
-    assert good_char("!") == False
+    assert make_plural("person") == "people"
+    assert make_plural("woman") == "women"
+    assert make_plural("cat") == "cats"
+    assert make_plural("lunch") == "lunches"
+    assert make_plural("box") == "boxes"
+    assert make_plural("pass") == "passes"
+    assert make_plural("gentleman") == "gentlemen"
+    assert make_plural("lady") == "ladies"
+    assert make_plural("knife") == "knives"
 
 def test_remove_punctuation():
     assert remove_punctuation("cats!") == "cats"
@@ -142,6 +133,11 @@ def test_get_words_in_page_range():
     assert len(get_words_in_page_range(0, 75)) == 827
     assert len(get_words_in_page_range(0, 50)) == 511
 
+def test_within_page_range():
+    assert within_page_range("cat", 15, 20) == True
+    assert within_page_range("cause", 50, 100) == True
+    assert within_page_range("center", 40, 50) == False
+
 #11  seconds
 def test_get_words_in_grade_range():
     assert len(get_words_in_grade_range(1, 1)) == 610
@@ -165,11 +161,23 @@ def test_get_words_in_language():
 
 #add filters of the above 5 tests to narrow down results
 
+def test_base_verb():
+    assert base_verb("running") == "run"
+    assert base_verb("blown") == "blow"
+    assert base_verb("walking") == "'walking' not in book."
 
-def base_verb():
+def test_base_noun():
+    assert base_noun("bananas") == "banana"
+    assert base_noun("wishes") == "wish"
+    assert base_noun("cats") == "cat"
+
+def test_get_irregular_nouns():
+    assert len(get_irregular_nouns()) == 107
+
+def test_get_base_irregular_noun():
+    assert get_base_irregular_noun("algae") == "alga"
+    assert get_base_irregular_noun("alumni") == "alumnus"
+    assert get_base_irregular_noun("teeth") == "tooth"
+
+def get_base_foreign_word():
     pass
-
-def base_noun():
-    pass
-    #rework the data2/nounforms.txt into a dict
-

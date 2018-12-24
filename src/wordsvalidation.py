@@ -1,15 +1,7 @@
-#!/usr/bin/env python3
-"""Validation module for words.py."""
-
 #stand lib
-from pathlib import Path
-import string
 
-uppercase = string.ascii_uppercase
-DATA = str(Path.cwd())+"/data2/"
-#Notes
-# lowercase all words before checking is_noun() or is_verb()???
-# replaced is_important() with is_bolded()
+#custom
+from constants import *
 
 def is_vowel(char):
     """Checks if char is a vowel. Returns Boolean."""
@@ -25,12 +17,12 @@ def is_str(word):
 
 def is_proper_noun(word):
     """Checks if word is proper noun. Returns Boolean."""
-    return word[0] in uppercase
+    return word[0] in UPPERCASE
 
 def in_dictionary(word):
     """Checks if word in books' dictionaries. Returns Boolean."""
     dictionary = []
-    with open(DATA+"juniorhighenglishwords.txt", "r") as f:
+    with open(JHSWORDS, "r") as f:
         [dictionary.append(word.strip()) for word in f.readlines()]
     return word in dictionary
 
@@ -49,14 +41,14 @@ def is_valid(word):
 def is_noun(word):
     """Checks if word is a noun. Returns Boolean."""
     nouns = []
-    with open(DATA+"nouns.txt", "r") as f:
+    with open(NOUNS, "r") as f:
         [nouns.append(word.strip()) for word in f.readlines()]
     return word in nouns
 
 def is_verb(word):
     """Checks if word is a verb. Returns Boolean."""
     verbs = []
-    with open(DATA+"verbs.txt", "r") as f:
+    with open(VERBS, "r") as f:
         [verbs.append(word.strip()) for word in f.readlines()]
     return word in verbs
 
@@ -64,6 +56,26 @@ def is_bolded(word):
     """Checks if word is bolded in the books' dictionaries. 
         Returns Boolean."""
     bolded = []
-    with open(DATA+"bolded.txt", "r") as f:
+    with open(BOLDED, "r") as f:
         [bolded.append(word.strip()) for word in f.readlines()]
     return word in bolded
+
+def is_foreign_origin(word):
+    """Checks if word is of foreign origin. Returns Boolean."""
+    words = []
+    with open(DATA+"foreignorigin.txt", "r") as f:
+        [words.append(w.strip()) for w in f.readlines()]
+    return word in words
+   
+def is_irregular_noun(word):
+    """Checks if word is an irregular noun. Returns Boolean."""
+    return word in IRRNOUNS.keys()
+
+def is_good_char(char):             
+    """Checks if char is a letter or acceptable punctuation. 
+        Returns Boolean."""
+    return ((char in ALPHABET) or (char in GOODPUNCT)) 
+
+def is_number(char):
+    """Checks if char is a number. Returns Boolean."""
+    return char in NUMBERS

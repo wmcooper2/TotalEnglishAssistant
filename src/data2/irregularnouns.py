@@ -51,6 +51,7 @@ irregular_nouns = {
     'formula' : 'formulas',
     'fungus' : 'fungi',
     'fungus' : 'funguses',
+    'gentleman' : 'gentlemen',
     'genus' : 'genera',
     'goose' : 'geese',
     'half' : 'halves',

@@ -82,10 +82,10 @@ def until(until, upper, lower):
 
 def not_enough_words():
     """Shows message box of inusfficient word count. Returns None."""
-    answer = messagebox.askyesno(title = vocab_test_title, message = not_enough_vocab_words)
+    answer = messagebox.askyesno(title=vocab_test_title, message=not_enough_vocab_words)
     return answer
     
 def didnt_write_test():
     """Shows a message that the vocabulary test was not written. 
     Returns None."""
-    messagebox.showinfo(title = vocab_test_title, message = no_vocab_test)
+    messagebox.showinfo(title=vocab_test_title, message=no_vocab_test)

@@ -9,7 +9,8 @@ from tkinter import Menu
 from tkinter import messagebox
 
 #custom
-import vocabularytabvalidation as check
+#import vocabularytabvalidation as check
+from vocabularytabvalidation import *
 from vocabularytest import VocabularyTest
 
 class VocabularyTab():
@@ -71,7 +72,9 @@ class VocabularyTab():
         japanese_language = ttk.Radiobutton(language_text, 
             text=self.japanese, value='japanese', variable=self.language)
         japanese_language.grid(column=1, row=0, pady=6, padx=6)
-        english_and_japanese = ttk.Radiobutton(language_text, text=self.both_languages, value='english_and_japanese', variable=self.language)
+        english_and_japanese = ttk.Radiobutton(language_text, 
+            text=self.both_languages, value='english_and_japanese', 
+            variable=self.language)
         english_and_japanese.grid(column=2, row=0, pady=6, padx=6)
 
         how_many_box = ttk.LabelFrame(self.vocab_tab)
@@ -104,29 +107,29 @@ class VocabularyTab():
         reset_button.grid(column=1, row=0, padx=6, pady=6)
 
     def is_valid_input(self):
-        """Validates the user input, returns Boolean."""
-        if check.questions(self.questions_per_test.get(), 
+        """Validates the user input. Returns Boolean."""
+        if questions(self.questions_per_test.get(), 
            self.MAX_QUESTIONS, self.MIN_QUESTIONS) \
-           and check.tests(self.amount_of_tests.get(), 
+           and tests(self.amount_of_tests.get(), 
                self.MAX_TESTS, self.MIN_TESTS) \
-           and check.grade(self.student_grade_level.get(), 
+           and grade(self.student_grade_level.get(), 
                self.MAX_GRADE, self.MIN_GRADE) \
-           and check.language(self.language.get()) \
-           and check.from_(self.from_page.get(), self.until_page.get(), 
+           and language(self.language.get()) \
+           and from_(self.from_page.get(), self.until_page.get(), 
                self.MIN_PAGE) \
-           and check.until(self.until_page.get(), self.MAX_PAGE, 
+           and until(self.until_page.get(), self.MAX_PAGE, 
                self.from_page.get()):
             return True
         else:
             return False
 
     def quit_(self):
-        """Quits the program, returns None."""
+        """Quits the program. Returns None."""
         win.quit()
         win.destroy()
 
     def reset_choices(self):
-        """Clears the user's input from the entry widgets, returns None."""
+        """Clears the user's input from the entry widgets. Returns None."""
         self.student_grade_level_input.delete(0, "end")
         self.from_page_input.delete(0, "end")
         self.until_page_input.delete(0, "end")
@@ -134,7 +137,7 @@ class VocabularyTab():
         self.questions_per_test_input.delete(0, "end")
 
     def set_vocabulary_test_attributes(self):
-        """Sets the attributes in for the vocabulary test, returns None."""
+        """Sets the attributes in for the vocabulary test. Returns None."""
         test = self.test
         test.test_amount = int(self.amount_of_tests.get())
         test.questions_per_test = int(self.questions_per_test.get())
@@ -145,8 +148,8 @@ class VocabularyTab():
         test.set_vocabulary_test_words()        
 
     def vocab_tests(self):
-        """Makes all of the vocabulary tests requested by the user,
-            returns None."""
+        """Makes all of the vocabulary tests requested by the user.
+            Returns None."""
         test = self.test
         if self.is_valid_input():
             self.set_vocabulary_test_attributes()

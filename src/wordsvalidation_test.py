@@ -1,5 +1,3 @@
-"""This module replaces 'words_test.py'"""
-
 #stand lib
 
 #3rd party
@@ -57,3 +55,24 @@ def test_is_bolded():
     assert is_bolded("about") == True
     assert is_bolded("any") == True
     assert is_bolded("abroad") == False
+
+def test_is_foreign_origin():
+    assert is_foreign_origin("piano") == True
+    assert is_foreign_origin("kilo") == True
+    assert is_foreign_origin("banana") == False
+
+def test_is_irregular_noun():
+    assert is_irregular_noun("person") == True
+    assert is_irregular_noun("woman") == True
+    assert is_irregular_noun("cat") == False
+
+def test_good_char():
+    assert is_good_char("a") == True
+    assert is_good_char("-") == True
+    assert is_good_char("!") == False
+
+def test_is_number():
+    assert is_number("3") == True
+    assert is_number("9") == True
+    assert is_number("j") == False
+

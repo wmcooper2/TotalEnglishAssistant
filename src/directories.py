@@ -5,20 +5,23 @@
 import sys
 from pathlib import Path
 
-ROOTDIR = "./"
-VOCABDIR = "VocabularyTests"
-#IMAGEDIR = "Images"
-DICTDIR = "Dictionaries"
-#directories = [VOCABDIR, IMAGEDIR, DICTDIR]
-directories = [VOCABDIR, DICTDIR]
-main_path = Path(ROOTDIR)
+#custom
+from constants import *
 
 def make_dirs():
     """Creates subdirectories within the program's root directory.
         Returns None."""
-    for directory in directories:
+    for directory in DIRECTORIES:
         if Path(ROOTDIR,directory).exists():
             pass
         else:
             Path(ROOTDIR,directory).mkdir()
 
+def dict_exists():
+    """Checks if dictionary exists in 
+        '~/TotalEnglishAssistant/Dictionaries/'.
+    Returns Boolean. """
+    if not os.path.exists(USERDICT):
+        return False
+    else:
+        return True
