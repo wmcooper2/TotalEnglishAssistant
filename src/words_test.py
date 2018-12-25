@@ -164,7 +164,8 @@ def test_get_words_in_language():
 def test_base_verb():
     assert base_verb("running") == "run"
     assert base_verb("blown") == "blow"
-    assert base_verb("walking") == "'walking' not in book."
+#    assert base_verb("walking") == "'walking' not in book."
+    assert base_verb("walking") == " "
 
 def test_base_noun():
     assert base_noun("bananas") == "banana"

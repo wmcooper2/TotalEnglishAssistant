@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
 #stand lib
-from functools import partial
-import logging as logger
+#from functools import partial
+#import logging as logger
 import os
 import sys
 import tkinter as tk
@@ -11,21 +11,18 @@ from tkinter import ttk
 from tkinter import Menu
 
 #custom
-from dictionaries import Dictionary
-import sentencestabvalidation as check
-from words import Word
+#from dictionaries import Dictionary
+from dictionaries import *
+from sentencestabvalidation import *
+from words import *
 
 class SentenceTab():
     """Creates the 'Sentence' tab in the GUI, returns None."""
-    MAX_LENGTH      = 20
-    MAX_SENTENCE    = 39
-    WIDTH           = 6
-    words           = []
+    original_sent   = []
+    no_punct_sent   = []
     result_labels   = []
-    groups          = []
+    results_rows    = []
     results_dict    = {}
-    results_buttons = {}
-    dictionary      = Dictionary()
 
     def __init__(self, tab_control):
         """Draws the widgets in the 'Sentences' tab. Returns None."""
@@ -42,23 +39,23 @@ class SentenceTab():
 
         grade_box = ttk.LabelFrame(options_frame, text="Grade level")
         grade_box.grid(column=0, row=0, padx=6, pady=6)
-        self.student_grade_level_input = ttk.Entry(grade_box, 
-            width=self.WIDTH, textvariable=self.student_grade_level)
-        self.student_grade_level_input.grid(column=0, row=0, pady=6, padx=6)
+        self.grade_input = ttk.Entry(grade_box, 
+            width=SMALLINPUT, textvariable=self.student_grade_level)
+        self.grade_input.grid(column=0, row=0, pady=6, padx=6)
 
         page_range_box = ttk.LabelFrame(options_frame, text="Page range")
         page_range_box.grid(column=1, columnspan=2, row=0, padx=6, pady=6)
         from_page_text = ttk.Label(page_range_box, text="From: ")
         from_page_text.grid(column=0, row=0, padx=6, pady=6)
-        self.from_page_input = ttk.Entry(page_range_box, 
-            width=self.WIDTH, textvariable=self.from_page)
-        self.from_page_input.grid(column=1, row=0, padx=6, pady=6)
+        self.from_input = ttk.Entry(page_range_box, 
+            width=SMALLINPUT, textvariable=self.from_page)
+        self.from_input.grid(column=1, row=0, padx=6, pady=6)
 
         input_frame = ttk.LabelFrame(self.sentence_tab, 
             text="Enter any sentence")
         input_frame.grid(column=0, row=1, padx=6, pady=6)		
         self.sentence_input = ttk.Entry(input_frame, 
-            width=self.MAX_SENTENCE)
+            width=SENTWIDGETLEN)
         self.sentence_input.grid(column=0, row=0, columnspan=2, 
             padx=6, pady=6)
         
@@ -72,16 +69,15 @@ class SentenceTab():
 
         until_page_text = ttk.Label(page_range_box, text="Until: ")
         until_page_text.grid(column=2, row=0, sticky=tk.W, padx=6, pady=6)
-        self.until_page_input = ttk.Entry(page_range_box, width=self.WIDTH, 
-            textvariable=self.until_page)
-        self.until_page_input.grid(column=3, row=0, padx=6, pady=6)
+        self.until_input = ttk.Entry(page_range_box, 
+            width=SMALLINPUT, textvariable=self.until_page)
+        self.until_input.grid(column=3, row=0, padx=6, pady=6)
 
         self.draw_results_frame()
 
     def is_valid_input(self):
         """Validates the sentence. Returns Boolean."""
-        return check.sentence_input(self.sentence_input.get(), 
-                                    self.MAX_LENGTH)
+        return user_sentence(self.sentence_input.get(), MAXSENTLEN)
 
     def quit_(self):
         """Quits the program. Returns None."""
@@ -92,44 +88,108 @@ class SentenceTab():
         """Shows results of the input sentence in the GUI. Returns None."""
         self.reset_results_frame()
         self.draw_results_frame()
-        self.convert_to_word_objects()
-        self.make_groups() 
-        self.draw_result_labels()
-        self.draw_groups()
+        self.break_up_original_sent()
+        self.break_up_no_punct_sent()
+        self.get_results() 
+        self.draw_results_labels()
+        self.draw_results_rows()
 
-    def make_groups(self):
+    def results_option1(self):
+        """Gets results when no grade or page range is specified. 
+            Returns Dict.
+            
+            Results include words;
+                - at all grade levels.
+                - on all pages.
+            """
+        pass
+    
+    def results_option2(self):
+        """Gets results when grade or page range is specified. 
+            Returns Dict.
+            
+            Results include words;
+                - at and below the grade.
+                - within, and including, the pages specified.
+            """
+        pass
+
+    def results_option3(self):
+        """Gets results for only the grade and page range specified. 
+            Returns Dict.
+            
+            Results include words;
+                - only for the specified grade.
+                - within, and including, the pages specified.
+            """
+        pass
+
+    def get_results(self):
         """Creates a dictionary of the result labels. Returns None."""
-        self.groups = []
+        self.results_rows = []    #reset the results rows
         counter = 0
-        for word in self.words:
+        #save original user-submitted word for the header, 
+            #then remove the punctuation for the results widget search
+        for word in self.no_punct_sent:
+            #if grade level == 0:
+                #show word regardless of grade level
+            #if page ranges are 0 and 0:
+                #show word regardless of page number
+            #make button to switch the result of an unknown word with one
+                #from the same POS category.
+
+#            print("grade ::", grade(word))
+#            print("page  ::", page_number(word))
+#            print("pos   ::", get_pos(word))
+            
+            grade_level = grade(word)
+            page        = page_number(word)
+            pos         = get_pos(word)
+
+
+
             temp = {}
             temp["word"] = word
-            if word.is_valid:
+#            if is_valid(word): 
+            if is_valid(word) and same_grade(word) \
+                and within_page_range(word):
+
+
+                #create function that returns a widget for the results frame
+                #ex
+                #temp["grade"] = self.make_label(grade(word))
+                
+                #def make_label(self, textval):
+#                    """Makes label. Returns ttk.Label Widget."""
+#                    if self.option1():
+#                    elif self.option2():
+#                    elif self.option3()
+#                    return ttk.Label(self.results_frame, text=textval)
+
                 temp["result"] = ttk.Label(self.results_frame, 
-                                           text=word.english)
+                                           text=word)
                 temp["grade"] = ttk.Label(self.results_frame, 
-                                          text=word.grade())
+                                          text=grade(word))
                 temp["page"] = ttk.Label(self.results_frame, 
-                                         text=word.page_number())
+                                         text=page_number(word))
                 temp["verb"] = ttk.Label(self.results_frame, 
-                                         text=word.base_verb())
+                                         text=base_verb(word))
                 temp["noun"] = ttk.Label(self.results_frame, 
-                                         text=word.base_noun())
+                                         text=base_noun(word))
+                #add pos for each word
             else:
-                temp["result"] = ttk.Label(self.results_frame, 
-                                           text=word.english)
-                temp["grade"] = ttk.Label(self.results_frame, text="")
-                temp["page"] = ttk.Label(self.results_frame, text="")
-                temp["verb"] = ttk.Label(self.results_frame, text="")
-                temp["noun"] = ttk.Label(self.results_frame, text="")
-            print("word's english = ", word.english)
-            self.groups.append(temp)
+                temp["result"] = ttk.Label(self.results_frame, text=word)
+                temp["grade"] = ttk.Label(self.results_frame, text="###")
+                temp["page"] = ttk.Label(self.results_frame, text="###")
+                temp["verb"] = ttk.Label(self.results_frame, text="###")
+                temp["noun"] = ttk.Label(self.results_frame, text="###")
+            self.results_rows.append(temp)
             counter = counter + 1
 
-    def draw_groups(self):
+    def draw_results_rows(self):
         """Draws the result/button groups to the GUI. Returns None."""
         counter = 1
-        for group in self.groups:
+        for group in self.results_rows:
             group["result"].grid(column=counter, row=0, padx=6, pady=6)
             group["grade"].grid(column=counter, row=1, padx=6, pady=6)
             group["page"].grid(column=counter, row=2, padx=6, pady=6)
@@ -137,7 +197,7 @@ class SentenceTab():
             group["noun"].grid(column=counter, row=4, padx=6, pady=6)
             counter = counter + 1
 
-    def draw_result_labels(self):
+    def draw_results_labels(self):
         """Draws the row labels for the results widget. Returns None."""
         ttk.Label(self.results_frame, text="given word:").grid(column=0, 
             row=0, padx=6, pady=6, sticky=tk.E)
@@ -160,20 +220,23 @@ class SentenceTab():
             text="Results" )
         self.results_frame.grid(column=0, row=2, padx=6, pady=6)        
 
-    def convert_to_word_objects(self):
-        """Adds words without punctuation to self.words. Returns None."""
-        self.words = []
-        words = []
-        for element in self.sentence_input.get().split():
-            word = Word(element)
-            words.append(word)
-        self.words = words
-
+    def break_up_no_punct_sent(self):
+        """Adds words without punctuation to self.user_sentence. Returns None."""
+        self.no_punct_sent = []  #clear the stored values
+        for word in self.sentence_input.get().split(" "):
+            self.no_punct_sent.append(remove_punctuation(word))
+    
+    def break_up_original_sent(self):
+        """Breaks up user's sentence by spaces. Returns None."""
+        self.original_sent = []
+        for word in self.sentence_input.get().split(" "):
+            self.original_sent.append(word)
+        
     def reset_choices(self):
         """Clears user's input/results from widgets. Returns None."""
-        self.student_grade_level_input.delete(0, "end")
-        self.from_page_input.delete(0, "end")
-        self.until_page_input.delete(0, "end")
+        self.grade_input.delete(0, "end")
+        self.from_input.delete(0, "end")
+        self.until_input.delete(0, "end")
         self.sentence_input.delete(0, "end")
         self.reset_results_frame()
 

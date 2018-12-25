@@ -41,3 +41,7 @@ PREPOSITIONS    = DATA+"prepositions.txt"
 PROUNOUNS       = DATA+"pronouns.txt"
 VERBS           = DATA+"verbs.txt"
 
+#for sentencestab.py
+MAXSENTLEN      = 20
+SENTWIDGETLEN   = 39
+SMALLINPUT      = 6

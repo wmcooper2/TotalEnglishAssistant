@@ -37,7 +37,7 @@ def final_f1(word):
 
 def final_f2(word):
     """Checks if the second to last letter is f. Returns Boolean."""
-    print(word)
+#    print(word)
     return word[-2] == "f"
 
 def special_f_end(word):
@@ -151,7 +151,9 @@ def base_verb(verb):
         for form, value in nested.items():
             if value == verb:
                 return base
-    return "'{}' not in book.".format(verb)
+#    return "'{}' not in book.".format(verb)
+#    return "###"
+    return " "
 
 def get_adjectives():
     """Gets a list of adjectives. Returns List."""
@@ -285,7 +287,9 @@ def base_noun(word):
 #        if is_foreign_origin(word): return get_base_foreign_noun(word)
         if word == noun: return word
         if make_plural(noun) == word: return noun
-    return "'{}' not in book.".format(word)
+#    return "'{}' not in book.".format(word)
+#    return "###"
+    return " "
 
 def get_irregular_nouns():
     """Gets list of irregular nouns. Returns List."""
