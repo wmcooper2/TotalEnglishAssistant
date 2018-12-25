@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 
 #stand lib
-#from functools import partial
-#import logging as logger
 import os
 import sys
 import tkinter as tk
@@ -11,7 +9,6 @@ from tkinter import ttk
 from tkinter import Menu
 
 #custom
-#from dictionaries import Dictionary
 from dictionaries import *
 from sentencestabvalidation import *
 from words import *
@@ -75,10 +72,6 @@ class SentenceTab():
 
         self.draw_results_frame()
 
-    def is_valid_input(self):
-        """Validates the sentence. Returns Boolean."""
-        return user_sentence(self.sentence_input.get(), MAXSENTLEN)
-
     def quit_(self):
         """Quits the program. Returns None."""
         win.quit()
@@ -124,6 +117,12 @@ class SentenceTab():
             """
         pass
 
+    def make_label(self, word, func=None):
+        """Assembles a ttk Label widget. Returns ttk Label Widget."""
+        if func != None:
+            return ttk.Label(self.results_frame, text=func(word))
+        else: return ttk.Label(self.results_frame, text=word)
+
     def get_results(self):
         """Creates a dictionary of the result labels. Returns None."""
         self.results_rows = []    #reset the results rows
@@ -150,35 +149,19 @@ class SentenceTab():
 
             temp = {}
             temp["word"] = word
-#            if is_valid(word): 
-            if is_valid(word) and same_grade(word) \
-                and within_page_range(word):
-
-
-                #create function that returns a widget for the results frame
-                #ex
-                #temp["grade"] = self.make_label(grade(word))
+            if is_valid(word): 
+#            if is_valid(word) and same_grade(grade, word) \
+#                and within_page_range(word):
                 
-                #def make_label(self, textval):
-#                    """Makes label. Returns ttk.Label Widget."""
-#                    if self.option1():
-#                    elif self.option2():
-#                    elif self.option3()
-#                    return ttk.Label(self.results_frame, text=textval)
 
-                temp["result"] = ttk.Label(self.results_frame, 
-                                           text=word)
-                temp["grade"] = ttk.Label(self.results_frame, 
-                                          text=grade(word))
-                temp["page"] = ttk.Label(self.results_frame, 
-                                         text=page_number(word))
-                temp["verb"] = ttk.Label(self.results_frame, 
-                                         text=base_verb(word))
-                temp["noun"] = ttk.Label(self.results_frame, 
-                                         text=base_noun(word))
+                temp["result"] = self.make_label(word)
+                temp["grade"] = self.make_label(word, func=grade)
+                temp["page"] = self.make_label(word, func=page_number)
+                temp["verb"] = self.make_label(word, func=base_verb)
+                temp["noun"] = self.make_label(word, func=base_noun)
                 #add pos for each word
             else:
-                temp["result"] = ttk.Label(self.results_frame, text=word)
+                temp["result"] = self.make_label(word)
                 temp["grade"] = ttk.Label(self.results_frame, text="###")
                 temp["page"] = ttk.Label(self.results_frame, text="###")
                 temp["verb"] = ttk.Label(self.results_frame, text="###")
@@ -225,6 +208,7 @@ class SentenceTab():
         self.no_punct_sent = []  #clear the stored values
         for word in self.sentence_input.get().split(" "):
             self.no_punct_sent.append(remove_punctuation(word))
+#        print("no punct sent ::", self.no_punct_sent)
     
     def break_up_original_sent(self):
         """Breaks up user's sentence by spaces. Returns None."""

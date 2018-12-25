@@ -15,9 +15,12 @@ DICT            = JHSWORDSDICT.jhswords
 DICTDIR         = "Dictionaries"
 DICTFILE        = DATA+"juniorhighenglishwords.py"
 DICTNAME        = "Total English Dictionary; Books 1, 2 and 3"
-JHSWORDS        = DATA+"juniorhighenglishwords.txt"
 GOODPUNCT       = ["'", "-"]
+JHSWORDS        = DATA+"juniorhighenglishwords.txt"
+MAXGRADE        = 3
+MINGRADE        = 1
 NUMBERS         = string.digits
+SMALLINPUT      = 6
 UPPERCASE       = string.ascii_uppercase
 
 #for directories.py
@@ -44,4 +47,13 @@ VERBS           = DATA+"verbs.txt"
 #for sentencestab.py
 MAXSENTLEN      = 20
 SENTWIDGETLEN   = 39
-SMALLINPUT      = 6
+
+#for vocabularytab.py
+MAXQPERTEST     = 100
+MINQPERTEST     = 10
+MAXTESTAMT      = 50
+MINTESTAMT      = 1
+MAXPAGE         = 300
+MINPAGE         = 0
+JAPANESE        = "日本語"
+BOTHLANG        = "English/" + JAPANESE

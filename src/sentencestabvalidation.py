@@ -10,10 +10,11 @@ def sentence_guide(length):
     messagebox.showinfo(title=validation_title, 
         message=sentence_instructions.format(length))
 
-def user_sentence(sentence, length):
-    """Checks for valid user input. Returns Boolean."""
-    if len(sentence) > 0 and len(sentence) <= length:
+def is_valid_input(sentence):
+    """Checks user inputted valid sentence string. Returns Boolean."""
+    if len(sentence) > 0 and len(sentence) <= MAXSENTLEN:
         return True
     else:
-        sentence_guide(length)
+        sentence_guide(MAXSENTLEN)
         return False
+

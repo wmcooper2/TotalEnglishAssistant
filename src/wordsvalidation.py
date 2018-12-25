@@ -79,3 +79,20 @@ def is_good_char(char):
 def is_number(char):
     """Checks if char is a number. Returns Boolean."""
     return char in NUMBERS
+#
+#def same_grade(grade_level, word):
+#    """Checks if the word is in grade. Returns Boolean."""
+#    return grade_level == int(grade(word))
+#
+#def within_grade_range(word, start, end):
+#    """Gets word list within grade range. Returns Boolean."""
+#    if int(grade(word))>=int(start) and int(grade(word))<=int(end):
+#        return True
+#    else: return False
+#
+#def within_page_range(word, start, end):
+#    """Checks if a word exists within a page range. Returns Boolean."""
+#    if int(page_number(word))>=int(start) and \
+#       int(page_number(word))<=int(end):
+#        return True
+#    else: return False

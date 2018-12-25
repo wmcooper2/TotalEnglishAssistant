@@ -100,8 +100,6 @@ def remove_numbers(word):
 
 def dict_value(word, value):
     """Gets word's value from dictionary. Returns String."""
-    # replace with dict.get(word, value) ? 
-    # what if word is not in dictionary?
     return DICT[word][value]
 
 def japanese(word):
@@ -151,8 +149,6 @@ def base_verb(verb):
         for form, value in nested.items():
             if value == verb:
                 return base
-#    return "'{}' not in book.".format(verb)
-#    return "###"
     return " "
 
 def get_adjectives():
@@ -249,7 +245,11 @@ def get_words_in_page_range(start, end):
         if within_page_range(word, start, end):
             temp.append(word)
     return temp
-        
+
+def same_grade(grade_level, word):
+    """Checks if the word is in grade. Returns Boolean."""
+    return grade_level == int(grade(word))
+
 def within_grade_range(word, start, end):
     """Gets word list within grade range. Returns Boolean."""
     if int(grade(word))>=int(start) and int(grade(word))<=int(end):

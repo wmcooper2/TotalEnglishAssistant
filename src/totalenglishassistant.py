@@ -18,7 +18,7 @@ directories.make_dirs()
 
 from dictionariestab import DictionaryTab
 from sentencestab import SentenceTab
-#from vocabularytab import VocabularyTab
+from vocabularytab import VocabularyTab
 
 def quit_():
     """Quits the program, returns None."""
@@ -40,7 +40,7 @@ menu_bar.add_cascade(label = "Dictionary", menu = dictionary_menu)
 
 #GUI tabs
 tab_control = ttk.Notebook(win)
-#vocabulary_tab = VocabularyTab(tab_control)
+vocabulary_tab = VocabularyTab(tab_control)
 sentence_tab = SentenceTab(tab_control)
 dictionary_tab = DictionaryTab(tab_control)
 #images_tab = ImagesTab(tab_control)

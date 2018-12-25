@@ -24,6 +24,15 @@ invalid_input_messages = [valid_input_instructions,
                          ]
 input_instructions = "\n\n".join(invalid_input_messages)
 
+def in_question_range(num):
+    """Checks that num is between 10 and 100. Returns Boolean."""
+    return num>=MINQPERTEST and num<=MAXQPERTEST
+
+def in_test_range(num):
+    """Checks that num is between 10 and 100. Returns Boolean."""
+    return num>=MINTESTAMT and num<=MAXTESTAMT
+
+
 def questions(questions, upper, lower):
     """Validates the amount of questions per test is within 10 and 100.
         Returns Boolean."""
@@ -44,41 +53,27 @@ def tests(tests, upper, lower):
     else:
         return False
 
-def grade(grade, upper, lower):
-    """Validates student grade level is between 1 and 3. Returns Boolean."""
-    if grade >= lower \
-       and grade <= upper \
-       and type(grade) is int:
-        return True
-    else:
-        return False
+#def grade(grade, upper, lower):
+#    """Validates student grade level between 1 and 3. Returns Boolean."""
+#    if grade >= lower \
+#       and grade <= upper \
+#       and type(grade) is int:
+#        return True
+#    else:
+#        return False
 
-def language(language):
-    """Validates a language choice. Returns Boolean."""
+def lang_chosen(language):
+    """Validates a language choice was made. Returns Boolean."""
     if language == "english" \
         or language == "japanese" \
         or language == "english_and_japanese":
         return True
-    else:
-        return False
+    else: return False
 
-def from_(from_, upper, lower):
-    """Validates a starting page. Returns Boolean."""
-    if from_ >= lower \
-       and from_ <= upper \
-       and type(from_) is int:
-        return True
-    else:
-        return False
-
-def until(until, upper, lower):
-    """Validates an ending page. Returns Boolean."""
-    if until <= upper \
-       and until >= lower \
-       and type(until) is int:
-        return True
-    else:
-        return False
+def pages_chosen(low, high):
+    """Checks that valid low and high page range was chosen. 
+        Returns Boolean."""
+    return low>=MINPAGE and high<=MAXPAGE
 
 def not_enough_words():
     """Shows message box of inusfficient word count. Returns None."""
