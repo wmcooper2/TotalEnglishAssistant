@@ -92,79 +92,9 @@ def test_remove_numbers():
     assert remove_numbers("0bananas") == "bananas"
     assert remove_numbers("0123y8765") == "y"
 
-def test_dict_value():
-    assert dict_value("apple", "important") == "yes"
-    assert dict_value("California", "grade") == "3"
-    assert dict_value("camera", "japanese") == "カメラ"
-
-def test_japanese():
-    assert japanese("apple") == "リンゴ"
-    assert japanese("camera") == "カメラ"
-    assert japanese("wrap") == "包む"
-
-def test_page_number():
-    assert page_number("after") == "76"
-    assert page_number("amazing") == "12"
-    assert page_number("beach") == "116"
-
-def test_get_pos():
-    assert get_pos("wrap") == "verb"
-    assert get_pos("shrine") == "noun"
-    assert get_pos("since") == "conjunction"
-
-def test_grade():
-    assert grade("beach") == "1"
-    assert grade("became") == "2"
-    assert grade("yellow") == "3"
-
-def test_change_word():
-    assert change_word("cat") != "cat"
-    assert change_word("California") != "California"
-    assert change_word("white") != "white"
-
-def test_choose_different_word():
-    assert choose_different_word("cat", get_nouns()) != "cat"
-    assert choose_different_word("run", get_verbs()) != "run"
-    assert choose_different_word("a", get_articles()) != "a"
-
-#5 seconds
-def test_get_words_in_page_range():
-    assert len(get_words_in_page_range(0, 100)) == 1113
-    assert len(get_words_in_page_range(0, 75)) == 827
-    assert len(get_words_in_page_range(0, 50)) == 511
-
-def test_within_page_range():
-    assert within_page_range("cat", 15, 20) == True
-    assert within_page_range("cause", 50, 100) == True
-    assert within_page_range("center", 40, 50) == False
-
-#11  seconds
-def test_get_words_in_grade_range():
-    assert len(get_words_in_grade_range(1, 1)) == 610
-    assert len(get_words_in_grade_range(1, 2)) == 1113
-    assert len(get_words_in_grade_range(1, 3)) == 1448 # 2 words missing
-    assert len(get_words_in_grade_range(2, 2)) == 503
-    assert len(get_words_in_grade_range(2, 3)) == 838
-    assert len(get_words_in_grade_range(3, 3)) == 335
-    assert len(get_words_in_grade_range(0, 0)) == 0
-
-def test_get_japanese_words():
-    assert len(get_japanese_words()) == 1450
-
-def test_get_english_words():
-    assert len(get_english_words()) == 1450
-
-def test_get_words_in_language():
-    assert len(get_words_in_language("english")) == 1450
-    assert len(get_words_in_language("japanese")) == 1450
-    assert len(get_words_in_language("")) == 2900
-
-#add filters of the above 5 tests to narrow down results
-
 def test_base_verb():
     assert base_verb("running") == "run"
     assert base_verb("blown") == "blow"
-#    assert base_verb("walking") == "'walking' not in book."
     assert base_verb("walking") == " "
 
 def test_base_noun():
@@ -180,5 +110,35 @@ def test_get_base_irregular_noun():
     assert get_base_irregular_noun("alumni") == "alumnus"
     assert get_base_irregular_noun("teeth") == "tooth"
 
-def get_base_foreign_word():
+def test_get_base_foreign_word():
     pass
+
+def test_get_nouns():
+    assert len(get_nouns()) == 851
+    
+def test_get_pronouns():
+    assert len(get_pronouns()) == 45
+    
+def test_get_verbs():
+    assert len(get_verbs()) == 301
+    
+def test_get_adjectives():
+    assert len(get_adjectives()) == 230
+
+def test_get_adverbs():
+    assert len(get_adverbs()) == 93
+    
+def test_get_auxverbs():
+    assert len(get_auxverbs()) == 10
+    
+def test_get_conjunctions():
+    assert len(get_conjunctions()) == 8
+    
+def test_get_interjections():
+    assert len(get_interjections()) == 7
+    
+def test_get_prepositions():
+    assert len(get_prepositions()) == 33
+
+def test_get_articles():
+    assert len(get_articles()) == 3

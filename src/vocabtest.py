@@ -7,19 +7,40 @@ import random
 from tkinter import filedialog
 
 #custom
-#import directories
-#import vocabularytabvalidation as check
-from words import *
-from dictionaries import *
+from constants import *
 
-def make_name(save_location, test_number):
+from dictionaries import *
+from words import *
+
+def date_time():
+    """Gets the current date time. Returns String."""
+    return datetime.datetime.now().strftime('%Y_%m_%d')
+
+def num(test):
+    """Formats the test number string for the save file name. 
+        Returns String."""
+    return "Test"+str(test)
+
+def grade_number(grade_num):
+    """Formats the grade number string for the save file name.
+        Returns String."""
+    return "Grade" + str(grade_num)
+
+def get_lang_func(lang):
+    """Gets the lang() function. Returns Function."""
+    return {"english": english,
+            "japanese": japanese,
+            "english_japanese": english_japanese}.get(lang)
+
+
+#def make_name(save_location, num):
+def make_name(test_num, std_grade, lang):
     """Formats the name of the save file. Returns String."""
-    name = "{0}_{1}_{2}_{3}".format(
-        datetime.datetime.now().strftime('%Y_%m_%d'), 
-        language_choice.title(),
-        "Grade" + str(student_grade_level),
-        "Test" + str(test_number))
-    return name
+    return "{0}_{1}_{2}_{3}".format(
+        date_time(),
+        lang.title(), 
+        grade_number(std_grade),
+        num(test_num))
 
 def unique_words():
     """Filters out any duplicates in test_words. Returns None."""

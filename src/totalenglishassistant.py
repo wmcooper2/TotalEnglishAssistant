@@ -18,7 +18,7 @@ directories.make_dirs()
 
 from dictionariestab import DictionaryTab
 from sentencestab import SentenceTab
-from vocabularytab import VocabularyTab
+from vocabtab import VocabularyTab
 
 def quit_():
     """Quits the program, returns None."""

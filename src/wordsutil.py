@@ -3,22 +3,6 @@
 #custom
 from constants import *
 
-def is_vowel(char):
-    """Checks if char is a vowel. Returns Boolean."""
-    return char in "aeiou"
-
-def gt_zero(word):
-    """Checks that word is greater than zero characters. Returns Boolean."""
-    return len(word) > 0
-
-def is_str(word):
-    """Checks that word is a string. Returns Boolean."""
-    return type(word) is str
-
-def is_proper_noun(word):
-    """Checks if word is proper noun. Returns Boolean."""
-    return word[0] in UPPERCASE
-
 def in_dictionary(word):
     """Checks if word in books' dictionaries. Returns Boolean."""
     dictionary = []
@@ -37,6 +21,30 @@ def exists(word):
 def is_valid(word):
     """Validates a word. Returns Boolean."""
     return gt_zero(word) and is_str(word) and in_dictionary(word)
+
+
+
+
+
+
+
+
+
+def is_vowel(char):
+    """Checks if char is a vowel. Returns Boolean."""
+    return char in "aeiou"
+
+def gt_zero(word):
+    """Checks that word is greater than zero characters. Returns Boolean."""
+    return len(word) > 0
+
+def is_str(word):
+    """Checks that word is a string. Returns Boolean."""
+    return type(word) is str
+
+def is_proper_noun(word):
+    """Checks if word is proper noun. Returns Boolean."""
+    return word[0] in UPPERCASE
 
 def is_noun(word):
     """Checks if word is a noun. Returns Boolean."""

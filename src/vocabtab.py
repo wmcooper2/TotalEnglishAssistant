@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 #stand lib
+from pprint import pprint
 import random
 import time
 import tkinter as tk
@@ -10,7 +11,7 @@ from tkinter import messagebox
 
 #custom
 from constants import *
-from vocabularytabvalidation import *
+from vocabtabutil import *
 #from vocabularytest import VocabularyTest
 from words import *
 
@@ -30,6 +31,7 @@ class VocabularyTab():
         self.low        = tk.IntVar()
         self.high       = tk.IntVar()
         self.vocab_list = []
+        self.vocab_test = []
 
         options_frame = ttk.LabelFrame(self.vocab_tab)
         options_frame.grid(column=0, columnspan=2, row=0, padx=6, pady=6)
@@ -118,19 +120,6 @@ class VocabularyTab():
         self.until_page_input.delete(0, "end")
         self.tests_amount_input.delete(0, "end")
         self.questions_per_test_input.delete(0, "end")
-#
-#    def set_vocabulary_test_attributes(self):
-#        """Sets the attributes in for the vocabulary test. Returns None."""
-#        test = self.test
-#        test.test_amount = int(self.test_amt.get())
-#        test.q_per_test = int(self.q_per_test.get())
-#        test.std_grade = int(self.std_grade.get())
-#        test.low = int(self.low.get())
-#        test.high = int(self.high.get())
-#        test.language_choice = self.language.get()
-#        test.set_vocabulary_test_words()        
-        random_vocab()
-
 
     def update(self):
         """Updates the state of the GUI. Returns None."""
@@ -144,30 +133,38 @@ class VocabularyTab():
     def vocab_tests(self):
         """Makes all of the vocabulary tests requested by the user.
             Returns None."""
-        self.update()
+        self.update()#get data from gui
+        self.random_vocab()#get the random vocab
+        pprint(self.vocab_list)
         #make the test here
 
 #        if self.valid_vocab_input():
 #            test.save_test()
 
     def reset_vocab(self):
-        """Resets the vocab_list attribute. Returns None."""
+        """Clears the vocab_list attribute. Returns None."""
         self.vocab_list = []
 
     def random_vocab(self):
         """Makes a list of randomized words. Returns List."""
         self.reset_vocab()
-        words = self.filter_by_selections()
+        words_possible = self.word_filter()
 
-        while len(test_words) < questions_per_test:
-            test_words.append(random.choice(words_of_language_choice))
+        def limit():
+            """Checks if amount of words per test reaches the most 
+                limiting factor. Returns Boolean"""
+            return len(self.vocab_list) >= int(self.q_per_test) \
+                or len(self.vocab_list) >= len(words_possible)
+
+        while not limit(): 
+            self.vocab_list.append(random.choice(words_possible))
         return
 
-    def filter_by_selections(self):
-        """Filters words based on selections. Returns Mapping."""
-        words = filter_words_by_grade(self.std_grade, DICT) 
-        words = filter_words_by_page_range(self.low, self.high, words)
-        return map(japanese, words)
+    def word_filter(self):
+        """Filters words based on selections. Returns List."""
+        words = grade_filter(self.std_grade, DICT) 
+        words = page_filter(self.low, self.high, words)
+        return list(map(get_lang, words))
 
 if __name__ == '__main__':
         win = tk.Tk()
@@ -180,3 +177,4 @@ if __name__ == '__main__':
         file_menu.add_command(label="Exit", command=vocabulary_tab.quit_)
         menu_bar.add_cascade(label="File", menu=file_menu)
         win.mainloop()
+

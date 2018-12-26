@@ -4,7 +4,7 @@
 import pytest
 
 #custom
-from wordsvalidation import * 
+from wordsutil import * 
 
 def test_is_vowel():
     assert is_vowel("a") == True

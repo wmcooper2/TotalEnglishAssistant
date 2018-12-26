@@ -4,7 +4,7 @@
 import random
 
 #custom
-from wordsvalidation import *
+from wordsutil import *
 
 def final_es(word):
     """Checks if final two letters are 'es'. Returns Boolean."""
@@ -37,7 +37,6 @@ def final_f1(word):
 
 def final_f2(word):
     """Checks if the second to last letter is f. Returns Boolean."""
-#    print(word)
     return word[-2] == "f"
 
 def special_f_end(word):
@@ -98,29 +97,42 @@ def remove_numbers(word):
     [no_nums.append(char) for char in word if not is_number(char)]
     return ''.join(no_nums)
 
-def dict_value(word, value):
-    """Gets word's value from dictionary. Returns String."""
-    return DICT[word][value]
+def base_verb(verb):
+    """Gets base form of verb. Returns String."""
+    for base, nested in VERBFORMS.items():
+        for form, value in nested.items():
+            if value == verb:
+                return base
+    return " "
 
-def japanese(word):
-    """Gets the Japanese definition. Returns String."""
-    if is_valid(word):
-        return dict_value(word, "japanese")
+def base_noun(word):
+    """Gets base noun of word. Returns String."""
+    for noun in get_nouns():
+        if is_irregular_noun(word): return get_base_irregular_noun(word)
+#        if is_foreign_origin(word): return get_base_foreign_noun(word)
+        if word == noun: return word
+        if make_plural(noun) == word: return noun
+#    return "'{}' not in book.".format(word)
+#    return "###"
+    return " "
 
-def page_number(word):
-    """Gets page number of word. Returns String."""
-    if is_valid(word):
-        return dict_value(word, "page")
+def get_irregular_nouns():
+    """Gets list of irregular nouns. Returns List."""
+    temp = []
+    with open(IRRNOUNS2, "r") as f:
+        [temp.append(line.strip()) for line in f.readlines()]
+    return temp
 
-def grade(word):
-    """Gets grade level of word. Returns String."""
-    if is_valid(word):
-        return dict_value(word, "grade")
+def get_base_irregular_noun(word):
+    """Gets base irregular noun. Returns String."""
+    for noun in get_irregular_nouns():
+        if word == make_plural(noun):
+            return noun
 
-def get_pos(word):
-    """Gets part of speech for word. Returns String."""
-    if is_valid(word):
-        return dict_value(word, "part of speech")
+#unecessary?
+def get_base_foreign_noun(word):
+    """Gets base foreign noun. Returns String."""
+    pass
 
 def get_nouns():
     """Gets a list of nouns. Returns List."""
@@ -142,14 +154,6 @@ def get_verbs():
     with open(VERBS, "r") as f:
         [temp.append(line.strip()) for line in f.readlines()]
     return temp
-
-def base_verb(verb):
-    """Gets base form of verb. Returns String."""
-    for base, nested in VERBFORMS.items():
-        for form, value in nested.items():
-            if value == verb:
-                return base
-    return " "
 
 def get_adjectives():
     """Gets a list of adjectives. Returns List."""
@@ -199,112 +203,3 @@ def get_articles():
     with open(ARTICLES, "r") as f:
         [temp.append(line.strip()) for line in f.readlines()]
     return temp
-
-def change_word(word):
-    """Changes the word based on its part of speech. Returns String."""
-    pos = get_pos(word)
-    if pos == "noun":
-        return choose_different_word(word, get_nouns()) 
-    elif pos == "pronoun":
-        return choose_different_word(word, get_pronouns()) 
-    elif pos == "verb":
-        return choose_different_word(word, get_verbs())
-    elif pos == "adjective":
-        return choose_different_word(word, get_adjectives())
-    elif pos == "adverb":
-        return choose_different_word(word, get_adverbs())
-    elif pos == "auxverb":
-        return choose_different_word(word, get_auxverbs())
-    elif pos == "conjunction":
-        return choose_different_word(word, get_conjunctions())
-    elif pos == "interjection":
-        return choose_different_word(word, get_interjections()) 
-    elif pos == "preposition":
-        return choose_different_word(word, get_prepositions())
-    elif pos == "article":
-        return choose_different_word(word, get_articles())
-
-def choose_different_word(word, some_list): 
-    """Chooses a different word from some_list. Returns String."""
-    copy = some_list[:]
-    while word in copy:
-        copy.remove(word)
-    return random.choice(copy)
-
-def within_page_range(word, start, end):
-    """Checks if a word exists within a page range. Returns Boolean."""
-    if int(page_number(word))>=int(start) and \
-       int(page_number(word))<=int(end):
-        return True
-    else: return False
-
-def get_words_in_page_range(start, end):
-    """Gets word list within page range. Returns List."""
-    temp = []
-    for word in DICT:
-        if within_page_range(word, start, end):
-            temp.append(word)
-    return temp
-
-def same_grade(grade_level, word):
-    """Checks if the word is in grade. Returns Boolean."""
-    return grade_level == int(grade(word))
-
-def within_grade_range(word, start, end):
-    """Gets word list within grade range. Returns Boolean."""
-    if int(grade(word))>=int(start) and int(grade(word))<=int(end):
-        return True
-    else: return False
-
-def get_words_in_grade_range(start, end):
-    """Gets word list within grade range. Returns List."""
-    temp = []
-    [temp.append(w) for w in DICT if within_grade_range(w, start, end)]
-    return temp
-
-def get_japanese_words():
-    """Gets Japanese words. Returns List."""
-    temp = []
-    [temp.append(v["japanese"]) for k, v in DICT.items()]
-    return temp
-
-def get_english_words():
-    """Gets English words. Returns List."""
-    temp = []
-    [temp.append(k) for k in DICT.keys()]
-    return temp
-
-def get_words_in_language(language):
-    """Gets words of language. Returns List."""
-    if language == "english": return get_english_words()
-    elif language == "japanese": return get_japanese_words()
-    else: return get_english_words() + get_japanese_words()
-        
-def base_noun(word):
-    """Gets base noun of word. Returns String."""
-    for noun in get_nouns():
-        if is_irregular_noun(word): return get_base_irregular_noun(word)
-#        if is_foreign_origin(word): return get_base_foreign_noun(word)
-        if word == noun: return word
-        if make_plural(noun) == word: return noun
-#    return "'{}' not in book.".format(word)
-#    return "###"
-    return " "
-
-def get_irregular_nouns():
-    """Gets list of irregular nouns. Returns List."""
-    temp = []
-    with open(IRRNOUNS2, "r") as f:
-        [temp.append(line.strip()) for line in f.readlines()]
-    return temp
-
-def get_base_irregular_noun(word):
-    """Gets base irregular noun. Returns String."""
-    for noun in get_irregular_nouns():
-        if word == make_plural(noun):
-            return noun
-
-#unecessary?
-def get_base_foreign_noun(word):
-    """Gets base foreign noun. Returns String."""
-    pass
