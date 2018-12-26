@@ -26,19 +26,24 @@ def within_page_range(word, start, end):
         return True
     else: return False
 
+def within_pages(word, lo, hi):
+    """Checks if a word exists within a page range. Returns Boolean."""
+    if gt_eq_page(word, lo) and lt_eq_page(word, hi): return True
+    else: return False
+
 def dict_value(word, value):
     """Gets word's value from dictionary. Returns String."""
     return DICT[word][value]
-
-def grade(word):
-    """Gets grade level of word. Returns String."""
-    if is_valid(word):
-        return dict_value(word, "grade")
 
 def get_pos(word):
     """Gets part of speech for word. Returns String."""
     if is_valid(word):
         return dict_value(word, "part of speech")
+
+def grade(word):
+    """Gets grade level of word. Returns String."""
+    if is_valid(word):
+        return dict_value(word, "grade")
 
 def same_grade(grade, word):
     """Checks that a word is in grade level. Returns Boolean."""
@@ -53,6 +58,10 @@ def page_filter(lo, hi, some_list):
     """Filters some_list by page range. Returns List."""
     return list(filter(lambda word: within_pages(word, lo, hi), some_list))
 
+def punct_filter(some_list):
+    """Filters by words that have an apostrophe. Returns List."""
+    return list(filter(lambda word: "'" in word, some_list.keys()))
+
 def gt_eq_page(word, page_num):
     """Checks if word is on or after page_num. Returns Boolean."""
     return int(page_number(word)) >= int(page_num)
@@ -60,16 +69,6 @@ def gt_eq_page(word, page_num):
 def lt_eq_page(word, page_num):
     """Checks if word is on or before page_num. Returns Boolean."""
     return int(page_number(word)) <= int(page_num)
-
-#copied from words.py
-def within_pages(word, lo, hi):
-    """Checks if a word exists within a page range. Returns Boolean."""
-    if gt_eq_page(word, lo) and lt_eq_page(word, hi): return True
-    else: return False
-
-def punct_filter(some_list):
-    """Filters some_list by words that have an apostrophe. Returns List."""
-    return list(filter(lambda word: "'" in word, some_list.keys()))
 
 def same_grade(grade_level, word):
     """Checks if the word is in grade. Returns Boolean."""
@@ -80,28 +79,6 @@ def within_grade_range(word, start, end):
     if int(grade(word))>=int(start) and int(grade(word))<=int(end):
         return True
     else: return False
-
-def get_japanese_words():
-    """Gets Japanese words. Returns List."""
-    temp = []
-    [temp.append(v["japanese"]) for k, v in DICT.items()]
-    return temp
-
-def get_english_words():
-    """Gets English words. Returns List."""
-    temp = []
-    [temp.append(k) for k in DICT.keys()]
-    return temp
-
-def get_words_in_language(language):
-    """Gets words of language. Returns List."""
-    if language == "english": return get_english_words()
-    elif language == "japanese": return get_japanese_words()
-    else: return get_english_words() + get_japanese_words()
-    
-
-
-
 
 
 
@@ -120,12 +97,12 @@ def edit_entry(key, entry):
     save_dictionary(dictionary, default_dict_path)
 
 def get_entry(word):
-    """Sets a single entry. Returns None."""
+    """Gets a single entry. Returns Dictionary."""
     if in_dictionary(word):
-        return DICT[word]
-    else:
+        return DICT.get(word, default=DEFAULTENTRY)
+#    else:
     #replace with dictionary.get(word, "not found")?
-        try:
-            return dictionary[word]
-        except KeyError:
-            return DEFAULTENTRY
+#        try:
+#            return dictionary[word]
+#        except KeyError:
+#            return DEFAULTENTRY

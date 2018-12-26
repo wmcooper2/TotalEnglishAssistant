@@ -11,8 +11,8 @@ from tkinter import messagebox
 
 #custom
 from constants import *
+from dictionaries import *
 from vocabtabutil import *
-#from vocabularytest import VocabularyTest
 from words import *
 
 class VocabularyTab():
@@ -164,7 +164,12 @@ class VocabularyTab():
         """Filters words based on selections. Returns List."""
         words = grade_filter(self.std_grade, DICT) 
         words = page_filter(self.low, self.high, words)
-        return list(map(get_lang, words))
+
+        #get lang is either get_english() or get_japanese() from dictionaries.py
+        #if the user wants both, then how...?
+
+#        lang_func = get_lang_func(self.language)???
+        return list(map(lang_func, words))
 
 if __name__ == '__main__':
         win = tk.Tk()

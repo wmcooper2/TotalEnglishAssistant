@@ -18,6 +18,14 @@ def test_page_number():
     assert page_number("amazing") == "12"
     assert page_number("beach") == "116"
 
+def test_within_page_range():
+    assert within_page_range("cat", 15, 20) == True
+    assert within_page_range("cause", 50, 100) == True
+    assert within_page_range("center", 40, 50) == False
+
+def within_pages():
+    pass
+
 def test_dict_value():
     assert dict_value("apple", "important") == "yes"
     assert dict_value("California", "grade") == "3"
@@ -33,46 +41,23 @@ def test_grade():
     assert grade("became") == "2"
     assert grade("yellow") == "3"
 
-def test_size_unchanged():
-    assert len(DICT) == 1450
+def test_same_grade():
+    assert same_grade(3, "able") == True
+    assert same_grade(2, "aboard") == True
+    assert same_grade(3, "about") == False
 
 def test_grade_filter():
     assert len(grade_filter(1, DICT)) == 610
     assert len(grade_filter(2, DICT)) == 503
     assert len(grade_filter(3, DICT)) == 335
 
-def test_punct_filter():
-    assert len(punct_filter(DICT)) == 43
-
 def test_page_filter():
     assert len(page_filter(0, 100, DICT)) == 1113
     assert len(page_filter(0, 75, DICT)) == 827
     assert len(page_filter(0, 50, DICT)) == 511
 
-def test_same_grade():
-    assert same_grade(3, "able") == True
-    assert same_grade(2, "aboard") == True
-    assert same_grade(3, "about") == False
-
-def test_within_page_range():
-    assert within_page_range("cat", 15, 20) == True
-    assert within_page_range("cause", 50, 100) == True
-    assert within_page_range("center", 40, 50) == False
-
-def test_get_japanese_words():
-    assert len(get_japanese_words()) == 1450
-
-def test_get_english_words():
-    assert len(get_english_words()) == 1450
-
-def test_get_words_in_language():
-    assert len(get_words_in_language("english")) == 1450
-    assert len(get_words_in_language("japanese")) == 1450
-    assert len(get_words_in_language("")) == 2900
-
-#tested in words_test.py
-def within_pages():
-    pass
+def test_punct_filter():
+    assert len(punct_filter(DICT)) == 43
 
 def save_dictionary():
     pass
@@ -86,3 +71,5 @@ def edit_entry():
 def get_entry():
     pass
 
+def test_size_unchanged():
+    assert len(DICT) == 1450

@@ -142,3 +142,14 @@ def test_get_prepositions():
 
 def test_get_articles():
     assert len(get_articles()) == 3
+
+def test_get_japanese_words():
+    assert len(get_japanese_words()) == 1450
+
+def test_get_english_words():
+    assert len(get_english_words()) == 1450
+
+def test_get_words_in_language():
+    assert len(get_words_in_language("english")) == 1450
+    assert len(get_words_in_language("japanese")) == 1450
+    assert len(get_words_in_language("english_japanese")) == 2900

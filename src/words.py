@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 #stand lib
 import random
 
@@ -203,3 +201,37 @@ def get_articles():
     with open(ARTICLES, "r") as f:
         [temp.append(line.strip()) for line in f.readlines()]
     return temp
+
+def get_japanese_words():
+    """Gets Japanese words. Returns List."""
+    temp = []
+    with open(JAPANESEVOCAB, "r") as f:
+        [temp.append(line.strip()) for line in f.readlines()]
+    return temp
+
+def get_english_words():
+    """Gets English words. Returns List."""
+    temp = []
+    with open(ENGLISHVOCAB, "r") as f:
+        [temp.append(line.strip()) for line in f.readlines()]
+    return temp
+
+def get_english_japanese():
+    """Gets English and Japanese words. Returns List."""
+    return get_english_words() + get_japanese_words()
+
+def get_words_in_language(lang):
+    """Gets words in lang. Returns List."""
+    return {
+        "english"           : get_english_words(),
+        "japanese"          : get_japanese_words(),
+        "english_japanese"  : get_english_japanese(),
+    }.get(lang)
+
+def get_lang_func(lang):
+    """Gets the function that gets a list of words. Returns Function."""
+    return {
+        "english"           : get_english_words,
+        "japanese"          : get_japanese_words,
+        "english_japanese"  : get_english_japanese,
+    }.get(lang)
