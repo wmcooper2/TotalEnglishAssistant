@@ -16,11 +16,7 @@ from vocabtabutil import *
 from words import *
 
 class VocabularyTab():
-    """Creates the 'Vocabulary' tab in the GUI, returns None."""
-#    test            = VocabularyTest()
-    
     def __init__(self, tab_control):
-        """Draws the widgets in the 'Vocabulary' tab, returns None."""
         self.vocab_tab = ttk.Frame(tab_control)
         tab_control.add(self.vocab_tab, text="Vocabulary")
         tab_control.grid()
@@ -28,8 +24,8 @@ class VocabularyTab():
         self.test_amt   = tk.IntVar()
         self.q_per_test = tk.IntVar()
         self.std_grade  = tk.IntVar()
-        self.low        = tk.IntVar()
-        self.high       = tk.IntVar()
+        self.lo         = tk.IntVar()
+        self.hi         = tk.IntVar()
         self.vocab_list = []
         self.vocab_test = []
 
@@ -44,17 +40,17 @@ class VocabularyTab():
 
         page_range_box = ttk.LabelFrame(options_frame, text="Page range")
         page_range_box.grid(column=1, columnspan=2, row=0, padx=6, pady=6)
-        from_page_text = ttk.Label(page_range_box, text="From: ")
-        from_page_text.grid(column=0, row=0, padx=6, pady=6)
-        self.from_page_input = ttk.Entry(page_range_box, 
-            width=SMALLINPUT, textvariable=self.low)
-        self.from_page_input.grid(column=1, row=0, padx=6, pady=6)
+        from_label = ttk.Label(page_range_box, text="From: ")
+        from_label.grid(column=0, row=0, padx=6, pady=6)
+        self.from_page = ttk.Entry(page_range_box, 
+            width=SMALLINPUT, textvariable=self.lo)
+        self.from_page.grid(column=1, row=0, padx=6, pady=6)
 
-        until_page_text = ttk.Label(page_range_box, text="Until: ")
-        until_page_text.grid(column=2, row=0, sticky=tk.W, padx=6, pady=6)
-        self.until_page_input = ttk.Entry(page_range_box, 
-            width=SMALLINPUT, textvariable=self.high)
-        self.until_page_input.grid(column=3, row=0, padx=6, pady=6)
+        until_label = ttk.Label(page_range_box, text="Until: ")
+        until_label.grid(column=2, row=0, sticky=tk.W, padx=6, pady=6)
+        self.until_page = ttk.Entry(page_range_box, 
+            width=SMALLINPUT, textvariable=self.hi)
+        self.until_page.grid(column=3, row=0, padx=6, pady=6)
 
         language_text = ttk.LabelFrame(self.vocab_tab)
         language_text.grid(column=0, row=1, columnspan=2, pady=6, padx=6)
@@ -104,7 +100,7 @@ class VocabularyTab():
             and in_test_range(self.test_amt) \
             and within_grade_range(self.std_grade) \
             and lang_chosen(self.language) \
-            and pages_chosen(self.low, self.high):
+            and pages_chosen(self.lo, self.hi):
             return True
         else: return False
 
@@ -116,8 +112,8 @@ class VocabularyTab():
     def reset_choices(self):
         """Clears the user's input from the entry widgets. Returns None."""
         self.student_grade_level_input.delete(0, "end")
-        self.from_page_input.delete(0, "end")
-        self.until_page_input.delete(0, "end")
+        self.from_page.delete(0, "end")
+        self.until_page.delete(0, "end")
         self.tests_amount_input.delete(0, "end")
         self.questions_per_test_input.delete(0, "end")
 
@@ -127,8 +123,8 @@ class VocabularyTab():
         self.test_amt       = self.test_amt.get()
         self.std_grade      = self.std_grade.get()
         self.language       = self.language.get()
-        self.low            = self.low.get()
-        self.high           = self.high.get()
+        self.lo             = self.from_page.get()
+        self.hi             = self.until_page.get()
 
     def vocab_tests(self):
         """Makes all of the vocabulary tests requested by the user.
@@ -136,10 +132,14 @@ class VocabularyTab():
         self.update()#get data from gui
         self.random_vocab()#get the random vocab
         pprint(self.vocab_list)
-        #make the test here
 
-#        if self.valid_vocab_input():
-#            test.save_test()
+        #message to user that tests are being made
+
+        for x in range(self.test_amt):
+            if self.test_amt = 1:
+                #self.vocab_test()
+            elif self.test_amt > 1:
+                #self.multiple_tests()
 
     def reset_vocab(self):
         """Clears the vocab_list attribute. Returns None."""
@@ -163,13 +163,7 @@ class VocabularyTab():
     def word_filter(self):
         """Filters words based on selections. Returns List."""
         words = grade_filter(self.std_grade, DICT) 
-        words = page_filter(self.low, self.high, words)
-
-        #get lang is either get_english() or get_japanese() from dictionaries.py
-        #if the user wants both, then how...?
-
-#        lang_func = get_lang_func(self.language)???
-        return list(map(lang_func, words))
+        return page_filter(self.lo, self.hi, words)
 
 if __name__ == '__main__':
         win = tk.Tk()
