@@ -84,7 +84,7 @@ def within_grade_range(word, start, end):
 
 
 
-
+#make tests
 def save_dictionary(save_this, file_path):
     """Saves dictionary to file_path. Returns None."""
     dump_here = open(file_path, "w+")
@@ -106,3 +106,30 @@ def get_entry(word):
 #            return dictionary[word]
 #        except KeyError:
 #            return DEFAULTENTRY
+
+def in_dictionary(word):
+    """Checks if word in books' dictionaries. Returns Boolean."""
+    dictionary = []
+    with open(JHSWORDS, "r") as f:
+        [dictionary.append(word.strip()) for word in f.readlines()]
+    return word in dictionary
+
+def exists(word):
+    """Checks if word exists in book's dictionary. Returns Boolean."""
+    if gt_zero(word):
+        if not is_proper_noun(word):
+            return in_dictionary(word.lower())
+        elif is_proper_noun(word):
+            return in_dictionary(word)
+
+def is_valid(word):
+    """Validates a word. Returns Boolean."""
+    return gt_zero(word) and is_str(word) and in_dictionary(word)
+
+
+
+
+
+
+
+
