@@ -9,10 +9,7 @@ from tkinter import Menu
 from tkinter import messagebox
 
 #custom
-from constants import *
-from dictionaries import *
 from vocabutil import *
-from words import *
 
 class VocabularyTab():
     def __init__(self, tab_control):

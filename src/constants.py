@@ -3,19 +3,20 @@ from pathlib import Path
 import string
 
 #custom
-import data.juniorhighenglishwords as JHSWORDSDICT
+import data.jhsdict as dict_
 from data2.verbforms import verb_forms as VERBFORMS
 from data2.irregularnouns import irregular_nouns as IRRNOUNS
 
 ALPHABET        = string.ascii_uppercase + string.ascii_lowercase
 DATA            = str(Path.cwd())+"/data2/"
 DEFAULTENTRY    = "not found"
-DICT            = JHSWORDSDICT.jhswords
+DICT            = dict_.jhswords
 DICTDIR         = "Dictionaries/"
-DICTFILE        = DATA+"juniorhighenglishwords.py"
-DICTNAME        = "Total English Dictionary; Books 1, 2 and 3"
+
+#DICTFILE        = DATA+"dictionarywords.py"
+DICTNAME        = "Total English 1, 2 and 3"
 GOODPUNCT       = ["'", "-"]
-JHSWORDS        = DATA+"juniorhighenglishwords.txt"
+JHSWORDS        = DATA+"jhsengvocab.txt"
 MAXGRADE        = 3
 MINGRADE        = 1
 NUMBERS         = string.digits

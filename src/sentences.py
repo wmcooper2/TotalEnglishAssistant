@@ -1,10 +1,8 @@
-#!/usr/bin/python3
+"""Sentence Module for senttab.py"""
+#move this code into senttab.py
 
 #custom
-from constants import *
-from dictionaries import *
 from sentencesutil import *
-from words import *
 
 class Sentence():
     def __init__(self, sentence):

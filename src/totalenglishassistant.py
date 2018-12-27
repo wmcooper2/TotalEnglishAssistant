@@ -2,9 +2,9 @@
 """The Total English Assistant GUI tool."""
 
 #stand lib
-import sys
-sys.path += ["./src/"]
-sys.path += ["./src/data"]
+#import sys
+#sys.path += ["./src/"]
+#sys.path += ["./src/data"]
 
 import tkinter as tk
 from tkinter import filedialog
@@ -16,8 +16,8 @@ from tkinter import ttk
 import directories
 directories.make_dirs()
 
-from dictionariestab import DictionaryTab
-from sentencestab import SentenceTab
+from dicttab import DictionaryTab
+from senttab import SentenceTab
 from vocabtab import VocabularyTab
 
 def quit_():

@@ -1,3 +1,5 @@
+"""Utility module for vocabtab.py"""
+#stand lib
 import datetime
 from pathlib import Path
 import random
@@ -7,9 +9,7 @@ from tkinter import messagebox
 from tkinter import ttk
 
 #custom
-from constants import *
 from dictionaries import *
-from words import *
 
 validation_title = "Data Validation"
 valid_input_instructions = "Please follow these rules when making your selections."

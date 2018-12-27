@@ -1,5 +1,4 @@
-#!/usr/bin/python3
-
+"""GUI Sentences Tab."""
 #stand lib
 import os
 import sys
@@ -9,9 +8,7 @@ from tkinter import ttk
 from tkinter import Menu
 
 #custom
-from dictionaries import *
 from senttabcheck import *
-from words import *
 
 class SentenceTab():
     """Creates the 'Sentence' tab in the GUI, returns None."""

@@ -1,10 +1,9 @@
+"""Utility Module for senttab.py"""
 #3rd party
 import pytest
 
 #custom
-from constants import *
 from dictionaries import *
-from words import *
 
 def get_pos_func(word):
     """Returns function that will get a word list matching 

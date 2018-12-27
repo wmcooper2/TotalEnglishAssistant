@@ -1,3 +1,7 @@
+
+#move this code to sentutil.py
+
+#stand lib
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox

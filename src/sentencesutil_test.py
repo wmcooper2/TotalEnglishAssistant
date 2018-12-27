@@ -2,7 +2,7 @@
 import pytest
 
 #custom
-from sentencesutil import *
+from sentutil import *
 
 def test_get_pos_func():
     assert type(get_pos_func("cat")).__name__ == "function"
