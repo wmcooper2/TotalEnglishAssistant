@@ -10,7 +10,7 @@ from tkinter import Menu
 
 #custom
 from dictionaries import *
-from sentencestabvalidation import *
+from senttabcheck import *
 from words import *
 
 class SentenceTab():
@@ -31,22 +31,28 @@ class SentenceTab():
         self.until_page = tk.IntVar()
         self.student_grade_level = tk.IntVar()
 
-        options_frame = ttk.LabelFrame(self.sentence_tab)
-        options_frame.grid(column=0, columnspan=2, row=0, padx=6, pady=6)
-
-        grade_box = ttk.LabelFrame(options_frame, text="Grade level")
-        grade_box.grid(column=0, row=0, padx=6, pady=6)
-        self.grade_input = ttk.Entry(grade_box, 
-            width=SMALLINPUT, textvariable=self.student_grade_level)
-        self.grade_input.grid(column=0, row=0, pady=6, padx=6)
-
-        page_range_box = ttk.LabelFrame(options_frame, text="Page range")
-        page_range_box.grid(column=1, columnspan=2, row=0, padx=6, pady=6)
-        from_page_text = ttk.Label(page_range_box, text="From: ")
-        from_page_text.grid(column=0, row=0, padx=6, pady=6)
-        self.from_input = ttk.Entry(page_range_box, 
-            width=SMALLINPUT, textvariable=self.from_page)
-        self.from_input.grid(column=1, row=0, padx=6, pady=6)
+#        options_frame = ttk.LabelFrame(self.sentence_tab)
+#        options_frame.grid(column=0, columnspan=2, row=0, padx=6, pady=6)
+#
+#        grade_box = ttk.LabelFrame(options_frame, text="Grade level")
+#        grade_box.grid(column=0, row=0, padx=6, pady=6)
+#        self.grade_input = ttk.Entry(grade_box, 
+#            width=SMALLINPUT, textvariable=self.student_grade_level)
+#        self.grade_input.grid(column=0, row=0, pady=6, padx=6)
+#
+#        page_range_box = ttk.LabelFrame(options_frame, text="Page range")
+#        page_range_box.grid(column=1, columnspan=2, row=0, padx=6, pady=6)
+#        from_page_text = ttk.Label(page_range_box, text="From: ")
+#        from_page_text.grid(column=0, row=0, padx=6, pady=6)
+#        self.from_input = ttk.Entry(page_range_box, 
+#            width=SMALLINPUT, textvariable=self.from_page)
+#        self.from_input.grid(column=1, row=0, padx=6, pady=6)
+#
+#        until_page_text = ttk.Label(page_range_box, text="Until: ")
+#        until_page_text.grid(column=2, row=0, sticky=tk.W, padx=6, pady=6)
+#        self.until_input = ttk.Entry(page_range_box, 
+#            width=SMALLINPUT, textvariable=self.until_page)
+#        self.until_input.grid(column=3, row=0, padx=6, pady=6)
 
         input_frame = ttk.LabelFrame(self.sentence_tab, 
             text="Enter any sentence")
@@ -63,12 +69,6 @@ class SentenceTab():
         reset_button = ttk.Button(input_frame, text="Reset", 
             command=self.reset_choices)
         reset_button.grid(column=1, row=1, padx=6, pady=6)
-
-        until_page_text = ttk.Label(page_range_box, text="Until: ")
-        until_page_text.grid(column=2, row=0, sticky=tk.W, padx=6, pady=6)
-        self.until_input = ttk.Entry(page_range_box, 
-            width=SMALLINPUT, textvariable=self.until_page)
-        self.until_input.grid(column=3, row=0, padx=6, pady=6)
 
         self.draw_results_frame()
 
@@ -141,9 +141,9 @@ class SentenceTab():
 #            print("page  ::", page_number(word))
 #            print("pos   ::", get_pos(word))
             
-            grade_level = grade(word)
-            page        = page_number(word)
-            pos         = get_pos(word)
+#            grade_level = grade(word)
+#            page        = page_number(word)
+#            pos         = get_pos(word)
 
 
 
@@ -218,9 +218,9 @@ class SentenceTab():
         
     def reset_choices(self):
         """Clears user's input/results from widgets. Returns None."""
-        self.grade_input.delete(0, "end")
-        self.from_input.delete(0, "end")
-        self.until_input.delete(0, "end")
+#        self.grade_input.delete(0, "end")
+#        self.from_input.delete(0, "end")
+#        self.until_input.delete(0, "end")
         self.sentence_input.delete(0, "end")
         self.reset_results_frame()
 

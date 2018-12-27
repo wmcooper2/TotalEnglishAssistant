@@ -1,5 +1,4 @@
-#!/usr/bin/python3
-
+"""GUI's Vocabulary Tab"""
 #stand lib
 from pprint import pprint
 import random
@@ -12,7 +11,7 @@ from tkinter import messagebox
 #custom
 from constants import *
 from dictionaries import *
-from vocabtabutil import *
+from vocabutil import *
 from words import *
 
 class VocabularyTab():
@@ -34,9 +33,10 @@ class VocabularyTab():
         
         grade_box = ttk.LabelFrame(options_frame, text="Grade level")
         grade_box.grid(column=0, row=0, padx=6, pady=6)
-        self.student_grade_level_input = ttk.Entry(grade_box, 
+        self.std_grade_input = ttk.Entry(grade_box, 
             width=SMALLINPUT, textvariable=self.std_grade)
-        self.student_grade_level_input.grid(column=0, row=0, pady=6, padx=6)
+        self.std_grade_input.grid(column=0, row=0, pady=6, padx=6)
+        self.std_grade_input.focus()
 
         page_range_box = ttk.LabelFrame(options_frame, text="Page range")
         page_range_box.grid(column=1, columnspan=2, row=0, padx=6, pady=6)
@@ -61,7 +61,7 @@ class VocabularyTab():
             text=JAPANESE, value='japanese', variable=self.language)
         japanese_language.grid(column=1, row=0, pady=6, padx=6)
         english_and_japanese = ttk.Radiobutton(language_text, 
-            text=BOTHLANG, value='english_and_japanese', 
+            text=BOTHLANG, value='english_japanese', 
             variable=self.language)
         english_and_japanese.grid(column=2, row=0, pady=6, padx=6)
 
@@ -71,23 +71,23 @@ class VocabularyTab():
         questions_text = ttk.Label(how_many_box,
             text="How many questions per test?")
         questions_text.grid(column=0, row=0, sticky=tk.W, pady=6, padx=6)
-        self.questions_per_test_input = ttk.Entry(how_many_box, 
+        self.q_per_test_input = ttk.Entry(how_many_box, 
             width=SMALLINPUT, textvariable=self.q_per_test)
-        self.questions_per_test_input.grid(column=1, row=0, pady=6, padx=6,             sticky=tk.W)
-        self.questions_per_test_input.focus()
+        self.q_per_test_input.grid(column=1, row=0, pady=6, padx=6,
+            sticky=tk.W)
         
         tests_text = ttk.Label(how_many_box, text="How many tests?")
         tests_text.grid(column=0, row=1, sticky=tk.W, pady=6, padx=6)
-        self.tests_amount_input = ttk.Entry(how_many_box, width=SMALLINPUT, 
+        self.test_amt_input = ttk.Entry(how_many_box, width=SMALLINPUT, 
             textvariable=self.test_amt)
-        self.tests_amount_input.grid(column=1, row=1, sticky=tk.W, 
+        self.test_amt_input.grid(column=1, row=1, sticky=tk.W, 
             pady=6, padx=6)
 
         save_directory_box = ttk.LabelFrame(self.vocab_tab)
         save_directory_box.grid(column=0, columnspan=2, row=3, 
             padx=6, pady=6)
         save_button = ttk.Button(save_directory_box, 
-            text="Make Test(s)", command=self.vocab_tests)
+            text="Make Test(s)", command=self.make_vocab_tests)
         save_button.grid(column=0, row=0, padx=6, pady=6)
 
         reset_button = ttk.Button(save_directory_box, text="Reset", 
@@ -104,66 +104,66 @@ class VocabularyTab():
             return True
         else: return False
 
-    def quit_(self):
-        """Quits the program. Returns None."""
-        win.quit()
-        win.destroy()
-
     def reset_choices(self):
         """Clears the user's input from the entry widgets. Returns None."""
-        self.student_grade_level_input.delete(0, "end")
+        self.std_grade_input.delete(0, "end")
         self.from_page.delete(0, "end")
         self.until_page.delete(0, "end")
-        self.tests_amount_input.delete(0, "end")
-        self.questions_per_test_input.delete(0, "end")
+        self.test_amt_input.delete(0, "end")
+        self.q_per_test_input.delete(0, "end")
 
-    def update(self):
-        """Updates the state of the GUI. Returns None."""
-        self.q_per_test     = self.q_per_test.get()
-        self.test_amt       = self.test_amt.get()
-        self.std_grade      = self.std_grade.get()
-        self.language       = self.language.get()
-        self.lo             = self.from_page.get()
-        self.hi             = self.until_page.get()
-
-    def vocab_tests(self):
+    def make_vocab_tests(self):
         """Makes all of the vocabulary tests requested by the user.
             Returns None."""
-        self.update()#get data from gui
-        self.random_vocab()#get the random vocab
-        pprint(self.vocab_list)
+        self.random_vocab()
+        save(self.vocab_list, 
+            dict(amt=self.test_amt.get(), 
+            grade=self.std_grade.get(), 
+            lang=self.language.get()))
 
-        #message to user that tests are being made
+    def random_vocab(self):
+        """Makes a list of randomized words. Returns List."""
+        self.reset_vocab()
+        e_words    = self.word_filter()
+        len_e_words= len(e_words)
 
-        for x in range(self.test_amt):
-            if self.test_amt = 1:
-                #self.vocab_test()
-            elif self.test_amt > 1:
-                #self.multiple_tests()
+        def limit():
+            """Checks if amount of words per test reaches the most 
+                limiting factor. Returns Boolean"""
+            return len(self.vocab_list) >= int(self.q_per_test_input.get()) \
+                or len(self.vocab_list) >= len_e_words
+
+        def populate_vocab_list():
+            """Populates the vocab list. Returns None."""
+            while not limit(): 
+                choice = random.choice(e_words)
+                if self.language.get() == "english":
+                    self.vocab_list.append(choice)
+                if self.language.get() == "japanese":
+                    self.vocab_list.append(japanese(choice))
+                if self.language.get() == "english_japanese":
+                    func = random.choice([None, japanese])
+                    if func is not None:
+                        self.vocab_list.append(japanese(choice))
+                    else: self.vocab_list.append(choice)
+                e_words.remove(choice)
+
+        populate_vocab_list()
+        return
 
     def reset_vocab(self):
         """Clears the vocab_list attribute. Returns None."""
         self.vocab_list = []
 
-    def random_vocab(self):
-        """Makes a list of randomized words. Returns List."""
-        self.reset_vocab()
-        words_possible = self.word_filter()
-
-        def limit():
-            """Checks if amount of words per test reaches the most 
-                limiting factor. Returns Boolean"""
-            return len(self.vocab_list) >= int(self.q_per_test) \
-                or len(self.vocab_list) >= len(words_possible)
-
-        while not limit(): 
-            self.vocab_list.append(random.choice(words_possible))
-        return
-
     def word_filter(self):
         """Filters words based on selections. Returns List."""
-        words = grade_filter(self.std_grade, DICT) 
-        return page_filter(self.lo, self.hi, words)
+        words = grade_filter(self.std_grade.get(), DICT)
+        return page_filter(self.lo.get(), self.hi.get(), words)
+
+    def quit_(self):
+        """Quits the program. Returns None."""
+        win.quit()
+        win.destroy()
 
 if __name__ == '__main__':
         win = tk.Tk()

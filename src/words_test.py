@@ -1,6 +1,4 @@
 """Test module for words.py"""
-#stand lib
-
 #3rd party
 import pytest
 
@@ -111,6 +109,7 @@ def test_get_base_irregular_noun():
     assert get_base_irregular_noun("alumni") == "alumnus"
     assert get_base_irregular_noun("teeth") == "tooth"
 
+#make
 def test_get_base_foreign_word():
     pass
 
@@ -155,6 +154,9 @@ def test_get_words_in_language():
     assert len(get_words_in_language("japanese")) == 1450
     assert len(get_words_in_language("english_japanese")) == 2900
 
+def test_get_lang_func():
+    assert type(get_lang_func("english")).__name__ == "function"
+
 def test_is_vowel():
     assert is_vowel("a") == True
     assert is_vowel("e") == True
@@ -174,21 +176,6 @@ def test_is_proper_noun():
     assert is_proper_noun("Niagra Falls") == True
     assert is_proper_noun("California") == True
     assert is_proper_noun("apple") == False
-
-def test_in_dictionary():
-    assert in_dictionary("apple") == True
-    assert in_dictionary("California") == True
-    assert in_dictionary("superduper") == False
-
-def test_exists():
-    assert exists("apple") == True
-    assert exists("California") == True
-    assert exists("yay") == False
-
-def test_is_valid():
-    assert is_valid("wonderful") == True
-    assert is_valid("California") == True
-    assert is_valid("!californ1a") == False
 
 def test_is_noun():
     assert is_noun("cat") == True

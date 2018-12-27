@@ -1,11 +1,8 @@
 """Module for altering individual words and getting lists of words from the base text files.
     * Does NOT rely on dictionaries.py
 """
-#stand lib
-import random
-
 #custom
-from wordsutil import *
+from constants import *
 
 def final_es(word):
     """Checks if final two letters are 'es'. Returns Boolean."""
@@ -130,6 +127,7 @@ def get_base_irregular_noun(word):
         if word == make_plural(noun):
             return noun
 
+#make test
 #unecessary?
 def get_base_foreign_noun(word):
     """Gets base foreign noun. Returns String."""
@@ -239,12 +237,6 @@ def get_lang_func(lang):
         "english_japanese"  : get_english_japanese,
     }.get(lang)
 
-
-
-
-
-
-#move tests
 def is_vowel(char):
     """Checks if char is a vowel. Returns Boolean."""
     return char in "aeiou"
@@ -302,20 +294,3 @@ def is_good_char(char):
 def is_number(char):
     """Checks if char is a number. Returns Boolean."""
     return char in NUMBERS
-#
-#def same_grade(grade_level, word):
-#    """Checks if the word is in grade. Returns Boolean."""
-#    return grade_level == int(grade(word))
-#
-#def within_grade_range(word, start, end):
-#    """Gets word list within grade range. Returns Boolean."""
-#    if int(grade(word))>=int(start) and int(grade(word))<=int(end):
-#        return True
-#    else: return False
-#
-#def within_page_range(word, start, end):
-#    """Checks if a word exists within a page range. Returns Boolean."""
-#    if int(page_number(word))>=int(start) and \
-#       int(page_number(word))<=int(end):
-#        return True
-#    else: return False

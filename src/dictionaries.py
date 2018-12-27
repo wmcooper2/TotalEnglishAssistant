@@ -26,7 +26,7 @@ def within_page_range(word, start, end):
         return True
     else: return False
 
-def within_pages(word, lo, hi):
+def in_pages(word, lo, hi):
     """Checks if a word exists within a page range. Returns Boolean."""
     if gt_eq_page(word, lo) and lt_eq_page(word, hi): return True
     else: return False
@@ -50,18 +50,6 @@ def same_grade(grade, word):
     if int(grade) == int(DICT[word]["grade"]): return True
     else: return False
 
-def grade_filter(grade, some_list):
-    """Filters some_list based on grade level. Returns List."""
-    return list(filter(lambda word: same_grade(grade, word), some_list))
-
-def page_filter(lo, hi, some_list):
-    """Filters some_list by page range. Returns List."""
-    return list(filter(lambda word: within_pages(word, lo, hi), some_list))
-
-def punct_filter(some_list):
-    """Filters by words that have an apostrophe. Returns List."""
-    return list(filter(lambda word: "'" in word, some_list.keys()))
-
 def gt_eq_page(word, page_num):
     """Checks if word is on or after page_num. Returns Boolean."""
     return int(page_number(word)) >= int(page_num)
@@ -70,16 +58,50 @@ def lt_eq_page(word, page_num):
     """Checks if word is on or before page_num. Returns Boolean."""
     return int(page_number(word)) <= int(page_num)
 
-def same_grade(grade_level, word):
+def same_grade(std_grade, word):
     """Checks if the word is in grade. Returns Boolean."""
-    return grade_level == int(grade(word))
+    return std_grade == int(grade(word))
 
+#refactor
 def within_grade_range(word, start, end):
     """Gets word list within grade range. Returns Boolean."""
     if int(grade(word))>=int(start) and int(grade(word))<=int(end):
         return True
     else: return False
 
+def get_entry(word):
+    """Gets a single entry. Returns Dictionary."""
+    if in_dict(word): return DICT.get(word)
+    else: return None
+
+def exists(word):
+    """Checks if word exists in book's dictionary. Returns Boolean."""
+    if gt_zero(word):
+        if not is_proper_noun(word): return in_dict(word.lower())
+        elif is_proper_noun(word): return in_dict(word)
+
+def in_dict(word):
+    """Checks if word in books' dictionaries. Returns Boolean."""
+    dictionary = []
+    with open(JHSWORDS, "r") as f:
+        [dictionary.append(word.strip()) for word in f.readlines()]
+    return word in dictionary
+
+def is_valid(word):
+    """Validates a word. Returns Boolean."""
+    return gt_zero(word) and is_str(word) and in_dict(word)
+
+def grade_filter(grade, some_list):
+    """Filters some_list based on grade level. Returns List."""
+    return list(filter(lambda word: same_grade(grade, word), some_list))
+
+def page_filter(lo, hi, some_list):
+    """Filters some_list by page range. Returns List."""
+    return list(filter(lambda word: in_pages(word, lo, hi), some_list))
+
+def punct_filter(some_list):
+    """Filters by words that have an apostrophe. Returns List."""
+    return list(filter(lambda word: "'" in word, some_list.keys()))
 
 
 
@@ -95,41 +117,3 @@ def edit_entry(key, entry):
     """Edits an entry in the dictionary. Returns None."""
     dictionary[key] = entry
     save_dictionary(dictionary, default_dict_path)
-
-def get_entry(word):
-    """Gets a single entry. Returns Dictionary."""
-    if in_dictionary(word):
-        return DICT.get(word, default=DEFAULTENTRY)
-#    else:
-    #replace with dictionary.get(word, "not found")?
-#        try:
-#            return dictionary[word]
-#        except KeyError:
-#            return DEFAULTENTRY
-
-def in_dictionary(word):
-    """Checks if word in books' dictionaries. Returns Boolean."""
-    dictionary = []
-    with open(JHSWORDS, "r") as f:
-        [dictionary.append(word.strip()) for word in f.readlines()]
-    return word in dictionary
-
-def exists(word):
-    """Checks if word exists in book's dictionary. Returns Boolean."""
-    if gt_zero(word):
-        if not is_proper_noun(word):
-            return in_dictionary(word.lower())
-        elif is_proper_noun(word):
-            return in_dictionary(word)
-
-def is_valid(word):
-    """Validates a word. Returns Boolean."""
-    return gt_zero(word) and is_str(word) and in_dictionary(word)
-
-
-
-
-
-
-
-

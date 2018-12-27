@@ -11,7 +11,7 @@ ALPHABET        = string.ascii_uppercase + string.ascii_lowercase
 DATA            = str(Path.cwd())+"/data2/"
 DEFAULTENTRY    = "not found"
 DICT            = JHSWORDSDICT.jhswords
-DICTDIR         = "Dictionaries"
+DICTDIR         = "Dictionaries/"
 DICTFILE        = DATA+"juniorhighenglishwords.py"
 DICTNAME        = "Total English Dictionary; Books 1, 2 and 3"
 GOODPUNCT       = ["'", "-"]
@@ -23,9 +23,9 @@ SMALLINPUT      = 6
 UPPERCASE       = string.ascii_uppercase
 
 #for directories.py
-ROOTDIR         = "./"
+ROOTDIR         = "../"
 MAINPATH       = Path(ROOTDIR)
-VOCABDIR        = "VocabularyTests"
+VOCABDIR        = "VocabularyTests/"
 DIRECTORIES     = [VOCABDIR, DICTDIR]
 USERDICT        = Path(ROOTDIR, DICTDIR)
 
