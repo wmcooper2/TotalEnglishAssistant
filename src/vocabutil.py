@@ -9,7 +9,7 @@ from tkinter import messagebox
 from tkinter import ttk
 
 #custom
-from dictionaries import *
+from dictutil import *
 
 validation_title = "Data Validation"
 valid_input_instructions = "Please follow these rules when making your selections."

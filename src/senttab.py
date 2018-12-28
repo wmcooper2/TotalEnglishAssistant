@@ -3,12 +3,11 @@
 import os
 import sys
 import tkinter as tk
-from tkinter import filedialog
 from tkinter import ttk
 from tkinter import Menu
 
 #custom
-from senttabcheck import *
+from sentutil import *
 
 class SentenceTab():
     """Creates the 'Sentence' tab in the GUI, returns None."""
@@ -27,29 +26,6 @@ class SentenceTab():
         self.from_page = tk.IntVar()
         self.until_page = tk.IntVar()
         self.student_grade_level = tk.IntVar()
-
-#        options_frame = ttk.LabelFrame(self.sentence_tab)
-#        options_frame.grid(column=0, columnspan=2, row=0, padx=6, pady=6)
-#
-#        grade_box = ttk.LabelFrame(options_frame, text="Grade level")
-#        grade_box.grid(column=0, row=0, padx=6, pady=6)
-#        self.grade_input = ttk.Entry(grade_box, 
-#            width=SMALLINPUT, textvariable=self.student_grade_level)
-#        self.grade_input.grid(column=0, row=0, pady=6, padx=6)
-#
-#        page_range_box = ttk.LabelFrame(options_frame, text="Page range")
-#        page_range_box.grid(column=1, columnspan=2, row=0, padx=6, pady=6)
-#        from_page_text = ttk.Label(page_range_box, text="From: ")
-#        from_page_text.grid(column=0, row=0, padx=6, pady=6)
-#        self.from_input = ttk.Entry(page_range_box, 
-#            width=SMALLINPUT, textvariable=self.from_page)
-#        self.from_input.grid(column=1, row=0, padx=6, pady=6)
-#
-#        until_page_text = ttk.Label(page_range_box, text="Until: ")
-#        until_page_text.grid(column=2, row=0, sticky=tk.W, padx=6, pady=6)
-#        self.until_input = ttk.Entry(page_range_box, 
-#            width=SMALLINPUT, textvariable=self.until_page)
-#        self.until_input.grid(column=3, row=0, padx=6, pady=6)
 
         input_frame = ttk.LabelFrame(self.sentence_tab, 
             text="Enter any sentence")
@@ -84,36 +60,6 @@ class SentenceTab():
         self.draw_results_labels()
         self.draw_results_rows()
 
-    def results_option1(self):
-        """Gets results when no grade or page range is specified. 
-            Returns Dict.
-            
-            Results include words;
-                - at all grade levels.
-                - on all pages.
-            """
-        pass
-    
-    def results_option2(self):
-        """Gets results when grade or page range is specified. 
-            Returns Dict.
-            
-            Results include words;
-                - at and below the grade.
-                - within, and including, the pages specified.
-            """
-        pass
-
-    def results_option3(self):
-        """Gets results for only the grade and page range specified. 
-            Returns Dict.
-            
-            Results include words;
-                - only for the specified grade.
-                - within, and including, the pages specified.
-            """
-        pass
-
     def make_label(self, word, func=None):
         """Assembles a ttk Label widget. Returns ttk Label Widget."""
         if func != None:
@@ -127,30 +73,9 @@ class SentenceTab():
         #save original user-submitted word for the header, 
             #then remove the punctuation for the results widget search
         for word in self.no_punct_sent:
-            #if grade level == 0:
-                #show word regardless of grade level
-            #if page ranges are 0 and 0:
-                #show word regardless of page number
-            #make button to switch the result of an unknown word with one
-                #from the same POS category.
-
-#            print("grade ::", grade(word))
-#            print("page  ::", page_number(word))
-#            print("pos   ::", get_pos(word))
-            
-#            grade_level = grade(word)
-#            page        = page_number(word)
-#            pos         = get_pos(word)
-
-
-
             temp = {}
             temp["word"] = word
             if is_valid(word): 
-#            if is_valid(word) and same_grade(grade, word) \
-#                and within_page_range(word):
-                
-
                 temp["result"] = self.make_label(word)
                 temp["grade"] = self.make_label(word, func=grade)
                 temp["page"] = self.make_label(word, func=page_number)
@@ -205,7 +130,6 @@ class SentenceTab():
         self.no_punct_sent = []  #clear the stored values
         for word in self.sentence_input.get().split(" "):
             self.no_punct_sent.append(remove_punctuation(word))
-#        print("no punct sent ::", self.no_punct_sent)
     
     def break_up_original_sent(self):
         """Breaks up user's sentence by spaces. Returns None."""
@@ -215,11 +139,33 @@ class SentenceTab():
         
     def reset_choices(self):
         """Clears user's input/results from widgets. Returns None."""
-#        self.grade_input.delete(0, "end")
-#        self.from_input.delete(0, "end")
-#        self.until_input.delete(0, "end")
         self.sentence_input.delete(0, "end")
         self.reset_results_frame()
+
+class Sentence():
+    def __init__(self, sentence):
+        self.sentence = sentence
+        self.words = []
+        self.set_words()
+
+    def __str__(self):
+        return "A Sentence Object: {}.".format(self.sentence)
+
+    def set_words (self):
+        """Sets up the word list from the sentence. Returns None."""
+        for element in self.sentence.split():
+            self.words.append(element)
+    
+    def change_word(self, word):
+        pass
+
+    def change_all_words(self):
+        """Changes words randomly. Returns None."""
+        for element in self.words:
+            word_index = self.words.index(element)
+            word = Word(element)
+            word.change_word()
+            self.words[word_index] = word.english
 
 if __name__ == '__main__':
     win             = tk.Tk()

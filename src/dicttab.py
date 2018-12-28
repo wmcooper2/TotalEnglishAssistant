@@ -1,19 +1,13 @@
-#!/usr/bin/python3
-
+"""GUI Dictionary Tab module."""
 #stand lib
-import collections
 import os
 from pathlib import Path
-import pprint
-import sys
 import tkinter as tk
 from tkinter import ttk
 from tkinter import Menu
-from tkinter import filedialog
 
 #custom
-from dictionaries import *
-import directories
+from dictutil import *
 
 class DictionaryTab():
     """Creates the Dictionary Tab in the GUI. Returns None."""
@@ -29,7 +23,7 @@ class DictionaryTab():
         self.center_box = ttk.LabelFrame(self.dictionary_tab)
         self.center_box.grid(column=0, row=0, padx=6, pady=6)
         current_dictionary = ttk.Label(self.center_box, 
-            text="Current dictionary: " + DICTNAME)
+            text="Dictionary: " + DICTNAME)
         current_dictionary.grid(column=0, row=0, padx=6, pady=6, 
             sticky=tk.W) 
 
@@ -112,9 +106,6 @@ class DictionaryTab():
         win.destroy()
 
 if __name__ == '__main__':
-    if "./data" not in sys.path:
-        sys.path.append("./data")
-
     win = tk.Tk()
     win.title("Test of Dictionary Tab only")
     tab_control = ttk.Notebook(win)

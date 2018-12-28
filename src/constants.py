@@ -1,3 +1,4 @@
+"""Global constants module for the Total English Assistant program."""
 #stand lib
 from pathlib import Path
 import string

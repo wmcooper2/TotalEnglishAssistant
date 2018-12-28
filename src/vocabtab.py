@@ -6,7 +6,6 @@ import time
 import tkinter as tk
 from tkinter import ttk
 from tkinter import Menu
-from tkinter import messagebox
 
 #custom
 from vocabutil import *

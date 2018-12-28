@@ -2,10 +2,6 @@
 """The Total English Assistant GUI tool."""
 
 #stand lib
-#import sys
-#sys.path += ["./src/"]
-#sys.path += ["./src/data"]
-
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import Menu
@@ -14,8 +10,7 @@ from tkinter import ttk
 
 #custom
 import directories
-directories.make_dirs()
-
+#directories.make_dirs()
 from dicttab import DictionaryTab
 from senttab import SentenceTab
 from vocabtab import VocabularyTab
@@ -25,6 +20,7 @@ def quit_():
     win.quit()
     win.destroy()
 
+directories.make_dirs()
 win = tk.Tk()
 win.title("Total English Assistant")
 

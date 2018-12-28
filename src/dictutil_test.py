@@ -1,12 +1,9 @@
-#!/usr/bin/python3
-
-#stand lib
-
+"""Test module for dictutil.py"""
 #3rd party
 import pytest
 
 #custom
-from dictionaries import *
+from dictutil import *
 
 def test_japanese():
     assert japanese("apple")    == "リンゴ"
