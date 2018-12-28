@@ -1,13 +1,4 @@
-#!/usr/bin/env bash
-
-#basedir="$(cd "$(dirname "$BASH_SOURCE")" && pwd -P)"
-#cd "$basedir"
-#export PYPATH="$basedir/src"
-#pytest ./src/*_test.py
-
-
+#!/bin/bash
 clear
-cd ./src/
-pytest *_test.py
-#ls *_test.py
-
+cd src/
+python3 -m pytest *_test.py

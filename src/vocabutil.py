@@ -136,10 +136,3 @@ def didnt_write_test():
     """Shows a message that the vocabulary test was not written. 
     Returns None."""
     messagebox.showinfo(title=vocab_test_title, message=no_vocab_test)
-
-
-
-
-
-
-

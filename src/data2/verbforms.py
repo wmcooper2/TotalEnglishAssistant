@@ -315,6 +315,15 @@ verb_forms = {
     'gerund' : 'lying',
     },
     
+    'like':
+    {
+    'normal' : 'like',
+    'present' : ['like','likes'],
+    'past' : 'liked',
+    'past participle' : 'liked',
+    'gerund' : 'liking',
+    },
+    
     'lose':
     {
     'normal' : 'lose',

@@ -1,0 +1,41 @@
+In the program's root directory;
+ - To run tests;
+	./Test
+
+ - To run the program;
+	run
+
+ - Two directories are created;
+	Dictionaries/
+	VocabularyTests/
+
+ - Vocabulary tests are created in;
+	VocabularyTests/
+
+
+
+totalenglishassistant.py
+------------------------
+* The main GUI file.
+
+
+Vocabulary Tab
+------------------------
+* Choose a ;
+ - grade level
+ - page range
+ - language
+ - number of tests, and 
+ - questions per test.
+
+
+Sentence Tab
+------------------------
+* Input any sentence
+* Click "Check"
+
+
+Dictionary Tab
+------------------------
+* Input a single english word
+* Click "Display Entry"

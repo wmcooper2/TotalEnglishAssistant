@@ -3,6 +3,7 @@
 import pytest
 from tkinter import filedialog
 from tkinter import messagebox
+from tkinter import ttk
 
 #custom
 from dictutil import *
@@ -40,6 +41,49 @@ def is_valid_sent(sentence):
         return True
     else: return False
 
+def make_label(widget, word, func=None):
+    """Assembles a ttk Label widget. Returns ttk Label Widget."""
+    if func != None:
+        return ttk.Label(widget, text=func(word))
+    else: return ttk.Label(widget, text=word)
+
+def get_results(widget, sent):
+    """Creates a dictionary of the result labels. Returns List."""
+    rows = []
+    counter = 0
+
+    for word in list(map(remove_punctuation, sent.split())):
+        temp = {}
+        base = None
+        temp["word"] = word
+        print("base verb::", base_verb(word))
+        print("base noun::", base_noun(word))
+        base = temp["word"]    
+        if base_verb(word) != " ":
+            base = base_verb(word)
+        elif base_noun(word) != " ":
+            if not is_proper_noun(word):
+                base = base_noun(word.lower())
+            else: base = base_noun(word)
+        else:
+            base = word
+
+        if is_valid(base): 
+            temp["result"]  = make_label(widget, base)
+            temp["grade"]   = make_label(widget, base, func=grade)
+            temp["page"]    = make_label(widget, base, func=page_number)
+            temp["verb"]    = make_label(widget, base, func=base_verb)
+            temp["noun"]    = make_label(widget, word, func=base_noun)
+            #add pos for each base
+        else:
+            temp["result"]  = make_label(widget, base)
+            temp["grade"]   = ttk.Label(widget, text="#")
+            temp["page"]    = ttk.Label(widget, text="#")
+            temp["verb"]    = ttk.Label(widget, text="#")
+            temp["noun"]    = ttk.Label(widget, text="#")
+        rows.append(temp)
+        counter = counter + 1
+    return rows
 
 #no tests
 def sentence_guide(length):

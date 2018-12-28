@@ -16,7 +16,7 @@ DICTDIR         = "Dictionaries/"
 
 #DICTFILE        = DATA+"dictionarywords.py"
 DICTNAME        = "Total English 1, 2 and 3"
-GOODPUNCT       = ["'", "-"]
+GOODPUNCT       = ["'", "-", " "]
 JHSWORDS        = DATA+"jhsengvocab.txt"
 MAXGRADE        = 3
 MINGRADE        = 1
@@ -44,6 +44,7 @@ JAPANESEVOCAB   = DATA+"japanesevocab.txt"
 NOUNS           = DATA+"nouns.txt"
 PREPOSITIONS    = DATA+"prepositions.txt"
 PRONOUNS        = DATA+"pronouns.txt"
+PROPERNOUNS     = DATA+"propernouns.txt"
 VERBS           = DATA+"verbs.txt"
 
 #for sentencestab.py

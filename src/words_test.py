@@ -5,6 +5,9 @@ import pytest
 #custom
 from words import *
 
+
+#make test_is_proper_noun()
+
 def test_final_es():
     assert final_es("crates") == True
     assert final_es("plates") == True
@@ -173,7 +176,7 @@ def test_is_str():
     assert is_str(1) == False
 
 def test_is_proper_noun():
-    assert is_proper_noun("Niagra Falls") == True
+    assert is_proper_noun("Alaska") == True
     assert is_proper_noun("California") == True
     assert is_proper_noun("apple") == False
 

@@ -110,8 +110,6 @@ def base_noun(word):
 #        if is_foreign_origin(word): return get_base_foreign_noun(word)
         if word == noun: return word
         if make_plural(noun) == word: return noun
-#    return "'{}' not in book.".format(word)
-#    return "###"
     return " "
 
 def get_irregular_nouns():
@@ -251,7 +249,10 @@ def is_str(word):
 
 def is_proper_noun(word):
     """Checks if word is proper noun. Returns Boolean."""
-    return word[0] in UPPERCASE
+    propernouns = []
+    with open(PROPERNOUNS, "r") as f:
+        [propernouns.append(word.strip()) for word in f.readlines()]
+    return word in propernouns
 
 def is_noun(word):
     """Checks if word is a noun. Returns Boolean."""
