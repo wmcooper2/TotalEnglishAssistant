@@ -3,33 +3,29 @@ from pathlib import Path
 import sys
 
 class DirectorySetup():
-
-    main_dir = "./"
-    test_dir = "VocabularyTests"
-    image_dir = "Images"
-    dict_dir = "Dictionaries"
+    main_dir    = "./"
+    test_dir    = "VocabularyTests"
+    image_dir   = "Images"
+    dict_dir    = "Dictionaries"
     directories = [test_dir, image_dir, dict_dir]
-    main_path = Path(main_dir) 
+    main_path   = Path(main_dir) 
 
     def make_directories(self):
-        """Creates subdirectories within the program's root directory.
-            Returns None."""
-        for directory in self.directories:
-            if Path(self.main_dir,directory).exists():
-                pass
-            else:
-                Path(self.main_dir,directory).mkdir()           
+        """Creates subdirectories in root dir. Returns None."""
+        for d in self.directories:
+            if Path(self.main_dir, d).exists(): pass
+            else: Path(self.main_dir, d).mkdir()           
 
     def _check(self):
-        """Checks to see the directories were installed properly, returns None."""
-        for directory in self.directories:
-            if Path(self.main_dir,directory) in self.main_path.iterdir():
-                print("'{0}' directory already exists".format(directory))
+        """Checks to see the directories were created. Returns None."""
+        for d in self.directories:
+            if Path(self.main_dir, d) in self.main_path.iterdir():
+                print("'{0}' directory already exists".format(d))
             else:
-                print("'{0}' directory could not be made".format(directory))
+                print("'{0}' directory could not be made".format(d))
 
     def make_dirs(self):
-        """Creates the needed directories for the program, returns None."""
+        """Creates directories for the program. Returns None."""
         self.make_directories()
 
 if __name__ == "__main__":

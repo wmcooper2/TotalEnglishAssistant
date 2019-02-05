@@ -4,65 +4,31 @@
 #custom
 from constants import *
 
-def final_es(word):
-    """Checks if final two letters are 'es'. Returns Boolean."""
-    return word[-2:] == "es"
-    
-def final_x(word):
-    """Checks if the last letter is x. Returns Boolean."""
-    return word[-1] == "x"
+add_s           = lambda x: x+"s"
+add_es          = lambda x: x+"es"
+add_ves         = lambda x: x+"ves"
+double_f_end    = lambda x: x[-2:]    == "ff"
+final_es        = lambda x: x[-2:]    == "es" 
+final_x         = lambda x: x[-1]     == "x"
+final_o         = lambda x: x[-1]     == "o"
+final_y         = lambda x: x[-1]     == "y"
+final_f1        = lambda x: x[-1]     == "f"
+final_f2        = lambda x: x[-2]     == "f"
+gt_zero         = lambda x: len(x) > 0
+is_irr_noun     = lambda x: x in IRRNOUNS.keys()
+is_number       = lambda x: x in NUMBERS
+is_str          = lambda x: type(x) is str
+is_vowel        = lambda x: x in "aeiou"
+sock_stew       = lambda x: x[-2:] in ["ss", "ch", "zz", "sh"]
+special_f_end   = lambda x: x in ["chef", "beef"]
+y_to_ies        = lambda x: x[:-1]+"ies"
 
-def final_o(word):
-    """Checks if the last letter is o. Returns Boolean."""
-    return word[-1] == "o"
-
-def sock_stew(word):
-    """Checks if the last two letters are 'ss', 'ch', 'zz', 'sh'. 
-        Returns Boolean."""
-    return word[-2:] in ["ss", "ch", "zz", "sh"]
-
-def final_y(word):
-    """Checks if the last letter is y. Returns Boolean."""
-    return word[-1] == "y"
-
-def y_to_ies(word):
-    """Changes the final y to 'ies'. Returns String."""
-    return word[:-1]+"ies"
-
-def final_f1(word):
-    """Checks if the last letter is f. Returns Boolean."""
-    return word[-1] == "f"
-
-def final_f2(word):
-    """Checks if the second to last letter is f. Returns Boolean."""
-    return word[-2] == "f"
-
-def special_f_end(word):
-    """Checks if word is a special f-ending word. Returns Boolean."""
-    return word in ["chef", "beef"]
- 
-def double_f_end(word):
-    """Checks if word contains double f ending. Returns Boolean."""
-    return (word[-3:-1] == "ff" or word [-2:] == "ff")
-
-def add_ves(word):
-    """Appends 'ves'. Returns String."""
-    return word+"ves"
-
-def add_s(word):
-    """Appends 's'. Returns String."""
-    return word+"s"
-
-def add_es(word):
-    """Appends 'es'. Returns String."""
-    return word+"es"
-        
 def make_plural(word):
     """Makes word plural if it's a noun or verb. Returns None."""
     #special
     if word == "I":                 return add_s(word)
     elif is_foreign_origin(word):   return add_s(word)
-    elif is_irregular_noun(word):   return IRRNOUNS.get(word) 
+    elif is_irr_noun(word):   return IRRNOUNS.get(word) 
 
     # common
     elif final_es(word):            return word
@@ -99,17 +65,16 @@ def base_verb(verb):
     """Gets base form of verb. Returns String."""
     for base, nested in VERBFORMS.items():
         for form, value in nested.items():
-            if value == verb:
-                return base
+            if value == verb: return base
     return " "
 
 def base_noun(word):
     """Gets base noun of word. Returns String."""
     for noun in get_nouns():
-        if is_irregular_noun(word): return get_base_irregular_noun(word)
+        if is_irr_noun(word): return get_base_irregular_noun(word)
 #        if is_foreign_origin(word): return get_base_foreign_noun(word)
-        if word == noun: return word
-        if make_plural(noun) == word: return noun
+        elif word == noun: return word
+        elif make_plural(noun) == word: return noun
     return " "
 
 def get_irregular_nouns():
@@ -122,8 +87,7 @@ def get_irregular_nouns():
 def get_base_irregular_noun(word):
     """Gets base irregular noun. Returns String."""
     for noun in get_irregular_nouns():
-        if word == make_plural(noun):
-            return noun
+        if word == make_plural(noun): return noun
 
 #make test
 #unecessary?
@@ -235,18 +199,6 @@ def get_lang_func(lang):
         "english_japanese"  : get_english_japanese,
     }.get(lang)
 
-def is_vowel(char):
-    """Checks if char is a vowel. Returns Boolean."""
-    return char in "aeiou"
-
-def gt_zero(word):
-    """Checks that word is greater than zero characters. Returns Boolean."""
-    return len(word) > 0
-
-def is_str(word):
-    """Checks that word is a string. Returns Boolean."""
-    return type(word) is str
-
 def is_proper_noun(word):
     """Checks if word is proper noun. Returns Boolean."""
     propernouns = []
@@ -282,16 +234,8 @@ def is_foreign_origin(word):
     with open(DATA+"foreignorigin.txt", "r") as f:
         [words.append(w.strip()) for w in f.readlines()]
     return word in words
-   
-def is_irregular_noun(word):
-    """Checks if word is an irregular noun. Returns Boolean."""
-    return word in IRRNOUNS.keys()
 
 def is_good_char(char):             
     """Checks if char is a letter or acceptable punctuation. 
         Returns Boolean."""
     return ((char in ALPHABET) or (char in GOODPUNCT)) 
-
-def is_number(char):
-    """Checks if char is a number. Returns Boolean."""
-    return char in NUMBERS

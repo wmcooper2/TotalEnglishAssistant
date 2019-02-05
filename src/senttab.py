@@ -96,7 +96,7 @@ class SentenceTab():
         self.res_fr.grid(column=0, row=2, padx=6, pady=6)        
 
     def break_up_no_punct_sent(self):
-        """Adds words without punct to self.user_sentence. Returns None."""
+        """Adds no-punct words to self.user_sentence. Returns None."""
         self.no_punct_sent = []  #clear the stored values
         for word in self.sent_input.get().split(" "):
             self.no_punct_sent.append(remove_punctuation(word))
@@ -114,8 +114,8 @@ class SentenceTab():
 
 class Sentence():
     def __init__(self, sentence):
-        self.sentence = sentence
-        self.words = []
+        self.sentence   = sentence
+        self.words      = []
         self.set_words()
 
     def __str__(self):
@@ -123,8 +123,7 @@ class Sentence():
 
     def set_words (self):
         """Sets up the word list from the sentence. Returns None."""
-        for element in self.sentence.split():
-            self.words.append(element)
+        for element in self.sentence.split(): self.words.append(element)
     
     def change_word(self, word):
         pass

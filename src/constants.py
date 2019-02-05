@@ -9,7 +9,8 @@ from data2.verbforms import verb_forms as VERBFORMS
 from data2.irregularnouns import irregular_nouns as IRRNOUNS
 
 ALPHABET        = string.ascii_uppercase + string.ascii_lowercase
-DATA            = str(Path.cwd())+"/data2/"
+DATA            = str(Path.cwd())+"/src/data2/"
+#DATA            = str(Path.cwd())+"/data2/"     #use this path for testing
 DEFAULTENTRY    = "not found"
 DICT            = dict_.jhswords
 DICTDIR         = "Dictionaries/"
@@ -31,6 +32,7 @@ VOCABDIR        = "VocabularyTests/"
 DIRECTORIES     = [VOCABDIR, DICTDIR]
 USERDICT        = Path(ROOTDIR, DICTDIR)
 
+#raw data files
 ADJECTIVES      = DATA+"adjectives.txt"
 ADVERBS         = DATA+"adverbs.txt"
 ARTICLES        = DATA+"articles.txt"

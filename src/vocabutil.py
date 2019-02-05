@@ -33,20 +33,18 @@ invalid_input_messages = [valid_input_instructions,
                          ]
 input_instructions = "\n\n".join(invalid_input_messages)
 
-def in_question_range(num):
-    """Checks that num is between min and max. Returns Boolean."""
-    return num>=MINQPERTEST and num<=MAXQPERTEST
-
-def in_test_range(num):
-    """Checks that num is between min and max. Returns Boolean."""
-    return num>=MINTESTAMT and num<=MAXTESTAMT
+date_time           = lambda: datetime.datetime.now().strftime('%Y_%m_%d')
+grade_number        = lambda x: "Grade"+str(x)
+in_question_range   = lambda num: num>=MINQPERTEST and num<=MAXQPERTEST
+in_test_range       = lambda num: num>=MINTESTAMT and num<=MAXTESTAMT
+test_num            = lambda x: "Test"+str(x+1)
+pages_chosen        = lambda lo, hi: lo>=MINPAGE and hi<=MAXPAGE and hi>lo
 
 def valid_q_input(amt):
     """Validates the amount of questions per test is within 10 and 100.
         Returns Boolean."""
     if in_question_range(amt) and type(amt) is int: return True
     else: return False
-    
 
 # where is this called from?    
 def tst_amt(amt):
@@ -63,34 +61,13 @@ def valid_lang_chosen(lang):
         return True
     else: return False
 
-def pages_chosen(lo, hi):
-    """Checks that valid low and high page range was chosen. 
-        Returns Boolean."""
-    return lo>=MINPAGE and hi<=MAXPAGE and hi>lo
-
-def date_time():
-    """Gets the current date time. Returns String."""
-    return datetime.datetime.now().strftime('%Y_%m_%d')
-
-def num(test):
-    """Formats the test number string for the save file name. 
-        Returns String."""
-    return "Test"+str(test+1)
-
-def make_file_name(test_num, std_grade, lang):
+def make_file_name(num, std_grade, lang):
     """Formats the name of the save file. Returns String."""
     return "{0}_{1}_{2}_{3}".format(
         date_time(),
         lang.title(), 
         grade_number(std_grade),
-        num(test_num))
-
-def grade_number(grade_num):
-    """Formats the grade number string for the save file name.
-        Returns String."""
-    return "Grade" + str(grade_num)
-
-
+        test_num(num))
 
 #how to test this, set.is_subset() of each other?
 #what is test_words[:]?

@@ -9,19 +9,12 @@ from pathlib import Path
 from constants import *
 
 def make_dirs():
-    """Creates subdirectories within the program's root directory.
-        Returns None."""
-    for directory in DIRECTORIES:
-        if Path(ROOTDIR,directory).exists():
-            pass
-        else:
-            Path(ROOTDIR,directory).mkdir()
+    """Creates subdirectories in root dir. Returns None."""
+    for d in DIRECTORIES:
+        if Path(ROOTDIR, d).exists(): pass
+        else: Path(ROOTDIR, d).mkdir()
 
 def dict_exists():
-    """Checks if dictionary exists in 
-        '~/TotalEnglishAssistant/Dictionaries/'.
-    Returns Boolean. """
-    if not os.path.exists(USERDICT):
-        return False
-    else:
-        return True
+    """Checks for dict in '<rootdir>/Dictionaries/'. Returns Boolean."""
+    if not os.path.exists(USERDICT): return False
+    else: return True

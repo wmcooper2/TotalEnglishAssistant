@@ -31,8 +31,7 @@ def different_word(word):
     """Chooses a different word with the same part of speech. 
         Returns String."""
     temp = get_pos_func(word)()
-    while word in temp:
-        temp.remove(word)
+    while word in temp: temp.remove(word)
     return random.choice(temp)
 
 def is_valid_sent(sentence):
@@ -43,9 +42,8 @@ def is_valid_sent(sentence):
 
 def make_label(widget, word, func=None):
     """Assembles a ttk Label widget. Returns ttk Label Widget."""
-    if func != None:
-        return ttk.Label(widget, text=func(word))
-    else: return ttk.Label(widget, text=word)
+    if func != None:    return ttk.Label(widget, text=func(word))
+    else:               return ttk.Label(widget, text=word)
 
 def get_results(widget, sent):
     """Creates a dictionary of the result labels. Returns List."""
@@ -56,22 +54,19 @@ def get_results(widget, sent):
         temp = {}
         base = None
         temp["word"] = word
-        print("base verb::", base_verb(word))
-        print("base noun::", base_noun(word))
+#        print("base verb::", base_verb(word))
+#        print("base noun::", base_noun(word))
         base = temp["word"]    
-        if base_verb(word) != " ":
-            base = base_verb(word)
+        if base_verb(word) != " ":          base = base_verb(word)
         elif base_noun(word) != " ":
-            if not is_proper_noun(word):
-                base = base_noun(word.lower())
-            else: base = base_noun(word)
-        else:
-            base = word
+            if not is_proper_noun(word):    base = base_noun(word.lower())
+            else:                           base = base_noun(word)
+        else: base = word
 
         if is_valid(base): 
             temp["result"]  = make_label(widget, base)
             temp["grade"]   = make_label(widget, base, func=grade)
-            temp["page"]    = make_label(widget, base, func=page_number)
+            temp["page"]    = make_label(widget, base, func=page_num)
             temp["verb"]    = make_label(widget, base, func=base_verb)
             temp["noun"]    = make_label(widget, word, func=base_noun)
             #add pos for each base

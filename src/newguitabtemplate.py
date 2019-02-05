@@ -23,13 +23,13 @@ class Tab():
         win.destroy()
 
 if __name__ == '__main__':
-        win = tk.Tk()
+        win         = tk.Tk()
         win.title("TEMPLATE")
         tab_control = ttk.Notebook(win)
-        menu_bar = Menu(win)
+        menu_bar    = Menu(win)
         win.config(menu=menu_bar)
-        tab = Tab(tab_control)
-        file_menu = Menu(menu_bar, tearoff=0)
+        tab         = Tab(tab_control)
+        file_menu   = Menu(menu_bar, tearoff=0)
         file_menu.add_command(label="Exit", command=tab.quit_)
         menu_bar.add_cascade(label="File", menu=file_menu)
         win.mainloop()

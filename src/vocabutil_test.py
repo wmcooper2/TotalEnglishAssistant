@@ -49,8 +49,8 @@ def test_pages_chosen():
 def test_date_time():
     assert type(date_time()) is str
 
-def test_num():
-    assert type(num(1)) is str
+def test_page_num():
+    assert type(page_num(1)) is str
 
 def test_make_file_name():
     assert type(make_file_name(1, 3, "english")) is str

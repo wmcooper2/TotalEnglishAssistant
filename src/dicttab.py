@@ -48,14 +48,14 @@ class DictionaryTab():
         request_button.grid(column=0, row=1, padx=6, pady=6)
 
     def draw_entry(self):
-        """Draws/Redraws the entry to the GUI. Returns None."""
+        """Draws the entry to the GUI. Returns None."""
         self.reset_frame()
         self.load_entry()
         self.draw_results()
         self.show_entry()
 
     def load_entry(self):
-        """Loads the entry within the class for displaying. Returns None."""
+        """Loads entry within the class for displaying. Returns None."""
         word = self.request.get()
         self.entry = get_entry(word.strip())
 
