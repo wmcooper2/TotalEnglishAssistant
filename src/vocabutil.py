@@ -46,14 +46,12 @@ def valid_q_input(amt):
     if in_question_range(amt) and type(amt) is int: return True
     else: return False
 
-# where is this called from?    
-def tst_amt(amt):
+def tst_amt(amt): #called from where?
     """Validates 'amt' is between 1 and 50. Returns Boolean."""
     if in_test_range(amt) and type(amt) is int: return True
     else: return False
 
-#where is this called from?
-def valid_lang_chosen(lang):
+def valid_lang_chosen(lang): #called from where?
     """Validates a language choice was made. Returns Boolean."""
     if lang == "english" \
         or lang == "japanese" \
@@ -83,7 +81,6 @@ def unique_words():
 
 def save(words, val):
     """Saves amt of tests to '<programroot>/VocabularyTests/<testname>'.
-        
         - val is a dictionary.
         - <testname> is incremented with amt acting as a counter.
         Returns None."""
@@ -99,8 +96,7 @@ def write_file(file_name, words):
     with open(ROOTDIR+VOCABDIR+file_name, "w+", encoding = "utf-8") as f:
         for word in words:
             choice = random.choice(vocab_copy)
-            f.write(choice)
-            f.write("\n")
+            f.write(choice+"\n")
             vocab_copy.remove(choice)
 
 #pop up windows

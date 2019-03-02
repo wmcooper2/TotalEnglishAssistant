@@ -12,6 +12,7 @@ gt_eq_grade = lambda w, g: int(grade(w))>=int(g)
 gt_eq_page  = lambda w, p: int(page_num(w)) >= int(p)
 lt_eq_grade = lambda w, g: int(grade(w))<=int(g)
 lt_eq_page  = lambda w, p: int(page_num(w))<=int(p)
+not_none    = lambda w: w != None
 same_grade  = lambda st_gr, w: st_gr == int(grade(w))
 
 def japanese(word):
@@ -71,7 +72,9 @@ def in_dict(word):
 
 def is_valid(word):
     """Validates a word. Returns Boolean."""
-    return gt_zero(word) and is_str(word) and in_dict(word)
+    if not_none(word):
+        return gt_zero(word) and is_str(word) and in_dict(word)
+    else: return False
 
 def grade_filter(grade, some_list):
     """Filters some_list based on grade level. Returns List."""

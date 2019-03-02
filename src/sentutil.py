@@ -11,6 +11,8 @@ from dictutil import *
 validation_title = "Data Validation"
 sentence_instructions = "'Input any sentence' must be greater than 0 and less than {0} characters."
 
+no_punc_words = lambda s: list(map(remove_punctuation, s.split()))
+
 def get_pos_func(word):
     """Returns function that will get a word list matching 
         the part of speech 'word'. Returns Function."""
@@ -50,12 +52,10 @@ def get_results(widget, sent):
     rows = []
     counter = 0
 
-    for word in list(map(remove_punctuation, sent.split())):
+    for word in no_punc_words(sent):
         temp = {}
         base = None
         temp["word"] = word
-#        print("base verb::", base_verb(word))
-#        print("base noun::", base_noun(word))
         base = temp["word"]    
         if base_verb(word) != " ":          base = base_verb(word)
         elif base_noun(word) != " ":
@@ -64,14 +64,13 @@ def get_results(widget, sent):
         else: base = word
 
         if is_valid(base): 
-            temp["result"]  = make_label(widget, base)
+            temp["given"]  = make_label(widget, word)
             temp["grade"]   = make_label(widget, base, func=grade)
             temp["page"]    = make_label(widget, base, func=page_num)
             temp["verb"]    = make_label(widget, base, func=base_verb)
             temp["noun"]    = make_label(widget, word, func=base_noun)
-            #add pos for each base
         else:
-            temp["result"]  = make_label(widget, base)
+            temp["given"]  = make_label(widget, word)
             temp["grade"]   = ttk.Label(widget, text="#")
             temp["page"]    = ttk.Label(widget, text="#")
             temp["verb"]    = ttk.Label(widget, text="#")

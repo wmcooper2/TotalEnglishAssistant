@@ -65,7 +65,8 @@ class SentenceTab():
         """Draws the result/button groups to the GUI. Returns None."""
         counter = 1
         for group in self.results_rows:
-            group["result"].grid(column=counter, row=0, padx=6, pady=6)
+#            group["result"].grid(column=counter, row=0, padx=6, pady=6)
+            group["given"].grid(column=counter, row=0, padx=6, pady=6)
             group["grade"].grid(column=counter, row=1, padx=6, pady=6)
             group["page"].grid(column=counter, row=2, padx=6, pady=6)
             group["verb"].grid(column=counter, row=3, padx=6, pady=6)
@@ -74,7 +75,7 @@ class SentenceTab():
 
     def draw_results_labels(self):
         """Draws the row labels for the results widget. Returns None."""
-        ttk.Label(self.res_fr, text="given word:").grid(column=0, 
+        ttk.Label(self.res_fr, text="given:").grid(column=0, 
             row=0, padx=6, pady=6, sticky=tk.E)
         ttk.Label(self.res_fr, text="grade:").grid(column=0, 
             row=1, padx=6, pady=6, sticky=tk.E)

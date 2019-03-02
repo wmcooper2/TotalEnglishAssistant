@@ -1,6 +1,5 @@
-"""File for holding the different verb forms for all of the verbs in the Total
-English book series."""
 verb_forms = {
+
     'become' :
     {
     'normal' : 'become',
@@ -316,6 +315,15 @@ verb_forms = {
     'gerund' : 'lying',
     },
     
+    'like':
+    {
+    'normal' : 'like',
+    'present' : ['like','likes'],
+    'past' : 'liked',
+    'past participle' : 'liked',
+    'gerund' : 'liking',
+    },
+    
     'lose':
     {
     'normal' : 'lose',
@@ -328,7 +336,7 @@ verb_forms = {
     'make':
     {
     'normal' : 'make',
-    'present' : 'make(s)',
+    'present' : ['make', 'makes'],
     'past' : 'made',
     'past participle' : 'made',
     'gerund' : 'making',
@@ -337,7 +345,7 @@ verb_forms = {
     'mean':
     {
     'normal' : 'mean',
-    'present' : 'mean(s)',
+    'present' : ['mean', 'means'],
     'past' : 'meant',
     'past participle' : 'meant',
     'gerund' : 'meaning',
@@ -346,7 +354,7 @@ verb_forms = {
     'meet':
     {
     'normal' : 'meet',
-    'present' : 'meet(s)',
+    'present' : ['meet', 'meets'],
     'past' : 'met',
     'past participle' : 'met',
     'gerund' : 'meeting',
@@ -355,7 +363,7 @@ verb_forms = {
     'put':
     {
     'normal' : 'put',
-    'present' : 'put(s)',
+    'present' : ['put', 'puts'],
     'past' : 'put',
     'past participle' : 'put',
     'gerund' : 'putting',
@@ -364,7 +372,7 @@ verb_forms = {
     'read':
     {
     'normal' : 'read',
-    'present' : 'read(s)',
+    'present' : ['read', 'reads'],
     'past' : 'read',
     'past participle' : 'read',
     'gerund' : 'reading',
@@ -373,7 +381,7 @@ verb_forms = {
     'ride':
     {
     'normal' : 'ride',
-    'present' : 'ride(s)',
+    'present' : ['ride', 'rides'],
     'past' : 'rode',
     'past participle' : 'ridden',
     'gerund' : 'riding',
@@ -382,7 +390,7 @@ verb_forms = {
     'ring':
     {
     'normal' : 'ring',
-    'present' : 'ring(s)',
+    'present' : ['ring', 'rings'],
     'past' : 'rang',
     'past participle' : 'rung',
     'gerund' : 'ringing',
@@ -391,7 +399,7 @@ verb_forms = {
     'run':
     {
     'normal' : 'run',
-    'present' : 'run(s)',
+    'present' : ['run', 'runs'],
     'past' : 'ran',
     'past participle' : 'run',
     'gerund' : 'running',
@@ -400,7 +408,7 @@ verb_forms = {
     'say':
     {
     'normal' : 'say',
-    'present' : 'say(s)',
+    'present' : ['say', 'says'],
     'past' : 'said',
     'past participle' : 'said',
     'gerund' : 'saying',
@@ -409,7 +417,7 @@ verb_forms = {
     'see':
     {
     'normal' : 'see',
-    'present' : 'see(s)',
+    'present' : ['see', 'sees'],
     'past' : 'saw',
     'past participle' : 'seen',
     'gerund' : 'seeing',
@@ -418,7 +426,7 @@ verb_forms = {
     'sell':
     {
     'normal' : 'sell',
-    'present' : 'sell(s)',
+    'present' : ['sell', 'sells'],
     'past' : 'sold',
     'past participle' : 'sold',
     'gerund' : 'selling',
@@ -427,7 +435,7 @@ verb_forms = {
     'send':
     {
     'normal' : 'send',
-    'present' : 'send(s)',
+    'present' : ['send', 'sends'],
     'past' : 'sent',
     'past participle' : 'sent',
     'gerund' : 'sending',
@@ -436,7 +444,7 @@ verb_forms = {
     'shake':
     {
     'normal' : 'shake',
-    'present' : 'shake(s)',
+    'present' : ['shake', 'shakes'],
     'past' : 'shook',
     'past participle' : 'shaken',
     'gerund' : 'shaking',
@@ -445,7 +453,7 @@ verb_forms = {
     'show':
     {
     'normal' : 'show',
-    'present' : 'show(s)',
+    'present' : ['show', 'shows'],
     'past' : 'showed',
     'past participle' : 'shown',
     'gerund' : 'showing',
@@ -454,7 +462,7 @@ verb_forms = {
     'shut':
     {
     'normal' : 'shut',
-    'present' : 'shut(s)',
+    'present' : ['shut', 'shuts'],
     'past' : 'shut',
     'past participle' : 'shut',
     'gerund' : 'shutting',
@@ -463,7 +471,7 @@ verb_forms = {
     'sing':
     {
     'normal' : 'sing',
-    'present' : 'sing(s)',
+    'present' : ['sing', 'sings'],
     'past' : 'sang',
     'past participle' : 'sung',
     'gerund' : 'singing',
@@ -472,7 +480,7 @@ verb_forms = {
     'sit':
     {
     'normal' : 'sit',
-    'present' : 'sit(s)',
+    'present' : ['sit', 'sits'],
     'past' : 'sat',
     'past participle' : 'sat',
     'gerund' : 'sitting',
@@ -481,7 +489,7 @@ verb_forms = {
     'sleep':
     {
     'normal' : 'sleep',
-    'present' : 'sleep(s)',
+    'present' : ['sleep', 'sleeps'],
     'past' : 'slept',
     'past participle' : 'slept',
     'gerund' : 'sleeping',
@@ -490,7 +498,7 @@ verb_forms = {
     'smell':
     {
     'normal' : 'smell',
-    'present' : 'smell(s)',
+    'present' : ['smell', 'smells'],
     'past' : 'smelled,smelt',
     'past participle' : 'smelled,smelt',
     'gerund' : 'smelling',
@@ -499,7 +507,7 @@ verb_forms = {
     'speak':
     {
     'normal' : 'speak',
-    'present' : 'speak(s)',
+    'present' : ['speak', 'speaks'],
     'past' : 'spoke',
     'past participle' : 'spoken',
     'gerund' : 'speaking',
@@ -508,7 +516,7 @@ verb_forms = {
     'spend':
     {
     'normal' : 'spend',
-    'present' : 'spend(s)',
+    'present' : ['spend', 'spends'],
     'past' : 'spent',
     'past participle' : 'spent',
     'gerund' : 'spending',
@@ -517,7 +525,7 @@ verb_forms = {
     'stand':
     {
     'normal' : 'stand',
-    'present' : 'stand(s)',
+    'present' : ['stand', 'stands'],
     'past' : 'stood',
     'past participle' : 'stood',
     'gerund' : 'standing',
@@ -526,7 +534,7 @@ verb_forms = {
     'swim':
     {
     'normal' : 'swim',
-    'present' : 'swim(s)',
+    'present' : ['swim', 'swims'],
     'past' : 'swam',
     'past participle' : 'swum',
     'gerund' : 'swimming',
@@ -535,7 +543,7 @@ verb_forms = {
     'take':
     {
     'normal' : 'take',
-    'present' : 'take(s)',
+    'present' : ['take', 'takes'],
     'past' : 'took',
     'past participle' : 'taken',
     'gerund' : 'taking',
@@ -544,7 +552,7 @@ verb_forms = {
     'teach':
     {
     'normal' : 'teach',
-    'present' : 'teach(es)',
+    'present' : ['teach', 'teaches'],
     'past' : 'taught',
     'past participle' : 'taught',
     'gerund' : 'teaching',
@@ -553,7 +561,7 @@ verb_forms = {
     'tell':
     {
     'normal' : 'tell',
-    'present' : 'tell(s)',
+    'present' : ['tell', 'tells'],
     'past' : 'told',
     'past participle' : 'told',
     'gerund' : 'telling',
@@ -562,7 +570,7 @@ verb_forms = {
     'think':
     {
     'normal' : 'think',
-    'present' : 'think(s)',
+    'present' : ['think', 'thinks'],
     'past' : 'thought',
     'past participle' : 'thought',
     'gerund' : 'thinking',
@@ -571,7 +579,7 @@ verb_forms = {
     'throw':
     {
     'normal' : 'throw',
-    'present' : 'throw(s)',
+    'present' : ['throw', 'throws'],
     'past' : 'threw',
     'past participle' : 'thrown',
     'gerund' : 'throwing',
@@ -580,7 +588,7 @@ verb_forms = {
     'understand':
     {
     'normal' : 'understand',
-    'present' : 'understand(s)',
+    'present' : ['understand', 'understands'],
     'past' : 'understood',
     'past participle' : 'understood',
     'gerund' : 'unerstanding',
@@ -589,7 +597,7 @@ verb_forms = {
     'wear':
     {
     'normal' : 'wear',
-    'present' : 'wear(s)',
+    'present' : ['wear', 'wears'],
     'past' : 'wore',
     'past participle' : 'worn',
     'gerund' : 'wearing',
@@ -598,7 +606,7 @@ verb_forms = {
     'win':
     {
     'normal' : 'win',
-    'present' : 'win(s)',
+    'present' : ['win', 'wins'],
     'past' : 'won',
     'past participle' : 'won',
     'gerund' : 'winning',
@@ -607,7 +615,8 @@ verb_forms = {
     'write':
     {
     'normal' : 'write',
-    'present' : 'write(s)',
+    'present' : ['write', 'writes'],
     'past' : 'wrote',
     'past participle' : 'written',
-    'gerund' : 'writing',},}
+    'gerund' : 'writing',}
+}

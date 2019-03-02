@@ -4,18 +4,14 @@ from pathlib import Path
 import string
 
 #custom
-import data.jhsdict as dict_
-from data2.verbforms import verb_forms as VERBFORMS
-from data2.irregularnouns import irregular_nouns as IRRNOUNS
+from data.jhsdict import jhswords as DICT
+from data.verbforms import verb_forms as VERBFORMS
+from data.irregularnouns import irregular_nouns as IRRNOUNS
 
 ALPHABET        = string.ascii_uppercase + string.ascii_lowercase
-DATA            = str(Path.cwd())+"/src/data2/"
-#DATA            = str(Path.cwd())+"/data2/"     #use this path for testing
+DATA            = str(Path.cwd())+"/src/data/"
 DEFAULTENTRY    = "not found"
-DICT            = dict_.jhswords
 DICTDIR         = "Dictionaries/"
-
-#DICTFILE        = DATA+"dictionarywords.py"
 DICTNAME        = "Total English 1, 2 and 3"
 GOODPUNCT       = ["'", "-", " "]
 JHSWORDS        = DATA+"jhsengvocab.txt"
@@ -26,8 +22,8 @@ SMALLINPUT      = 6
 UPPERCASE       = string.ascii_uppercase
 
 #for directories.py
-ROOTDIR         = "../"
-MAINPATH       = Path(ROOTDIR)
+ROOTDIR         = "./"
+MAINPATH        = Path(ROOTDIR)
 VOCABDIR        = "VocabularyTests/"
 DIRECTORIES     = [VOCABDIR, DICTDIR]
 USERDICT        = Path(ROOTDIR, DICTDIR)
