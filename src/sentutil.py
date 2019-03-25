@@ -1,17 +1,19 @@
 """Utility Module for senttab.py"""
-#3rd party
+# stand lib
+from typing import Any
+from typing import List
+
+# 3rd party
 import pytest
 from tkinter import filedialog
 from tkinter import messagebox
 from tkinter import ttk
 
-#custom
+# custom
 from dictutil import *
 
-validation_title = "Data Validation"
-sentence_instructions = "'Input any sentence' must be greater than 0 and less than {0} characters."
-
 no_punc_words = lambda s: list(map(remove_punctuation, s.split()))
+
 
 def get_pos_func(word):
     """Returns function that will get a word list matching 
@@ -29,25 +31,32 @@ def get_pos_func(word):
         "article"       : get_articles,
     }.get(get_pos(word)) 
 
-def different_word(word): 
-    """Chooses a different word with the same part of speech. 
-        Returns String."""
+
+def different_word(word: str) -> str: 
+    """Chooses a different word with same pos. Returns String."""
     temp = get_pos_func(word)()
-    while word in temp: temp.remove(word)
+    while word in temp: 
+        temp.remove(word)
     return random.choice(temp)
 
-def is_valid_sent(sentence):
+
+def is_valid_sent(sentence: str) -> bool:
     """Checks user inputted valid sentence string. Returns Boolean."""
     if len(sentence) > 0 and len(sentence) <= MAX_SENT_LEN:
         return True
-    else: return False
+    else:
+        return False
 
-def make_label(widget, word, func=None):
+
+def make_label(widget: Any, word: str, func: Any=None) -> Any:
     """Assembles a ttk Label widget. Returns ttk Label Widget."""
-    if func != None:    return ttk.Label(widget, text=func(word))
-    else:               return ttk.Label(widget, text=word)
+    if func != None:
+        return ttk.Label(widget, text=func(word))
+    else:
+        return ttk.Label(widget, text=word)
 
-def get_results(widget, sent):
+
+def get_results(widget: Any, sent: str) -> List[Any]:
     """Creates a dictionary of the result labels. Returns List."""
     rows = []
     counter = 0
@@ -79,8 +88,10 @@ def get_results(widget, sent):
         counter = counter + 1
     return rows
 
+
 #no tests
-def sentence_guide(length):
+def sentence_guide(length: str) -> None:
     """Shows a pop up window with input instructions. Returns None."""
-    messagebox.showinfo(title=validation_title, 
-        message=sentence_instructions.format(length))
+    messagebox.showinfo(title=VALIDATION_TITLE, 
+        message=SENT_INSTR.format(length))
+    return None

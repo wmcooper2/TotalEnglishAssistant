@@ -1,8 +1,8 @@
 """Test module for sentutil.py"""
-#3rd party
+# 3rd party
 import pytest
 
-#custom
+# custom
 from sentutil import *
 
 def test_get_pos_func():

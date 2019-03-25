@@ -1,24 +1,23 @@
 #!/usr/bin/python3
 """The Total English Assistant GUI tool."""
-
-#stand lib
+# stand lib
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import Menu
 from tkinter import messagebox
 from tkinter import ttk
 
-#custom
+# custom
 import directories
-#directories.make_dirs()
 from dicttab import DictionaryTab
 from senttab import SentenceTab
 from vocabtab import VocabularyTab
 
-def quit_():
+def quit_() -> None:
     """Quits the program, returns None."""
     win.quit()
     win.destroy()
+    return None
 
 directories.make_dirs()
 win = tk.Tk()
@@ -34,12 +33,11 @@ file_menu.add_command(label = "Exit", command = quit_)
 menu_bar.add_cascade(label = "Program", menu = file_menu)
 menu_bar.add_cascade(label = "Dictionary", menu = dictionary_menu)
 
-#GUI tabs
+# GUI tabs
 tab_control = ttk.Notebook(win)
 vocabulary_tab = VocabularyTab(tab_control)
 sentence_tab = SentenceTab(tab_control)
 dictionary_tab = DictionaryTab(tab_control)
-#images_tab = ImagesTab(tab_control)
 
 win.mainloop()
 

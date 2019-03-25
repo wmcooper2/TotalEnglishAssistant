@@ -15,12 +15,12 @@ class VocabularyTab():
         self.vocab_tab = ttk.Frame(tab_control)
         tab_control.add(self.vocab_tab, text="Vocabulary")
         tab_control.grid()
-        self.language   = tk.StringVar()
-        self.test_amt   = tk.IntVar()
+        self.language = tk.StringVar()
+        self.test_amt = tk.IntVar()
         self.q_per_test = tk.IntVar()
-        self.std_grade  = tk.IntVar()
-        self.lo         = tk.IntVar()
-        self.hi         = tk.IntVar()
+        self.std_grade = tk.IntVar()
+        self.lo = tk.IntVar()
+        self.hi = tk.IntVar()
         self.vocab_list = []
         self.vocab_test = []
 
@@ -90,7 +90,7 @@ class VocabularyTab():
             command=self.reset_choices)
         reset_button.grid(column=1, row=0, padx=6, pady=6)
 
-    def valid_vocab_input(self):
+    def valid_vocab_input(self) -> bool:
         """Validates the user input. Returns Boolean."""
         if in_question_range(self.q_per_test) \
             and in_test_range(self.test_amt) \
@@ -98,9 +98,10 @@ class VocabularyTab():
             and lang_chosen(self.language) \
             and pages_chosen(self.lo, self.hi):
             return True
-        else: return False
+        else:
+            return False
 
-    def reset_choices(self):
+    def reset_choices(self) -> None:
         """Clears the user's input from the entry widgets. Returns None."""
         self.std_grade_input.delete(0, "end")
         self.from_page.delete(0, "end")
@@ -108,36 +109,37 @@ class VocabularyTab():
         self.test_amt_input.delete(0, "end")
         self.q_per_test_input.delete(0, "end")
 
-    def make_vocab_tests(self):
+    def make_vocab_tests(self) -> None:
         """Makes all of the vocabulary tests requested by the user.
             Returns None."""
         self.random_vocab()
         save(self.vocab_list, 
-            dict(amt=self.test_amt.get(), 
-            grade=self.std_grade.get(), 
-            lang=self.language.get()))
+             dict(amt=self.test_amt.get(), 
+             grade=self.std_grade.get(), 
+             lang=self.language.get()))
 
-    def random_vocab(self):
+    def random_vocab(self) -> List[str]:
         """Makes a list of randomized words. Returns List."""
         self.reset_vocab()
-        e_words    = self.word_filter()
-        len_e_words= len(e_words)
+        e_words = self.word_filter()
+        len_e_words = len(e_words)
+#         return 
 
-        def limit():
+        def limit() -> bool:
             """Checks if amount of words per test reaches the most 
                 limiting factor. Returns Boolean"""
             return len(self.vocab_list) >= int(self.q_per_test_input.get()) \
                 or len(self.vocab_list) >= len_e_words
 
-        def populate_vocab_list():
+        def populate_vocab_list() -> bool:
             """Populates the vocab list. Returns None."""
             while not limit(): 
                 choice = random.choice(e_words)
-                if self.language.get() == "english":
+                if self.language.get() is "english":
                     self.vocab_list.append(choice)
-                if self.language.get() == "japanese":
+                if self.language.get() is "japanese":
                     self.vocab_list.append(japanese(choice))
-                if self.language.get() == "english_japanese":
+                if self.language.get() is "english_japanese":
                     func = random.choice([None, japanese])
                     if func is not None:
                         self.vocab_list.append(japanese(choice))
@@ -145,21 +147,23 @@ class VocabularyTab():
                 e_words.remove(choice)
 
         populate_vocab_list()
-        return
+        return False
 
-    def reset_vocab(self):
+    def reset_vocab(self) -> None:
         """Clears the vocab_list attribute. Returns None."""
         self.vocab_list = []
+        return None
 
-    def word_filter(self):
+    def word_filter(self) -> List[str]:
         """Filters words based on selections. Returns List."""
         words = grade_filter(self.std_grade.get(), DICT)
         return page_filter(self.lo.get(), self.hi.get(), words)
 
-    def quit_(self):
+    def quit_(self) -> None:
         """Quits the program. Returns None."""
         win.quit()
         win.destroy()
+        return None
 
 if __name__ == '__main__':
         win = tk.Tk()

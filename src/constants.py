@@ -48,6 +48,8 @@ VERBS = DATA + "verbs.txt"
 # for sentencestab.py
 MAX_SENT_LEN = 20
 SENT_WIDGET_LEN = 39
+SENT_INSTR = "'Input any sentence' must be greater than 0 and less than {0} characters."
+VALIDATION_TITLE = "Data Validation"
 
 # for vocabularytab.py
 MAX_Q_PER_T = 100

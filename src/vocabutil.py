@@ -40,26 +40,35 @@ in_test_range       = lambda num: num>=MIN_T_AMT and num<=MAX_T_AMT
 test_num            = lambda x: "Test"+str(x+1)
 pages_chosen        = lambda lo, hi: lo>=MIN_PAGE and hi<=MAX_PAGE and hi>lo
 
-def valid_q_input(amt):
+
+def valid_q_input(amt: str) -> bool:
     """Validates the amount of questions per test is within 10 and 100.
         Returns Boolean."""
-    if in_question_range(amt) and type(amt) is int: return True
-    else: return False
+    if in_question_range(amt) and type(amt) is int:
+        return True
+    else:
+        return False
 
-def tst_amt(amt): #called from where?
+
+def tst_amt(amt: str) -> bool: #called from where?
     """Validates 'amt' is between 1 and 50. Returns Boolean."""
-    if in_test_range(amt) and type(amt) is int: return True
-    else: return False
+    if in_test_range(amt) and type(amt) is int:
+        return True
+    else: 
+        return False
 
-def valid_lang_chosen(lang): #called from where?
+
+def valid_lang_chosen(lang: str) -> bool: # called from where?
     """Validates a language choice was made. Returns Boolean."""
     if lang == "english" \
         or lang == "japanese" \
         or lang == "english_japanese":
         return True
-    else: return False
+    else:
+        return False
 
-def make_file_name(num, std_grade, lang):
+
+def make_file_name(num: str, std_grade: str, lang: str) -> str:
     """Formats the name of the save file. Returns String."""
     return "{0}_{1}_{2}_{3}".format(
         date_time(),
@@ -67,9 +76,10 @@ def make_file_name(num, std_grade, lang):
         grade_number(std_grade),
         test_num(num))
 
+
 #how to test this, set.is_subset() of each other?
 #what is test_words[:]?
-def unique_words():
+def unique_words() -> None:
     """Filters out any duplicates in test_words. Returns None."""
     words_copy = test_words[:]
     temp = []
@@ -78,8 +88,10 @@ def unique_words():
             temp.append(word)
     temp.sort()
     test_words = temp[:] 
+    return None
 
-def save(words, val):
+
+def save(words, val) -> None:
     """Saves amt of tests to '<programroot>/VocabularyTests/<testname>'.
         - val is a dictionary.
         - <testname> is incremented with amt acting as a counter.
@@ -88,9 +100,12 @@ def save(words, val):
         for test_num in range(val["amt"]):
             file_name = make_file_name(test_num, val["grade"], val["lang"])
             write_file(file_name, words)
-    else: print("make error message")
+    else:
+        print("make error message")
+    return None
 
-def write_file(file_name, words):
+
+def write_file(file_name, words) -> None:
     """Writes words to file_name. Returns None."""
     vocab_copy = words[:]
     with open(ROOT_DIR+VOCAB_DIR+file_name, "w+", encoding = "utf-8") as f:
@@ -98,14 +113,18 @@ def write_file(file_name, words):
             choice = random.choice(vocab_copy)
             f.write(choice+"\n")
             vocab_copy.remove(choice)
+    return None
 
-#pop up windows
-def not_enough_words():
+
+def not_enough_words() -> None:
     """Shows message box of inusfficient word count. Returns None."""
-    return messagebox.askyesno(title=vocab_test_title, 
-        message=not_enough_vocab_words)
-    
-def didnt_write_test():
+    messagebox.askyesno(title=vocab_test_title, 
+                        message=not_enough_vocab_words)
+    return None
+
+
+def didnt_write_test() -> None:
     """Shows a message that the vocabulary test was not written. 
     Returns None."""
     messagebox.showinfo(title=vocab_test_title, message=no_vocab_test)
+    return None
