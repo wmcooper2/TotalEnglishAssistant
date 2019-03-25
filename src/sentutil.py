@@ -38,7 +38,7 @@ def different_word(word):
 
 def is_valid_sent(sentence):
     """Checks user inputted valid sentence string. Returns Boolean."""
-    if len(sentence) > 0 and len(sentence) <= MAXSENTLEN:
+    if len(sentence) > 0 and len(sentence) <= MAX_SENT_LEN:
         return True
     else: return False
 

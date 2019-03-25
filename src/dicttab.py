@@ -23,7 +23,7 @@ class DictionaryTab():
         self.center_box = ttk.LabelFrame(self.dictionary_tab)
         self.center_box.grid(column=0, row=0, padx=6, pady=6)
         current_dictionary = ttk.Label(self.center_box, 
-            text="Dictionary: " + DICTNAME)
+            text="Dictionary: " + DICT_NAME)
         current_dictionary.grid(column=0, row=0, padx=6, pady=6, 
             sticky=tk.W) 
 

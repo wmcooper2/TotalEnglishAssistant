@@ -31,7 +31,7 @@ class SentenceTab():
             text="Enter any sentence")
         input_frame.grid(column=0, row=1, padx=6, pady=6)		
         self.sent_input = ttk.Entry(input_frame, 
-            width=SENTWIDGETLEN)
+            width=SENT_WIDGET_LEN)
         self.sent_input.grid(column=0, row=0, columnspan=2, 
             padx=6, pady=6)
         

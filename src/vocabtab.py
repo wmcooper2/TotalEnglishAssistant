@@ -30,7 +30,7 @@ class VocabularyTab():
         grade_box = ttk.LabelFrame(options_frame, text="Grade level")
         grade_box.grid(column=0, row=0, padx=6, pady=6)
         self.std_grade_input = ttk.Entry(grade_box, 
-            width=SMALLINPUT, textvariable=self.std_grade)
+            width=SMALL_INPUT, textvariable=self.std_grade)
         self.std_grade_input.grid(column=0, row=0, pady=6, padx=6)
         self.std_grade_input.focus()
 
@@ -39,13 +39,13 @@ class VocabularyTab():
         from_label = ttk.Label(page_range_box, text="From: ")
         from_label.grid(column=0, row=0, padx=6, pady=6)
         self.from_page = ttk.Entry(page_range_box, 
-            width=SMALLINPUT, textvariable=self.lo)
+            width=SMALL_INPUT, textvariable=self.lo)
         self.from_page.grid(column=1, row=0, padx=6, pady=6)
 
         until_label = ttk.Label(page_range_box, text="Until: ")
         until_label.grid(column=2, row=0, sticky=tk.W, padx=6, pady=6)
         self.until_page = ttk.Entry(page_range_box, 
-            width=SMALLINPUT, textvariable=self.hi)
+            width=SMALL_INPUT, textvariable=self.hi)
         self.until_page.grid(column=3, row=0, padx=6, pady=6)
 
         language_text = ttk.LabelFrame(self.vocab_tab)
@@ -57,7 +57,7 @@ class VocabularyTab():
             text=JAPANESE, value='japanese', variable=self.language)
         japanese_language.grid(column=1, row=0, pady=6, padx=6)
         english_and_japanese = ttk.Radiobutton(language_text, 
-            text=BOTHLANG, value='english_japanese', 
+            text=BOTH_LANG, value='english_japanese', 
             variable=self.language)
         english_and_japanese.grid(column=2, row=0, pady=6, padx=6)
 
@@ -68,13 +68,13 @@ class VocabularyTab():
             text="How many questions per test?")
         questions_text.grid(column=0, row=0, sticky=tk.W, pady=6, padx=6)
         self.q_per_test_input = ttk.Entry(how_many_box, 
-            width=SMALLINPUT, textvariable=self.q_per_test)
+            width=SMALL_INPUT, textvariable=self.q_per_test)
         self.q_per_test_input.grid(column=1, row=0, pady=6, padx=6,
             sticky=tk.W)
         
         tests_text = ttk.Label(how_many_box, text="How many tests?")
         tests_text.grid(column=0, row=1, sticky=tk.W, pady=6, padx=6)
-        self.test_amt_input = ttk.Entry(how_many_box, width=SMALLINPUT, 
+        self.test_amt_input = ttk.Entry(how_many_box, width=SMALL_INPUT, 
             textvariable=self.test_amt)
         self.test_amt_input.grid(column=1, row=1, sticky=tk.W, 
             pady=6, padx=6)

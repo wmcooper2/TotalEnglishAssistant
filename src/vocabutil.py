@@ -35,10 +35,10 @@ input_instructions = "\n\n".join(invalid_input_messages)
 
 date_time           = lambda: datetime.datetime.now().strftime('%Y_%m_%d')
 grade_number        = lambda x: "Grade"+str(x)
-in_question_range   = lambda num: num>=MINQPERTEST and num<=MAXQPERTEST
-in_test_range       = lambda num: num>=MINTESTAMT and num<=MAXTESTAMT
+in_question_range   = lambda num: num>=MIN_Q_PER_T and num<=MAX_Q_PER_T
+in_test_range       = lambda num: num>=MIN_T_AMT and num<=MAX_T_AMT
 test_num            = lambda x: "Test"+str(x+1)
-pages_chosen        = lambda lo, hi: lo>=MINPAGE and hi<=MAXPAGE and hi>lo
+pages_chosen        = lambda lo, hi: lo>=MIN_PAGE and hi<=MAX_PAGE and hi>lo
 
 def valid_q_input(amt):
     """Validates the amount of questions per test is within 10 and 100.
@@ -93,7 +93,7 @@ def save(words, val):
 def write_file(file_name, words):
     """Writes words to file_name. Returns None."""
     vocab_copy = words[:]
-    with open(ROOTDIR+VOCABDIR+file_name, "w+", encoding = "utf-8") as f:
+    with open(ROOT_DIR+VOCAB_DIR+file_name, "w+", encoding = "utf-8") as f:
         for word in words:
             choice = random.choice(vocab_copy)
             f.write(choice+"\n")
