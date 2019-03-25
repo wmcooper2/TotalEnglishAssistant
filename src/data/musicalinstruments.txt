@@ -1,6 +1,0 @@
-piano
-violin
-flute
-trumpet
-drums
-guitar

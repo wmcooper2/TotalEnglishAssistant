@@ -1,5 +1,0 @@
-country
-person
-animal
-work location
-thing

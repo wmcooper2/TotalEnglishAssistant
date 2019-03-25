@@ -1,5 +1,0 @@
-paper
-books
-garbage
-candle
-food

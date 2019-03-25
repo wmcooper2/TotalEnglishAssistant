@@ -1,6 +1,0 @@
-country
-sport
-work location
-person
-animal
-instrument

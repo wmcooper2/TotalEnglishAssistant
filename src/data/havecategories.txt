@@ -1,5 +1,0 @@
-work location
-person
-animal
-instrument
-thing

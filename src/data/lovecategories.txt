@@ -1,6 +1,0 @@
-country
-sport
-person
-animal
-instrument
-thing
