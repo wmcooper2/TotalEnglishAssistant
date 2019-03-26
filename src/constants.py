@@ -10,13 +10,10 @@ from data.verbforms import verb_forms as VERBFORMS
 ALPHABET = string.ascii_uppercase + string.ascii_lowercase
 # DATA = str(Path.cwd())+"/src/data/"
 DATA = str(Path.cwd()) + "/data/"
-# DEFAULT_ENTRY = "not found"
 DICT_DIR = "Dictionaries/"
 DICT_NAME = "Total English 1, 2 and 3"
 GOOD_PUNCT = ["'", "-", " "]
 JHS_WORDS = DATA+"jhsengvocab.txt"
-# MAX_GRADE = 3
-# MIN_GRADE = 1
 NUMBERS = string.digits
 NOT_FOUND = "Not in dictionary."
 SMALL_INPUT = 6
@@ -24,7 +21,6 @@ UPPERCASE = string.ascii_uppercase
 
 # for directories.py
 ROOT_DIR = "./"
-# MAIN_PATH = Path(ROOT_DIR)
 VOCAB_DIR = "VocabularyTests/"
 DIRECTORIES = [VOCAB_DIR, DICT_DIR]
 USER_DICT = Path(ROOT_DIR, DICT_DIR)

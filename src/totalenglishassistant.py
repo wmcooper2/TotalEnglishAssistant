@@ -13,25 +13,27 @@ from dicttab import DictionaryTab
 from senttab import SentenceTab
 from vocabtab import VocabularyTab
 
+
 def quit_() -> None:
     """Quits the program, returns None."""
     win.quit()
     win.destroy()
     return None
 
+
 directories.make_dirs()
 win = tk.Tk()
 win.title("Total English Assistant")
 
 menu_bar = Menu(win)
-win.config(menu = menu_bar)
-file_menu = Menu(menu_bar, tearoff = 0)
-dictionary_menu = Menu(menu_bar, tearoff = 0)
-about_menu = Menu(menu_bar, tearoff = 0)
+win.config(menu=menu_bar)
+file_menu = Menu(menu_bar, tearoff=0)
+dictionary_menu = Menu(menu_bar, tearoff=0)
+about_menu = Menu(menu_bar, tearoff=0)
 
-file_menu.add_command(label = "Exit", command = quit_)
-menu_bar.add_cascade(label = "Program", menu = file_menu)
-menu_bar.add_cascade(label = "Dictionary", menu = dictionary_menu)
+file_menu.add_command(label="Exit", command=quit_)
+menu_bar.add_cascade(label="Program", menu=file_menu)
+menu_bar.add_cascade(label="Dictionary", menu=dictionary_menu)
 
 # GUI tabs
 tab_control = ttk.Notebook(win)
@@ -40,4 +42,3 @@ sentence_tab = SentenceTab(tab_control)
 vocabulary_tab = VocabularyTab(tab_control)
 
 win.mainloop()
-

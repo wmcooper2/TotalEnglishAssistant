@@ -25,12 +25,12 @@ def test_valid_q_input():
     assert valid_q_input(10)    == True
     assert valid_q_input(100)   == True
 
-def test_valid_lang_chosen():
-    assert valid_lang_chosen("")                  == False
-    assert valid_lang_chosen(1)                   == False
-    assert valid_lang_chosen("english")           == True
-    assert valid_lang_chosen("japanese")          == True
-    assert valid_lang_chosen("english_japanese")  == True
+def test_valid_lang():
+    assert valid_lang("")                  == False
+    assert valid_lang(1)                   == False
+    assert valid_lang("english")           == True
+    assert valid_lang("japanese")          == True
+    assert valid_lang("english_japanese")  == True
 
 def test_pages_chosen():
     assert pages_chosen(-1, -100)   == False
@@ -51,15 +51,3 @@ def test_make_file_name():
 
 def test_grade_number():
     assert type(grade_number(1)) is str
-
-#def test_unique_words():
-#???
-#
-#def test_save():
-#    pass
-#
-#def test_single():
-#    pass
-#
-#def test_multiple():
-#    pass

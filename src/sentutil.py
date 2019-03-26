@@ -4,7 +4,6 @@ from typing import Any
 from typing import List
 
 # 3rd party
-import pytest
 from tkinter import filedialog
 from tkinter import messagebox
 from tkinter import ttk
@@ -18,7 +17,8 @@ no_punc_words = lambda s: list(map(remove_punctuation, s.split()))
 def different_word(word: str) -> str: 
     """Chooses a different word with same pos. Returns String."""
     somepos = get_pos(word)
-    temp = word_list(FILES.get(somepos))
+    file_ = FILES.get(somepos)
+    temp = word_list(file_)
     while word in temp: 
         temp.remove(word)
     return random.choice(temp)
@@ -34,7 +34,7 @@ def is_valid_sent(sentence: str) -> bool:
 
 def make_label(widget: Any, word: str, func: Any=None) -> Any:
     """Assembles a ttk Label widget. Returns ttk Label Widget."""
-    if func != None:
+    if func is not None:
         return ttk.Label(widget, text=func(word))
     else:
         return ttk.Label(widget, text=word)

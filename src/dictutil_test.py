@@ -61,21 +61,11 @@ def test_get_entry():
     assert type(get_entry(" ")).__name__ == "NoneType"
     assert type(get_entry("!")).__name__ == "NoneType"
 
-def test_exists():
-    assert exists("apple")      == True
-    assert exists("California") == True
-    assert exists("yay")        == False
-
 def test_in_dict():
     assert in_dict("apple")       == True
     assert in_dict("California")  == True
     assert in_dict("superduper")  == False
     assert in_dict(" ")           == False
-
-# def test_is_valid():
-#     assert is_valid("wonderful")    == True
-#     assert is_valid("California")   == True
-#     assert is_valid("!californ1a")  == False
 
 def test_grade_filter():
     assert len(grade_filter(1, DICT)) == 610
@@ -86,16 +76,3 @@ def test_page_filter():
     assert len(page_filter(0, 100, DICT))   == 1113
     assert len(page_filter(0, 75, DICT))    == 827
     assert len(page_filter(0, 50, DICT))    == 511
-
-def test_punct_filter():
-    assert len(punct_filter(DICT)) == 43
-
-
-
-
-#make
-def save_dictionary():
-    pass
-
-def edit_entry():
-    pass
