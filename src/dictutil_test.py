@@ -72,10 +72,10 @@ def test_in_dict():
     assert in_dict("superduper")  == False
     assert in_dict(" ")           == False
 
-def test_is_valid():
-    assert is_valid("wonderful")    == True
-    assert is_valid("California")   == True
-    assert is_valid("!californ1a")  == False
+# def test_is_valid():
+#     assert is_valid("wonderful")    == True
+#     assert is_valid("California")   == True
+#     assert is_valid("!californ1a")  == False
 
 def test_grade_filter():
     assert len(grade_filter(1, DICT)) == 610

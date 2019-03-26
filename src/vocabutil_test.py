@@ -25,12 +25,6 @@ def test_valid_q_input():
     assert valid_q_input(10)    == True
     assert valid_q_input(100)   == True
 
-def test_tst_amt():
-    assert tst_amt(0)     == False
-    assert tst_amt(-1)    == False
-    assert tst_amt(51)    == False
-    assert tst_amt(1)     == True
-
 def test_valid_lang_chosen():
     assert valid_lang_chosen("")                  == False
     assert valid_lang_chosen(1)                   == False

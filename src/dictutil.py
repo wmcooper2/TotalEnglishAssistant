@@ -11,7 +11,7 @@ gt_eq_grade = lambda w, g: int(grade(w))>=int(g)
 gt_eq_page = lambda w, p: int(page_num(w)) >= int(p)
 lt_eq_grade = lambda w, g: int(grade(w))<=int(g)
 lt_eq_page = lambda w, p: int(page_num(w))<=int(p)
-not_none = lambda w: w != None
+# not_none = lambda w: w != None
 dict_value = lambda w, val: DICT[w][val]
 
 
@@ -21,13 +21,15 @@ def edit_entry(key, entry):
     save_dictionary(dictionary, default_dict_path)
 
 
-def exists(word):
+def exists(word: str) -> bool:
     """Checks if word exists in book's dictionary. Returns Boolean."""
-    if gt_zero(word):
-        if not is_proper_noun(word):
-            return in_dict(word.lower())
-        elif is_proper_noun(word):
-            return in_dict(word)
+#     if gt_zero(word):
+    if not is_proper_noun(word):
+        return in_dict(word.lower())
+    elif is_proper_noun(word):
+        return in_dict(word)
+    else:
+        return False
 
 
 def get_entry(word):
@@ -38,42 +40,56 @@ def get_entry(word):
         return None
 
 
-def get_pos(word):
+def get_pos(word: str) -> str:
     """Gets part of speech for word. Returns String."""
-    if is_valid(word):
+#     if is_valid(word):
+#     import pdb; pdb.set_trace()
+    if in_dict(word):
         return dict_value(word, "part of speech")
+    return ""
 
 
-def grade(word):
+def grade(word: str) -> str:
     """Gets grade level of word. Returns String."""
-    if is_valid(word):
+#     if is_valid(word):
+    if in_dict(word):
         return dict_value(word, "grade")
 
 
-def grade_filter(grade, some_list):
-    """Filters some_list based on grade level. Returns List."""
-    return list(filter(lambda word: same_grade(grade, word), some_list))
+def grade_filter(grade: str, words: List[str]) -> List[str]:
+    """Filters words based on grade level. Returns List."""
+    return list(filter(lambda word: in_grade(grade, word), words))
 
 
 def in_dict(word):
     """Checks if word in books' dictionaries. Returns Boolean."""
     dictionary = []
     with open(JHS_WORDS, "r") as f:
-        for word in f.readlines():
-            dictionary.append(word.strip())
-#         [dictionary.append(word.strip()) for word in f.readlines()]
-    return word in dictionary
+        for entry in f.readlines():
+            dictionary.append(entry.strip())
+        return word in dictionary
 
 
-def is_valid(word):
-    """Validates a word. Returns Boolean."""
-    if not_none(word):
-        return gt_zero(word) and is_str(word) and in_dict(word)
+def in_grade(grade, word):
+    """Checks word is in grade. Returns Boolean."""
+    if int(grade) == int(DICT[word]["grade"]):
+        return True
     else:
         return False
 
 
-def in_pages(word, lo, hi):
+def is_valid(word):
+    """Validates a word. Returns Boolean."""
+#     if not_none(word):
+    if word is not None:
+#         return gt_zero(word) and is_str(word) and in_dict(word)
+#         return is_str(word) and in_dict(word)
+        return in_dict(word)
+    else:
+        return False
+
+
+def in_pages(word: str, lo: str, hi: str) -> bool:
     """Checks if a word exists within a page range. Returns Boolean."""
     if gt_eq_page(word, lo) and lt_eq_page(word, hi):
         return True
@@ -83,33 +99,26 @@ def in_pages(word, lo, hi):
 
 def japanese(word):
     """Gets the Japanese definition. Returns String."""
-    if is_valid(word):
+#     if is_valid(word):
+    if in_dict(word):
         return dict_value(word, "japanese")
 
 
-def page_filter(lo, hi, some_list):
-    """Gets words by page range. Returns List."""
-    return list(filter(lambda word: in_pages(word, lo, hi), some_list))
+def page_filter(lo: str, hi: str, words: List[str]) -> List[str]:
+    """Filters words by page range. Returns List."""
+    return list(filter(lambda word: in_pages(word, lo, hi), words))
 
 
 def page_num(word):
     """Gets page number of word. Returns String."""
-    if is_valid(word):
+#     if is_valid(word):
+    if in_dict(word):
         return dict_value(word, "page")
 
 
 def punct_filter(some_list):
-    """Gets words that have an apostrophe. Returns List."""
+    """Filters out words containing apostrophe. Returns List."""
     return list(filter(lambda word: "'" in word, some_list.keys()))
-
-
-# same_grade = lambda st_gr, w: st_gr == int(grade(w))
-def same_grade(grade, word):
-    """Checks that a word is in grade level. Returns Boolean."""
-    if int(grade) == int(DICT[word]["grade"]):
-        return True
-    else:
-        return False
 
 
 def save_dictionary(save_this, file_path):

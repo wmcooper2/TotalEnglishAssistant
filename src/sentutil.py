@@ -15,26 +15,10 @@ from dictutil import *
 no_punc_words = lambda s: list(map(remove_punctuation, s.split()))
 
 
-def get_pos_func(word):
-    """Returns function that will get a word list matching 
-        the part of speech 'word'. Returns Function."""
-    return {
-        "noun"          : get_nouns,
-        "pronoun"       : get_pronouns,
-        "verb"          : get_verbs,
-        "adjective"     : get_adjectives,
-        "adverb"        : get_adverbs,
-        "auxverb"       : get_auxverbs,
-        "conjunction"   : get_conjunctions,
-        "interjection"  : get_interjections,
-        "preposition"   : get_prepositions,
-        "article"       : get_articles,
-    }.get(get_pos(word)) 
-
-
 def different_word(word: str) -> str: 
     """Chooses a different word with same pos. Returns String."""
-    temp = get_pos_func(word)()
+    somepos = get_pos(word)
+    temp = word_list(FILES.get(somepos))
     while word in temp: 
         temp.remove(word)
     return random.choice(temp)
@@ -72,7 +56,8 @@ def get_results(widget: Any, sent: str) -> List[Any]:
             else:                           base = base_noun(word)
         else: base = word
 
-        if is_valid(base): 
+#         if is_valid(base): 
+        if in_dict(base): 
             temp["given"]  = make_label(widget, word)
             temp["grade"]   = make_label(widget, base, func=grade)
             temp["page"]    = make_label(widget, base, func=page_num)

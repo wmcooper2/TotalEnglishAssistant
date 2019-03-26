@@ -35,9 +35,9 @@ menu_bar.add_cascade(label = "Dictionary", menu = dictionary_menu)
 
 # GUI tabs
 tab_control = ttk.Notebook(win)
-vocabulary_tab = VocabularyTab(tab_control)
-sentence_tab = SentenceTab(tab_control)
 dictionary_tab = DictionaryTab(tab_control)
+sentence_tab = SentenceTab(tab_control)
+vocabulary_tab = VocabularyTab(tab_control)
 
 win.mainloop()
 

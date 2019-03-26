@@ -64,16 +64,22 @@ class DictionaryTab():
         self.word_results = ttk.LabelFrame(self.center_box, text="Results") 
         self.word_results.grid(column=0, row=3, padx=6, pady=6, sticky=tk.W)
 
-    def reset_frame(self):
+    def reset_frame(self) -> None:
         """Removes the word entry from the GUI. Returns None."""
         self.word_results.grid_forget()
+        return None
 
-    def show_entry(self):
+    def show_entry(self) -> None:
         """Shows the entire entry on the GUI. Returns None."""
         counter = 0        
-        for key, value in self.entry.items():
-            self.draw_key_value(key, value, counter)
-            counter = counter + 1
+        try:
+            for key, value in self.entry.items():
+                self.draw_key_value(key, value, counter)
+                counter = counter + 1
+        except AttributeError:
+            self.draw_key_value(self.entry, NOT_FOUND, counter)
+        return None
+
 
     def add_key(self, key, row_counter):
         """Makes the dictionary-entry-key into an Entry widget object.

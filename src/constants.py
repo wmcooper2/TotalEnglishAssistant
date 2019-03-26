@@ -6,10 +6,10 @@ import string
 # custom
 from data.jhsdict import jhswords as DICT
 from data.verbforms import verb_forms as VERBFORMS
-# from data.irregularnouns import irregular_nouns as IRRNOUNS
 
 ALPHABET = string.ascii_uppercase + string.ascii_lowercase
-DATA = str(Path.cwd())+"/src/data/"
+# DATA = str(Path.cwd())+"/src/data/"
+DATA = str(Path.cwd()) + "/data/"
 # DEFAULT_ENTRY = "not found"
 DICT_DIR = "Dictionaries/"
 DICT_NAME = "Total English 1, 2 and 3"
@@ -18,6 +18,7 @@ JHS_WORDS = DATA+"jhsengvocab.txt"
 # MAX_GRADE = 3
 # MIN_GRADE = 1
 NUMBERS = string.digits
+NOT_FOUND = "Not in dictionary."
 SMALL_INPUT = 6
 UPPERCASE = string.ascii_uppercase
 
@@ -44,14 +45,31 @@ PREPOSITIONS = DATA + "prepositions.txt"
 PRONOUNS = DATA + "pronouns.txt"
 PROP_NOUNS = DATA + "propernouns.txt"
 VERBS = DATA + "verbs.txt"
+FILES = {
+        "adjective"  : ADJECTIVES,
+        "adverb" : ADVERBS,
+        "article" : ARTICLES,
+        "auxverb" : AUXVERBS,
+        "bolded" : BOLDED,
+        "conjunction" : CONJUNCTIONS,
+        "english" : ENGLISH_VOCAB,
+        "interjection" : INTERJECTIONS,
+        "irregular_nouns" : IRR_NOUNS,
+        "japanese" : JAP_VOCAB,
+        "noun" : NOUNS,
+        "preposition" : PREPOSITIONS,
+        "pronoun" : PRONOUNS,
+        "proper_nouns" : PROP_NOUNS,
+        "verb" : VERBS,
+        }
 
-# for sentencestab.py
+# for sentences tab
 MAX_SENT_LEN = 20
 SENT_WIDGET_LEN = 39
 SENT_INSTR = "'Input any sentence' must be greater than 0 and less than {0} characters."
 VALIDATION_TITLE = "Data Validation"
 
-# for vocabularytab.py
+# for vocabulary tab
 MAX_Q_PER_T = 100
 MIN_Q_PER_T = 10
 MAX_T_AMT = 50

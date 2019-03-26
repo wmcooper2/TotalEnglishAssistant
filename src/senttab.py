@@ -1,12 +1,12 @@
 """GUI Sentences Tab."""
-#stand lib
+# stand lib
 import os
 import sys
 import tkinter as tk
 from tkinter import ttk
 from tkinter import Menu
 
-#custom
+# custom
 from sentutil import *
 
 class SentenceTab():
@@ -18,7 +18,6 @@ class SentenceTab():
     results_dict    = {}
 
     def __init__(self, tab_control):
-        """Draws the widgets in the 'Sentences' tab. Returns None."""
         self.sentence_tab = ttk.Frame(tab_control)
         tab_control.add(self.sentence_tab, text = "Sentences")
         tab_control.grid()
@@ -27,6 +26,7 @@ class SentenceTab():
         self.until_page = tk.IntVar()
         self.student_grade_level = tk.IntVar()
 
+        # box 1
         input_frame = ttk.LabelFrame(self.sentence_tab, 
             text="Enter any sentence")
         input_frame.grid(column=0, row=1, padx=6, pady=6)		
@@ -40,9 +40,10 @@ class SentenceTab():
         check_sentence_button.grid(column=0, row=1, padx=6, pady=6)
 
         reset_button = ttk.Button(input_frame, text="Reset", 
-            command=self.reset_choices)
+            command=self.reset_gui)
         reset_button.grid(column=1, row=1, padx=6, pady=6)
 
+        # box 2 (drawn after button click)
         self.draw_res_fr()
 
     def quit_(self):
@@ -83,7 +84,7 @@ class SentenceTab():
             padx=6, pady=6, sticky=tk.E)
         ttk.Label(self.res_fr, text="base verb:").grid(column=0, 
             row=3, padx=6, pady=6, sticky=tk.E)
-        ttk.Label(self.res_fr, text="singular noun:").grid(column=0, 
+        ttk.Label(self.res_fr, text="base noun:").grid(column=0, 
             row=4, padx=6, pady=6, sticky=tk.E)
 
     def reset_res_fr(self):
@@ -98,7 +99,7 @@ class SentenceTab():
 
     def break_up_no_punct_sent(self):
         """Adds no-punct words to self.user_sentence. Returns None."""
-        self.no_punct_sent = []  #clear the stored values
+        self.no_punct_sent = []  # clear the stored values
         for word in self.sent_input.get().split(" "):
             self.no_punct_sent.append(remove_punctuation(word))
     
@@ -108,8 +109,8 @@ class SentenceTab():
         for word in self.sent_input.get().split(" "):
             self.original_sent.append(word)
         
-    def reset_choices(self):
-        """Clears user's input/results from widgets. Returns None."""
+    def reset_gui(self):
+        """Clears user's results from gui. Returns None."""
         self.sent_input.delete(0, "end")
         self.reset_res_fr()
 
@@ -138,13 +139,13 @@ class Sentence():
             self.words[word_index] = word.english
 
 if __name__ == '__main__':
-    win             = tk.Tk()
+    win = tk.Tk()
     win.title("Test of Sentence Tab only")
-    tab_control     = ttk.Notebook(win)
-    menu_bar        = Menu(win)
+    tab_control = ttk.Notebook(win)
+    menu_bar = Menu(win)
     win.config(menu=menu_bar)
-    sentence_tab    = SentenceTab(tab_control)
-    file_menu       = Menu(menu_bar, tearoff = 0)
+    sentence_tab = SentenceTab(tab_control)
+    file_menu = Menu(menu_bar, tearoff = 0)
     file_menu.add_command(label="Exit", command=sentence_tab.quit_)
     menu_bar.add_cascade(label="File", menu=file_menu)
     win.mainloop()

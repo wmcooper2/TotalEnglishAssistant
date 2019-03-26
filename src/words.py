@@ -17,7 +17,7 @@ final_o = lambda x: x[-1] == "o"
 final_y = lambda x: x[-1] == "y"
 final_f1 = lambda x: x[-1] == "f"
 final_f2 = lambda x: x[-2] == "f"
-gt_zero = lambda x: len(x) > 0
+# gt_zero = lambda x: len(x) > 0
 # is_irr_noun = lambda x: x in IRRNOUNS.keys()
 is_number = lambda x: x in NUMBERS
 is_str = lambda x: type(x) is str
@@ -48,50 +48,69 @@ def base_verb(verb: str) -> str:
                 return base
     return " "
 
+ 
+# def get_adjectives() -> List[str]:
+#     """Gets a list of adjectives. Returns List."""
+#     temp = []
+#     with open(ADJECTIVES, "r") as f:
+# #         [temp.append(line.strip()) for line in f.readlines()]
+#         for line in f.readlines():
+#             temp.append(line.strip())
+#     return temp
+ 
 
-def get_adjectives() -> List[str]:
-    """Gets a list of adjectives. Returns List."""
+def word_list(somefile: str) -> List[str]:
+    """Gets somefile's list of words. Returns List."""
     temp = []
-    with open(ADJECTIVES, "r") as f:
-#         [temp.append(line.strip()) for line in f.readlines()]
-        for line in f.readlines():
+    with open(somefile, "r") as file_:
+        for line in file_.readlines():
             temp.append(line.strip())
     return temp
 
-
-def get_adverbs() -> List[str]:
-    """Gets a list of adverbs. Returns List."""
-    temp = []
-    with open(ADVERBS, "r") as f:
-#         [temp.append(line.strip()) for line in f.readlines()]
-        for line in f.readlines():
-            temp.append(line.strip())
-    return temp
+# def in_word_list(somefile: str, someword: str) -> bool:
+#     """Checks if a word is in wordlist. Returns Boolean."""
+#     return someword in wordlist(somefile)
+#     return someword in temp
 
 
-def get_articles() -> List[str]:
-    """Gets a list of articles. Returns List."""
-    temp = []
-    with open(ARTICLES, "r") as f:
-#         [temp.append(line.strip()) for line in f.readlines()]
-        for line in f.readlines():
-            temp.append(line.strip())
-    return temp
 
 
-def get_auxverbs() -> List[str]:
-    """Gets a list of auxverbs. Returns List."""
-    temp = []
-    with open(AUXVERBS, "r") as f:
-#         [temp.append(line.strip()) for line in f.readlines()]
-        for line in f.readlines():
-            temp.append(line.strip())
-    return temp
 
 
-def get_base_foreign_noun(word):
-    """Gets base foreign noun. Returns String."""
-    pass
+ 
+# def get_adverbs() -> List[str]:
+#     """Gets a list of adverbs. Returns List."""
+#     temp = []
+#     with open(ADVERBS, "r") as f:
+# #         [temp.append(line.strip()) for line in f.readlines()]
+#         for line in f.readlines():
+#             temp.append(line.strip())
+#     return temp
+ 
+
+# def get_articles() -> List[str]:
+#     """Gets a list of articles. Returns List."""
+#     temp = []
+#     with open(ARTICLES, "r") as f:
+# #         [temp.append(line.strip()) for line in f.readlines()]
+#         for line in f.readlines():
+#             temp.append(line.strip())
+#     return temp
+ 
+
+# def get_auxverbs() -> List[str]:
+#     """Gets a list of auxverbs. Returns List."""
+#     temp = []
+#     with open(AUXVERBS, "r") as f:
+# #         [temp.append(line.strip()) for line in f.readlines()]
+#         for line in f.readlines():
+#             temp.append(line.strip())
+#     return temp
+ 
+
+# def get_base_foreign_noun(word):
+#     """Gets base foreign noun. Returns String."""
+#     pass
 
 
 def get_base_irregular_noun(word: str) -> str:
@@ -102,15 +121,15 @@ def get_base_irregular_noun(word: str) -> str:
     return " "
 
 
-def get_conjunctions() -> List[str]:
-    """Gets a list of conjunctions. Returns List."""
-    temp = []
-    with open(CONJUNCTIONS, "r") as f:
-#         [temp.append(line.strip()) for line in f.readlines()]
-        for line in f.readlines():
-            temp.append(line.strip())
-    return temp
-
+# def get_conjunctions() -> List[str]:
+#     """Gets a list of conjunctions. Returns List."""
+#     temp = []
+#     with open(CONJUNCTIONS, "r") as f:
+# #         [temp.append(line.strip()) for line in f.readlines()]
+#         for line in f.readlines():
+#             temp.append(line.strip())
+#     return temp
+ 
 
 def get_english_japanese() -> List[str]:
     """Gets English and Japanese words. Returns List."""
@@ -127,14 +146,14 @@ def get_english_words() -> List[str]:
     return temp
 
 
-def get_interjections():
-    """Gets a list of interjections. Returns List."""
-    temp = []
-    with open(INTERJECTIONS, "r") as f:
-#         [temp.append(line.strip()) for line in f.readlines()]
-        for line in f.readlines():
-            temp.append(line.strip())
-    return temp
+# def get_interjections():
+#     """Gets a list of interjections. Returns List."""
+#     temp = []
+#     with open(INTERJECTIONS, "r") as f:
+# #         [temp.append(line.strip()) for line in f.readlines()]
+#         for line in f.readlines():
+#             temp.append(line.strip())
+#     return temp
 
 
 def get_irregular_nouns():
@@ -179,20 +198,20 @@ def get_nouns():
     return temp
 
 
-def get_prepositions():
-    """Gets a list of prepositions. Returns List."""
-    temp = []
-    with open(PREPOSITIONS, "r") as f:
-        [temp.append(line.strip()) for line in f.readlines()]
-    return temp
+# def get_prepositions():
+#     """Gets a list of prepositions. Returns List."""
+#     temp = []
+#     with open(PREPOSITIONS, "r") as f:
+#         [temp.append(line.strip()) for line in f.readlines()]
+#     return temp
+ 
 
-
-def get_pronouns():
-    """Gets a list of pronouns. Returns List."""
-    temp = []
-    with open(PRONOUNS, "r") as f:
-        [temp.append(line.strip()) for line in f.readlines()]
-    return temp
+# def get_pronouns():
+#     """Gets a list of pronouns. Returns List."""
+#     temp = []
+#     with open(PRONOUNS, "r") as f:
+#         [temp.append(line.strip()) for line in f.readlines()]
+#     return temp
 
 
 def get_verbs():
@@ -212,14 +231,14 @@ def get_words_in_language(lang):
     }.get(lang)
 
 
-def is_bolded(word: str) -> bool:
-    """Checks if word is bolded. Returns Boolean."""
-    temp = []
-    with open(BOLDED, "r") as f:
-        [temp.append(word.strip()) for word in f.readlines()]
-    return word in temp
-
-
+# def is_bolded(word: str) -> bool:
+#     """Checks if word is bolded. Returns Boolean."""
+#     temp = []
+#     with open(BOLDED, "r") as f:
+#         [temp.append(word.strip()) for word in f.readlines()]
+#     return word in temp
+ 
+ 
 def is_foreign_origin(word):
     """Checks if word is of foreign origin. Returns Boolean."""
     words = []
@@ -234,12 +253,12 @@ def is_good_char(char):
     return ((char in ALPHABET) or (char in GOOD_PUNCT)) 
 
 
-def is_noun(word):
-    """Checks if word is a noun. Returns Boolean."""
-    nouns = []
-    with open(NOUNS, "r") as f:
-        [nouns.append(word.strip()) for word in f.readlines()]
-    return word in nouns
+# def is_noun(word):
+#     """Checks if word is a noun. Returns Boolean."""
+#     nouns = []
+#     with open(NOUNS, "r") as f:
+#         [nouns.append(word.strip()) for word in f.readlines()]
+#     return word in nouns
 
 
 def is_proper_noun(word):
@@ -250,12 +269,12 @@ def is_proper_noun(word):
     return word in propernouns
 
 
-def is_verb(word):
-    """Checks if word is a verb. Returns Boolean."""
-    verbs = []
-    with open(VERBS, "r") as f:
-        [verbs.append(word.strip()) for word in f.readlines()]
-    return word in verbs
+# def is_verb(word):
+#     """Checks if word is a verb. Returns Boolean."""
+#     verbs = []
+#     with open(VERBS, "r") as f:
+#         [verbs.append(word.strip()) for word in f.readlines()]
+#     return word in verbs
 
 
 def make_plural(word):
