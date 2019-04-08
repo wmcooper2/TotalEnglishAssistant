@@ -1,4 +1,7 @@
-"""GUI Sentences Tab."""
+#!/usr/bin/env python3.7
+# senttab.py
+"""GUI's Sentence Tab."""
+
 # stand lib
 import os
 import sys
@@ -7,7 +10,9 @@ from tkinter import ttk
 from tkinter import Menu
 
 # custom
-from sentutil import *
+from constants import SENT_WIDGET_LEN
+from sentutil import get_results
+from words import remove_punctuation
 
 
 class SentenceTab():

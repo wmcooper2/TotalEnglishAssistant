@@ -1,29 +1,27 @@
+#!/usr/bin/env python3.7
+# constants.py
 """Global constants module for the Total English Assistant program."""
+
 # stand lib
 from pathlib import Path
 import string
 
 # custom
-from data.jhsdict import jhswords as DICT
-from data.verbforms import verb_forms as VERBFORMS
+# from data.jhsdict import jhswords as DICT
 
 ALPHABET = string.ascii_uppercase + string.ascii_lowercase
-# DATA = str(Path.cwd())+"/src/data/"
 DATA = str(Path.cwd()) + "/data/"
 DICT_DIR = "Dictionaries/"
 DICT_NAME = "Total English 1, 2 and 3"
 GOOD_PUNCT = ["'", "-", " "]
 JHS_WORDS = DATA+"jhsengvocab.txt"
-NUMBERS = string.digits
 NOT_FOUND = "Not in dictionary."
 SMALL_INPUT = 6
 UPPERCASE = string.ascii_uppercase
-
-# for directories.py
-ROOT_DIR = "./"
 VOCAB_DIR = "VocabularyTests/"
+
+# for directorysetup.py
 DIRECTORIES = [VOCAB_DIR, DICT_DIR]
-USER_DICT = Path(ROOT_DIR, DICT_DIR)
 
 # raw data files
 ADJECTIVES = DATA + "adjectives.txt"
@@ -42,21 +40,21 @@ PRONOUNS = DATA + "pronouns.txt"
 PROP_NOUNS = DATA + "propernouns.txt"
 VERBS = DATA + "verbs.txt"
 FILES = {
-        "adjective"  : ADJECTIVES,
-        "adverb" : ADVERBS,
-        "article" : ARTICLES,
-        "auxverb" : AUXVERBS,
-        "bolded" : BOLDED,
-        "conjunction" : CONJUNCTIONS,
-        "english" : ENGLISH_VOCAB,
-        "interjection" : INTERJECTIONS,
-        "irregular_nouns" : IRR_NOUNS,
-        "japanese" : JAP_VOCAB,
-        "noun" : NOUNS,
-        "preposition" : PREPOSITIONS,
-        "pronoun" : PRONOUNS,
-        "proper_nouns" : PROP_NOUNS,
-        "verb" : VERBS,
+        "adjective": ADJECTIVES,
+        "adverb": ADVERBS,
+        "article": ARTICLES,
+        "auxverb": AUXVERBS,
+        "bolded": BOLDED,
+        "conjunction": CONJUNCTIONS,
+        "english": ENGLISH_VOCAB,
+        "interjection": INTERJECTIONS,
+        "irregular_nouns": IRR_NOUNS,
+        "japanese": JAP_VOCAB,
+        "noun": NOUNS,
+        "preposition": PREPOSITIONS,
+        "pronoun": PRONOUNS,
+        "proper_nouns": PROP_NOUNS,
+        "verb": VERBS,
         }
 
 # for sentences tab

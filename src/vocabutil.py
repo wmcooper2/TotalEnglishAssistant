@@ -1,4 +1,7 @@
+#!/usr/bin/env python3.7
+# vocabutil.py
 """Utility module for vocabtab.py"""
+
 # stand lib
 import datetime
 from pathlib import Path
@@ -7,9 +10,18 @@ import tkinter as tk
 from tkinter import filedialog
 from tkinter import messagebox
 from tkinter import ttk
+from typing import List
+from typing import Text
 
 # custom
-from dictutil import *
+from constants import VOCAB_DIR
+from constants import MAX_PAGE
+from constants import MAX_Q_PER_T
+from constants import MAX_T_AMT
+from constants import MIN_PAGE
+from constants import MIN_Q_PER_T
+from constants import MIN_T_AMT
+from dictutil import japanese
 
 validation_title = "Data Validation"
 valid_input_instructions = ("Please follow these rules",
@@ -43,12 +55,35 @@ invalid_input_messages = [valid_input_instructions,
                           ]
 # input_instructions = "\n\n".join(invalid_input_messages)
 
-date_time = lambda: datetime.datetime.now().strftime('%Y_%m_%d')
-grade_number = lambda x: "Grade"+str(x)
-in_question_range = lambda num: num >= MIN_Q_PER_T and num <= MAX_Q_PER_T
-in_test_range = lambda num: num >= MIN_T_AMT and num <= MAX_T_AMT
-test_num = lambda x: "Test" + str(x + 1)
-pages_chosen = lambda lo, hi: lo >= MIN_PAGE and hi <= MAX_PAGE and hi > lo
+
+def date_time() -> Text:
+    """Gets timestamp. Returns String."""
+    return datetime.datetime.now().strftime('%Y_%m_%d')
+
+
+def grade_number(num: int) -> Text:
+    """Grade number for file name. Returns String."""
+    return "Grade"+str(num)
+
+
+def in_question_range(num: int) -> bool:
+    """Checks for proper question amount. Returns Boolean."""
+    return num >= MIN_Q_PER_T and num <= MAX_Q_PER_T
+
+
+def in_test_range(num: int) -> bool:
+    """Checks for proper test amount. Returns Boolean."""
+    return num >= MIN_T_AMT and num <= MAX_T_AMT
+
+
+def test_num(num: int) -> Text:
+    """Test number for file name. Returns String."""
+    return "Test" + str(num + 1)
+
+
+def pages_chosen():
+    """Checks for proper page range. Returns Boolean."""
+    return lo >= MIN_PAGE and hi <= MAX_PAGE and hi > lo
 
 
 def didnt_write_test() -> None:
@@ -65,7 +100,7 @@ def not_enough_words() -> None:
     return None
 
 
-def test_name(num: int, std_grade: int, lang: str) -> str:
+def test_name(num: int, std_grade: int, lang: Text) -> Text:
     """Formats the name of the save file. Returns String."""
     return "{0}_{1}_{2}_{3}".format(
         date_time(),
@@ -74,10 +109,10 @@ def test_name(num: int, std_grade: int, lang: str) -> str:
         test_num(num))
 
 
-def save_random_order(words: List[str], save_to: str) -> None:
+def save_random_order(words: List[Text], save_to: Text) -> None:
     """Saves test to 'VocabularyTests/'. Returns None."""
     temp = words[:]
-    file_path = ROOT_DIR + VOCAB_DIR + save_to
+    file_path = VOCAB_DIR + save_to
     with open(file_path, "w+", encoding="utf-8") as f:
         for word in words:
             choice = random.choice(temp)
@@ -86,7 +121,7 @@ def save_random_order(words: List[str], save_to: str) -> None:
     return None
 
 
-def valid_lang(lang: str) -> bool:
+def valid_lang(lang: Text) -> bool:
     """Validates a language choice was made. Returns Boolean."""
     if lang == "english" or lang == "japanese" or lang == "english_japanese":
         return True
@@ -94,7 +129,7 @@ def valid_lang(lang: str) -> bool:
         return False
 
 
-def valid_q_input(amt: str) -> bool:
+def valid_q_input(amt: Text) -> bool:
     """Validates user question amount input. Returns Boolean."""
     if in_question_range(amt) and type(amt) is int:
         return True
@@ -102,7 +137,7 @@ def valid_q_input(amt: str) -> bool:
         return False
 
 
-def vocabulary(have: List[str], want: int, lang: str) -> List[str]:
+def vocabulary(have: List[Text], want: int, lang: Text) -> List[Text]:
     """Returns List of random vocabulary words."""
     temp = []
     for i in range(want):
@@ -124,12 +159,6 @@ def vocabulary(have: List[str], want: int, lang: str) -> List[str]:
     return temp
 
 
-def valid_grade(grade: str) -> bool:
+def valid_grade(grade: Text) -> bool:
     """Validates user grade selection. Returns Boolean."""
-# def within_grade_range(word: str, start: str, end: str) -> bool:
-#     """Validates user grade selection. Returns Boolean."""
-#     if gt_eq_grade(word, start) and lt_eq_grade(word, end):
-#         return True
-#     else:
-#         return False
     return 1 <= int(grade) and int(grade) <= 3

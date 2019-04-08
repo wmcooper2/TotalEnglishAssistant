@@ -1,5 +1,7 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3.7
+# totalenglishassistant.py
 """The Total English Assistant GUI tool."""
+
 # stand lib
 import tkinter as tk
 from tkinter import filedialog
@@ -8,8 +10,9 @@ from tkinter import messagebox
 from tkinter import ttk
 
 # custom
-import directories
+from constants import DIRECTORIES
 from dicttab import DictionaryTab
+from directorysetup import make_directories
 from senttab import SentenceTab
 from vocabtab import VocabularyTab
 
@@ -21,7 +24,7 @@ def quit_() -> None:
     return None
 
 
-directories.make_dirs()
+make_directories(DIRECTORIES)
 win = tk.Tk()
 win.title("Total English Assistant")
 

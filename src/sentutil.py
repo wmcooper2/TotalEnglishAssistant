@@ -1,7 +1,12 @@
+#!/usr/bin/env python3.7
+# sentutil.py
 """Utility Module for senttab.py"""
+
 # stand lib
+import random
 from typing import Any
 from typing import List
+from typing import Text
 
 # 3rd party
 from tkinter import filedialog
@@ -9,22 +14,36 @@ from tkinter import messagebox
 from tkinter import ttk
 
 # custom
-from dictutil import *
+from constants import FILES
+from constants import MAX_SENT_LEN
+from constants import VALIDATION_TITLE
+from constants import SENT_INSTR
+from dictutil import get_pos
+from dictutil import grade
+from dictutil import in_dict
+from dictutil import page_num
+from words import base_noun
+from words import base_verb
+from words import remove_punctuation
+from words import word_list
 
-no_punc_words = lambda s: list(map(remove_punctuation, s.split()))
+
+def no_punc_words(words: List[Text]) -> List[Text]:
+    """Removes punctuation from words. Returns List."""
+    return list(map(remove_punctuation, words.split()))
 
 
-def different_word(word: str) -> str: 
+def different_word(word: Text) -> Text:
     """Chooses a different word with same pos. Returns String."""
     somepos = get_pos(word)
     file_ = FILES.get(somepos)
     temp = word_list(file_)
-    while word in temp: 
+    while word in temp:
         temp.remove(word)
     return random.choice(temp)
 
 
-def is_valid_sent(sentence: str) -> bool:
+def is_valid_sent(sentence: Text) -> bool:
     """Checks user inputted valid sentence string. Returns Boolean."""
     if len(sentence) > 0 and len(sentence) <= MAX_SENT_LEN:
         return True
@@ -32,7 +51,7 @@ def is_valid_sent(sentence: str) -> bool:
         return False
 
 
-def make_label(widget: Any, word: str, func: Any=None) -> Any:
+def make_label(widget: Any, word: Text, func: Any = None) -> Any:
     """Assembles a ttk Label widget. Returns ttk Label Widget."""
     if func is not None:
         return ttk.Label(widget, text=func(word))
@@ -40,7 +59,7 @@ def make_label(widget: Any, word: str, func: Any=None) -> Any:
         return ttk.Label(widget, text=word)
 
 
-def get_results(widget: Any, sent: str) -> List[Any]:
+def get_results(widget: Any, sent: Text) -> List[Any]:
     """Creates a dictionary of the result labels. Returns List."""
     rows = []
     counter = 0
@@ -49,34 +68,37 @@ def get_results(widget: Any, sent: str) -> List[Any]:
         temp = {}
         base = None
         temp["word"] = word
-        base = temp["word"]    
-        if base_verb(word) != " ":          base = base_verb(word)
+        base = temp["word"]
+        if base_verb(word) != " ":
+            base = base_verb(word)
         elif base_noun(word) != " ":
-            if not is_proper_noun(word):    base = base_noun(word.lower())
-            else:                           base = base_noun(word)
-        else: base = word
-
-#         if is_valid(base): 
-        if in_dict(base): 
-            temp["given"]  = make_label(widget, word)
-            temp["grade"]   = make_label(widget, base, func=grade)
-            temp["page"]    = make_label(widget, base, func=page_num)
-            temp["verb"]    = make_label(widget, base, func=base_verb)
-            temp["noun"]    = make_label(widget, word, func=base_noun)
+            if not is_proper_noun(word):
+                base = base_noun(word.lower())
+            else:
+                base = base_noun(word)
         else:
-            temp["given"]  = make_label(widget, word)
-            temp["grade"]   = ttk.Label(widget, text="#")
-            temp["page"]    = ttk.Label(widget, text="#")
-            temp["verb"]    = ttk.Label(widget, text="#")
-            temp["noun"]    = ttk.Label(widget, text="#")
+            base = word
+
+        if in_dict(base):
+            temp["given"] = make_label(widget, word)
+            temp["grade"] = make_label(widget, base, func=grade)
+            temp["page"] = make_label(widget, base, func=page_num)
+            temp["verb"] = make_label(widget, base, func=base_verb)
+            temp["noun"] = make_label(widget, word, func=base_noun)
+        else:
+            temp["given"] = make_label(widget, word)
+            temp["grade"] = ttk.Label(widget, text="#")
+            temp["page"] = ttk.Label(widget, text="#")
+            temp["verb"] = ttk.Label(widget, text="#")
+            temp["noun"] = ttk.Label(widget, text="#")
         rows.append(temp)
         counter = counter + 1
     return rows
 
 
-#no tests
-def sentence_guide(length: str) -> None:
+# no tests
+def sentence_guide(length: Text) -> None:
     """Shows a pop up window with input instructions. Returns None."""
-    messagebox.showinfo(title=VALIDATION_TITLE, 
-        message=SENT_INSTR.format(length))
+    messagebox.showinfo(title=VALIDATION_TITLE,
+                        message=SENT_INSTR.format(length))
     return None

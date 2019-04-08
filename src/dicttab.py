@@ -1,4 +1,7 @@
-"""GUI Dictionary Tab module."""
+#!/usr/bin/env python3.7
+# dicttab.py
+"""GUI's Dictionary Tab module."""
+
 # stand lib
 import os
 from pathlib import Path
@@ -7,6 +10,7 @@ from tkinter import ttk
 from tkinter import Menu
 
 # custom
+from constants import DICT_NAME
 from dictutil import *
 
 

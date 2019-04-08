@@ -1,6 +1,8 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3.7
+# newguitabtemplate.py
+"""GUI tab template module."""
 
-#stand lib
+# stand lib
 import random
 import time
 import tkinter as tk
@@ -8,6 +10,7 @@ from tkinter import ttk
 from tkinter import Menu
 from tkinter import filedialog
 from tkinter import messagebox
+
 
 class Tab():
     """A template for making new tabs for the GUI. Returns None."""
@@ -22,14 +25,15 @@ class Tab():
         win.quit()
         win.destroy()
 
+
 if __name__ == '__main__':
-        win         = tk.Tk()
-        win.title("TEMPLATE")
-        tab_control = ttk.Notebook(win)
-        menu_bar    = Menu(win)
-        win.config(menu=menu_bar)
-        tab         = Tab(tab_control)
-        file_menu   = Menu(menu_bar, tearoff=0)
-        file_menu.add_command(label="Exit", command=tab.quit_)
-        menu_bar.add_cascade(label="File", menu=file_menu)
-        win.mainloop()
+    win = tk.Tk()
+    win.title("TEMPLATE")
+    tab_control = ttk.Notebook(win)
+    menu_bar = Menu(win)
+    win.config(menu=menu_bar)
+    tab = Tab(tab_control)
+    file_menu = Menu(menu_bar, tearoff=0)
+    file_menu.add_command(label="Exit", command=tab.quit_)
+    menu_bar.add_cascade(label="File", menu=file_menu)
+    win.mainloop()

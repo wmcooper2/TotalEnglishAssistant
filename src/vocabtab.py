@@ -1,4 +1,7 @@
+#!/usr/bin/env python3.7
+# vocabtab.py
 """GUI's Vocabulary Tab"""
+
 # stand lib
 from pprint import pprint
 import random
@@ -8,7 +11,21 @@ from tkinter import ttk
 from tkinter import Menu
 
 # custom
-from vocabutil import *
+from constants import BOTH_LANG
+from constants import JAPANESE
+from constants import SMALL_INPUT
+from constants import VOCAB_DIR
+from data.jhsdict import jhswords as DICT
+from dictutil import grade_filter
+from dictutil import page_filter
+from vocabutil import in_question_range
+from vocabutil import in_test_range
+from vocabutil import pages_chosen
+from vocabutil import save_random_order
+from vocabutil import test_name
+from vocabutil import valid_grade
+from vocabutil import valid_lang
+from vocabutil import vocabulary
 
 
 class VocabularyTab():
