@@ -3,6 +3,7 @@
 """Utility Module for senttab.py"""
 
 # stand lib
+from collections import defaultdict
 import random
 from typing import Any
 from typing import List
@@ -66,27 +67,33 @@ def get_results(widget: Any, sent: Text) -> List[Any]:
 
     for word in no_punc_words(sent):
         temp = {}
-        base = None
         temp["word"] = word
         base = temp["word"]
         if base_verb(word) != " ":
             base = base_verb(word)
+            print("base 1", base)
         elif base_noun(word) != " ":
             if not is_proper_noun(word):
                 base = base_noun(word.lower())
+                print("base 2", base)
             else:
                 base = base_noun(word)
+                print("base 3", base)
         else:
             base = word
+            print("base 4", base)
+        temp["given"] = make_label(widget, word)
 
+        print("base 5", base)
+        print("base before first in_dict() call", base)
         if in_dict(base):
-            temp["given"] = make_label(widget, word)
+#             temp["given"] = make_label(widget, word)
             temp["grade"] = make_label(widget, base, func=grade)
             temp["page"] = make_label(widget, base, func=page_num)
             temp["verb"] = make_label(widget, base, func=base_verb)
             temp["noun"] = make_label(widget, word, func=base_noun)
         else:
-            temp["given"] = make_label(widget, word)
+#             temp["given"] = make_label(widget, word)
             temp["grade"] = ttk.Label(widget, text="#")
             temp["page"] = ttk.Label(widget, text="#")
             temp["verb"] = ttk.Label(widget, text="#")
@@ -95,6 +102,23 @@ def get_results(widget: Any, sent: Text) -> List[Any]:
         counter = counter + 1
     return rows
 
+
+def get_results2(widget: Any, sent: Text) -> List[Any]:
+    """Creates a dictionary of the result labels. Returns List."""
+    rows = []
+    counter = 0
+
+    for word in no_punc_words(sent):
+        temp = {}
+        temp["given"] = make_label(widget, word)
+        temp["grade"] = make_label(widget, word, func=grade)
+        temp["page"] = make_label(widget, word, func=page_num)
+        temp["verb"] = make_label(widget, word, func=base_verb)
+        temp["noun"] = make_label(widget, word, func=base_noun)
+        rows.append(temp)
+        counter = counter + 1
+    return rows
+ 
 
 # no tests
 def sentence_guide(length: Text) -> None:

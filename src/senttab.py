@@ -12,6 +12,7 @@ from tkinter import Menu
 # custom
 from constants import SENT_WIDGET_LEN
 from sentutil import get_results
+from sentutil import get_results2
 from words import remove_punctuation
 
 
@@ -58,7 +59,7 @@ class SentenceTab():
         self.reset_res_fr()
         self.draw_res_fr()
         self.original = self.sent_input.get()
-        self.results_rows = get_results(self.res_fr, self.original)
+        self.results_rows = get_results2(self.res_fr, self.original)
         self.draw_results_labels()
         self.draw_results_rows()
         return None

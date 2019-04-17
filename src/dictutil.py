@@ -70,13 +70,12 @@ def gt_eq_page(word: Text, page: Text) -> bool:
 
 
 def in_dict(word: Text) -> bool:
-    """Checks if word in books' dictionaries. Returns Boolean."""
+    """Checks if word in dictionary. Returns Boolean."""
     dictionary = []
     with open(JHS_WORDS, "r") as f:
         for entry in f.readlines():
             dictionary.append(entry.strip())
-        return word in dictionary
-    return False
+    return word in dictionary
 
 
 def in_grade(grade: Text, word: Text) -> bool:
