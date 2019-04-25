@@ -118,6 +118,23 @@ def get_results2(widget: Any, sent: Text) -> List[Any]:
         rows.append(temp)
         counter = counter + 1
     return rows
+
+
+def get_results_cli(sent: Text) -> List[Text]:
+    """Gets sentence results. Returns List."""
+    rows = []
+    counter = 0
+
+    for word in no_punc_words(sent):
+        temp = {}
+        temp["given"] = word
+        temp["grade"] = grade(word)
+        temp["page"] = page_num(word)
+        temp["verb"] = base_verb(word)
+        temp["noun"] = base_noun(word)
+        rows.append(temp)
+        counter = counter + 1
+    return rows
  
 
 # no tests
