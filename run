@@ -1,2 +1,2 @@
 #!/bin/bash
-python3 ./src/totalenglishassistant.py
+python3 ./totalenglishassistant/totalenglishassistant.py
