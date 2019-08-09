@@ -7,7 +7,16 @@ from typing import List
 from typing import Text
 
 # custom
-from constants import *
+from constants import (
+        ALPHABETS,
+        ENGLISH_VOCAB,
+        GOOD_PUNCT,
+        IRR_NOUNS,
+        JAP_VOCAB,
+        NOUNS,
+        PROP_NOUNS,
+        VERBS,
+        )
 from data.verbforms import verb_forms as VERB_FORMS
 
 

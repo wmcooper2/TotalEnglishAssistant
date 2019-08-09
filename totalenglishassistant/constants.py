@@ -9,8 +9,8 @@ import string
 # custom
 # from data.jhsdict import jhswords as DICT
 
-ALPHABET = string.ascii_uppercase + string.ascii_lowercase
-DATA = str(Path.cwd()) + "/data/"
+ALPHABET = string.ascii_uppercase+string.ascii_lowercase
+DATA = str(Path.cwd())+"/data/"
 DICT_DIR = "Dictionaries/"
 DICT_NAME = "Total English 1, 2 and 3"
 GOOD_PUNCT = ["'", "-", " "]
@@ -24,21 +24,21 @@ VOCAB_DIR = "VocabularyTests/"
 DIRECTORIES = [VOCAB_DIR, DICT_DIR]
 
 # raw data files
-ADJECTIVES = DATA + "adjectives.txt"
-ADVERBS = DATA + "adverbs.txt"
-ARTICLES = DATA + "articles.txt"
-AUXVERBS = DATA + "auxverbs.txt"
-BOLDED = DATA + "bolded.txt"
-CONJUNCTIONS = DATA + "conjunctions.txt"
-ENGLISH_VOCAB = DATA + "englishvocab.txt"
-INTERJECTIONS = DATA + "interjections.txt"
-IRR_NOUNS = DATA + "irregularnouns.txt"
-JAP_VOCAB = DATA + "japanesevocab.txt"
-NOUNS = DATA + "nouns.txt"
-PREPOSITIONS = DATA + "prepositions.txt"
-PRONOUNS = DATA + "pronouns.txt"
-PROP_NOUNS = DATA + "propernouns.txt"
-VERBS = DATA + "verbs.txt"
+ADJECTIVES = DATA+"adjectives.txt"
+ADVERBS = DATA+"adverbs.txt"
+ARTICLES = DATA+"articles.txt"
+AUXVERBS = DATA+"auxverbs.txt"
+BOLDED = DATA+"bolded.txt"
+CONJUNCTIONS = DATA+"conjunctions.txt"
+ENGLISH_VOCAB = DATA+"englishvocab.txt"
+INTERJECTIONS = DATA+"interjections.txt"
+IRR_NOUNS = DATA+"irregularnouns.txt"
+JAP_VOCAB = DATA+"japanesevocab.txt"
+NOUNS = DATA+"nouns.txt"
+PREPOSITIONS = DATA+"prepositions.txt"
+PRONOUNS = DATA+"pronouns.txt"
+PROP_NOUNS = DATA+"propernouns.txt"
+VERBS = DATA+"verbs.txt"
 FILES = {
         "adjective": ADJECTIVES,
         "adverb": ADVERBS,
@@ -71,4 +71,4 @@ MIN_T_AMT = 1
 MAX_PAGE = 300
 MIN_PAGE = 0
 JAPANESE = "日本語"
-BOTH_LANG = "English/" + JAPANESE
+BOTH_LANG = "English/"+JAPANESE

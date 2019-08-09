@@ -1,10 +1,9 @@
 """Break up jhswords.py into text files named after their pages"""
-
+# custom
 from typing import Text
 import jhsdict as jhs
 
 words = jhs.jhswords
-
 
 
 def save_to(grade: Text, word: Text, num: Text) -> None:

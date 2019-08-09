@@ -81,7 +81,7 @@ def test_num(num: int) -> Text:
     return "Test" + str(num + 1)
 
 
-def pages_chosen():
+def pages_chosen() -> bool:
     """Checks for proper page range. Returns Boolean."""
     return lo >= MIN_PAGE and hi <= MAX_PAGE and hi > lo
 
