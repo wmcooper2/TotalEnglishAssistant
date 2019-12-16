@@ -8,7 +8,7 @@ from typing import Text
 
 # custom
 from constants import (
-        ALPHABETS,
+        ALPHABET,
         ENGLISH_VOCAB,
         GOOD_PUNCT,
         IRR_NOUNS,
