@@ -4,8 +4,6 @@ It is intended to be a supplement to the "Total English" book series.
 This textbook series is (in 2019) taught in many of Japan's middle schools.  
 _Low priority project. I learned what I wanted to learn from this project and now I need to move on. I don't intend to continue working aggressively on this one._
 
-See the [wiki](https://github.com/wmcooper2/TotalEnglishAssistant/wiki) for more info.
-
 Here is a combined screenshot of the CLI and GUI versions.  
 ![Total English Assistant](screenshot.png)  
 Here is a link to the [dictionary version made with React](https://wmcooper2.com/total-english-dictionary-js/).  
