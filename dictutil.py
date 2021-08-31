@@ -133,6 +133,14 @@ def page_num(word: Text) -> Text:
         return ""
 
 
+def page_number(word: Text) -> Text:
+    """Gets page number of word. Returns String."""
+    if in_dict(word):
+        return dict_value(word, "page")
+    else:
+        return ""
+
+
 def punct_filter(some_list: dict) -> List[Text]:
     """Filters out words containing apostrophe. Returns List."""
     return list(filter(lambda word: "'" in word, some_list.keys()))

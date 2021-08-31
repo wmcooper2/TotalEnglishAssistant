@@ -10,6 +10,7 @@ import string
 
 ALPHABET = string.ascii_uppercase+string.ascii_lowercase
 DATA = str(Path.cwd())+"/data/"
+print("DATA dir:", DATA)
 DICT_DIR = "Dictionaries/"
 DICT_NAME = "Total English 1, 2 and 3"
 GOOD_PUNCT = ["'", "-", " "]
