@@ -1,0 +1,40 @@
+actor
+actress
+musician
+writer
+soccer player
+athlete
+doctor
+nurse
+firefighter
+police officer
+designer
+pilot
+flight attendant
+farmer
+lawyer
+hairdresser
+director
+engineer
+cartoonist
+video game creator
+illustrator
+computer programmer
+architect
+carpenter
+news anchor
+journalist
+dancer
+office worker
+government worker
+nursery school teacher
+scientist
+interpreter
+translator
+veterinarian
+vet
+dentist
+home attendent
+storekeeper
+cook
+chef

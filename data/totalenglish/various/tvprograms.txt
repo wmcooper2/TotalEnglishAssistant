@@ -1,0 +1,7 @@
+dramas
+news
+music programs
+sports
+documentaries
+anime
+game shows

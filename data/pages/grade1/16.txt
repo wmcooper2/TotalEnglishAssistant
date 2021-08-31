@@ -1,0 +1,10 @@
+apple
+bag
+ball
+basketball
+bike
+dog
+juice
+milk
+orange
+pizza

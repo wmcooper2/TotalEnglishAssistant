@@ -1,0 +1,7 @@
+empty
+furniture
+futon
+karaoke
+orchestra
+origin
+sofa

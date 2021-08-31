@@ -1,0 +1,4 @@
+die
+increase
+kept
+skill

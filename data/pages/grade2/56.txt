@@ -1,0 +1,10 @@
+afraid
+bank
+corner
+hospital
+lost
+museum
+office
+post
+street
+youll

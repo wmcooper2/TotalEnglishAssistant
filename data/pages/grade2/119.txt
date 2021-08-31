@@ -1,0 +1,6 @@
+dentist
+medicine
+pain
+pharmacist
+rest
+still

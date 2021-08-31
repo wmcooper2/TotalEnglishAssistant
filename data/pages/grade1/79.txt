@@ -1,0 +1,9 @@
+excuse
+first
+floor
+left
+second
+stair
+straight
+third
+turn

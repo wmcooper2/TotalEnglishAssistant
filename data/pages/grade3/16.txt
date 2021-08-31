@@ -1,0 +1,6 @@
+add
+chess
+crane
+newspaper
+spell
+unicycle

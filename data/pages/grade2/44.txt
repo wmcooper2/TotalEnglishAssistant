@@ -1,0 +1,11 @@
+cloudy
+humid
+rain
+rainy
+snow
+snowy
+sunny
+temperature
+warm
+weather
+windy

@@ -1,0 +1,15 @@
+busy
+coffee
+cold
+free
+happy
+hot
+house
+large
+long
+sad
+short
+small
+tall
+water
+young

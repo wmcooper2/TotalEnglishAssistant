@@ -1,0 +1,13 @@
+cough
+cut
+fever
+hay fever
+headache
+itchy
+leg
+runny
+sore
+stomach
+stomach ache
+throat
+toothache

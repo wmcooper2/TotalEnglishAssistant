@@ -1,0 +1,8 @@
+above
+balloon
+bottle
+box
+shelf
+table
+under
+wall

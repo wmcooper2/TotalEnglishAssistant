@@ -1,0 +1,11 @@
+cat
+dog
+rabbit
+hamster
+squirrel
+bird
+turtle
+beetle
+snake
+fish
+spider

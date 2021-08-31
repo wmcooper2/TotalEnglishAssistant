@@ -1,0 +1,14 @@
+milk
+water
+lemonade
+juice
+orange juice
+soda
+beer
+wine
+energy drink
+coffee
+tea
+green tea
+black tea
+milk tea

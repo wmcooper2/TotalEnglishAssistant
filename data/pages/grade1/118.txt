@@ -1,0 +1,11 @@
+arm
+bird
+did
+didn't
+emu
+fast
+fly
+hold
+know
+koala
+receive

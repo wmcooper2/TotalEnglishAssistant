@@ -1,0 +1,14 @@
+between
+city
+convenience
+drugstore
+hall
+movie
+police
+restaurant
+shop
+station
+store
+supermarket
+theater
+traffic

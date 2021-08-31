@@ -1,0 +1,10 @@
+bus
+cross
+fish
+forest
+grass
+lake
+rainbow
+scenery
+sun
+tree

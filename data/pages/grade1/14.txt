@@ -1,0 +1,9 @@
+book
+cake
+chair
+computer
+desk
+door
+picture
+tea
+T-shirt

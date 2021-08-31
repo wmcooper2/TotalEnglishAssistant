@@ -1,0 +1,15 @@
+school gate
+student entrance
+classroom
+library
+playground
+gym
+swimming pool
+teacher's room
+principal's office
+tennis court
+baseball field
+soccer field
+roof
+basement
+bathroom

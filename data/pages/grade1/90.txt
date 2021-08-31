@@ -1,0 +1,10 @@
+brush
+can
+cannot
+can't
+event
+favorite
+fun
+sound
+traditional
+word

@@ -1,0 +1,8 @@
+air
+coal
+conditioner
+fossil fuel
+heater
+natural gas
+oil
+ship

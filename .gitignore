@@ -3,3 +3,5 @@
 *.swp
 venv
 *__pycache__
+VocabularyTests
+Dictionaries

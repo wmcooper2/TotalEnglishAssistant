@@ -1,0 +1,9 @@
+down
+name
+Nancy
+run
+sit
+stand
+up
+walk
+write

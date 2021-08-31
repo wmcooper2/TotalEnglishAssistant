@@ -1,0 +1,19 @@
+library
+supermarket
+post office
+pet store
+bank
+flower shop
+park
+movie theater
+hospital
+restaurant
+drugstore
+convenience store
+train station
+museum
+police station
+animal hospital
+fire station
+department store
+book store

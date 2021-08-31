@@ -1,0 +1,8 @@
+family
+high
+library
+school
+science
+some
+teach
+work

@@ -1,0 +1,7 @@
+cry
+hit
+hurt
+ran
+shout
+suddenly
+whisper
